@@ -946,6 +946,19 @@
           "ref/netstandard1.3/System.Threading.Tasks.dll": {}
         }
       },
+      "TasksManagerFinal.DataAccess.UnitOfWork/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "TasksManagerFinal.Entities": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/TasksManagerFinal.DataAccess.UnitOfWork.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TasksManagerFinal.DataAccess.UnitOfWork.dll": {}
+        }
+      },
       "TasksManagerFinal.Entities/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
@@ -957,6 +970,19 @@
         },
         "runtime": {
           "bin/placeholder/TasksManagerFinal.Entities.dll": {}
+        }
+      },
+      "TasksManagerFinal.Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "TasksManagerFinal.DataAccess.UnitOfWork": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/TasksManagerFinal.Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TasksManagerFinal.Services.dll": {}
         }
       }
     }
@@ -3233,16 +3259,27 @@
         "system.threading.tasks.nuspec"
       ]
     },
+    "TasksManagerFinal.DataAccess.UnitOfWork/1.0.0": {
+      "type": "project",
+      "path": "../TasksManagerFinal.DataAccess.UnitOfWork/TasksManagerFinal.DataAccess.UnitOfWork.csproj",
+      "msbuildProject": "../TasksManagerFinal.DataAccess.UnitOfWork/TasksManagerFinal.DataAccess.UnitOfWork.csproj"
+    },
     "TasksManagerFinal.Entities/1.0.0": {
       "type": "project",
       "path": "../TasksManagerFinal.Entities/TasksManagerFinal.Entities.csproj",
       "msbuildProject": "../TasksManagerFinal.Entities/TasksManagerFinal.Entities.csproj"
+    },
+    "TasksManagerFinal.Services/1.0.0": {
+      "type": "project",
+      "path": "../TasksManagerFinal.Services/TasksManagerFinal.Services.csproj",
+      "msbuildProject": "../TasksManagerFinal.Services/TasksManagerFinal.Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
       "Microsoft.NETCore.App >= 2.0.0",
-      "TasksManagerFinal.Entities >= 1.0.0"
+      "TasksManagerFinal.Entities >= 1.0.0",
+      "TasksManagerFinal.Services >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -3280,6 +3317,9 @@
           "projectReferences": {
             "D:\\asp\\tasks-manager-final\\TasksManagerFinal.Entities\\TasksManagerFinal.Entities.csproj": {
               "projectPath": "D:\\asp\\tasks-manager-final\\TasksManagerFinal.Entities\\TasksManagerFinal.Entities.csproj"
+            },
+            "D:\\asp\\tasks-manager-final\\TasksManagerFinal.Services\\TasksManagerFinal.Services.csproj": {
+              "projectPath": "D:\\asp\\tasks-manager-final\\TasksManagerFinal.Services\\TasksManagerFinal.Services.csproj"
             }
           }
         }

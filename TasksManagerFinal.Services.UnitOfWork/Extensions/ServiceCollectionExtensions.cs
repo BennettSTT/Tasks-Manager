@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using TasksManagerFinal.Services.UnitOfWork;
 
-namespace TasksManagerFinal.Services.Extensions
+namespace TasksManagerFinal.Services.UnitOfWork.Extensions
 {
     public static class ServiceCollectionExtensions
     {

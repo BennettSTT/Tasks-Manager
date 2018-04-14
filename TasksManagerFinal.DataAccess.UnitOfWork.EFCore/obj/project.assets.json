@@ -1369,8 +1369,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
         "dependencies": {
-          "TasksManagerFinal.DataAccess.UnitOfWork": "1.0.0",
-          "TasksManagerFinal.Services.UnitOfWork": "1.0.0"
+          "TasksManagerFinal.DataAccess.UnitOfWork": "1.0.0"
         },
         "compile": {
           "bin/placeholder/TasksManagerFinal.Services.dll": {}
@@ -1383,7 +1382,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
         "dependencies": {
-          "TasksManagerFinal.Entities": "1.0.0"
+          "TasksManagerFinal.Entities": "1.0.0",
+          "TasksManagerFinal.Services": "1.0.0"
         },
         "compile": {
           "bin/placeholder/TasksManagerFinal.Services.UnitOfWork.dll": {}

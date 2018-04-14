@@ -2,9 +2,8 @@
 using System.Linq;
 using TasksManagerFinal.DataAccess.UnitOfWork;
 using TasksManagerFinal.Entities;
-using TasksManagerFinal.Services.UnitOfWork;
 
-namespace TasksManagerFinal.Services
+namespace TasksManagerFinal.Services.UnitOfWork
 {
     public class GetTasksService : ITasksServices
     {

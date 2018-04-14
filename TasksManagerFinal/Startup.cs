@@ -9,7 +9,7 @@ using System.Text;
 using TasksManagerFinal.DataAccess.DbImplementation.Extensions;
 using TasksManagerFinal.DataAccess.UnitOfWork;
 using TasksManagerFinal.DataAccess.UnitOfWork.EFCore.Extensions;
-using TasksManagerFinal.Services.Extensions;
+using TasksManagerFinal.Services.UnitOfWork.Extensions;
 using TasksManagerFinal.ViewModel;
 
 namespace TasksManagerFinal
@@ -90,7 +90,7 @@ namespace TasksManagerFinal
             services
                 .RegisterUnitOfWorkEFCore(connectionString)
                 .RegisterUnitOfWorkDataAccess()
-                .RegisterUnitOfWorkServices()
+                .RegisterServicesUnitOfWork()
                 ;
         }
     }
