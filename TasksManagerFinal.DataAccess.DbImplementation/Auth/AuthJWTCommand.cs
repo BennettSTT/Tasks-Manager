@@ -2,6 +2,7 @@
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using TasksManagerFinal.DataAccess.Auth;
 using TasksManagerFinal.DataAccess.UnitOfWork;
+using TasksManagerFinal.Entities;
 using TasksManagerFinal.ViewModel;
 using TasksManagerFinal.ViewModel.Auth;
 
@@ -28,8 +30,25 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
             JWTAuthOptions = authOptions.Value;
         }
 
-        public async Task<AuthResponce> ExecuteAsync(AuthRequest request)
+        public async Task<AuthTokenResponce> ExecuteAsync(AuthRequest request)
         {
+            //var t = new RefreshToken
+            //{
+            //    Token = Guid.NewGuid().ToString().Replace("-", ""),
+            //};
+
+            //var user1 = new User
+            //{
+            //    Email = "Token",
+            //    Password = "123456",
+            //    Role = "admin",
+            //    RefreshToken = t.Token
+            //};
+
+            //t.UserId = user1.Id;
+            //Uow.UsersRepository.Add(user1);
+            //await Uow.CommitAsync();
+
             var query = Uow.UsersRepository.Query()
                 .Select(u => u);
 
@@ -38,6 +57,29 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
 
             if (user == null) throw new Exception("user not found");
 
+            DateTime now = DateTime.Now;
+            DateTime expires = now.Add(TimeSpan.FromMinutes(JWTAuthOptions.LifeTime));
+
+            string accessToken = GetAccessToken(user, now, expires);
+            RefreshToken refreshToken = GetRefreshToken(user);
+
+            user.RefreshToken = refreshToken.Token;
+
+            user.ExpiresInRefreshToken = expires;
+
+            Uow.UsersRepository.Update(user);
+            await Uow.CommitAsync();
+
+            return new AuthTokenResponce
+            {
+                accessToken = accessToken,
+                refreshToken = refreshToken,
+                expiresIn = expires.ToString(CultureInfo.InvariantCulture)
+            };
+        }
+
+        private string GetAccessToken(User user, DateTime now, DateTime expires)
+        {
             var claims = new List<Claim>
             {
                 new Claim(ClaimsIdentity.DefaultNameClaimType, user.Email),
@@ -48,25 +90,26 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
                 ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType
             );
 
-            DateTime now = DateTime.UtcNow;
-
             SecurityToken token = new JwtSecurityToken(
                 issuer: JWTAuthOptions.Issuer,
                 audience: JWTAuthOptions.Audience,
                 notBefore: now,
                 claims: claimsIdentity.Claims,
-                expires: now.Add(TimeSpan.FromMinutes(JWTAuthOptions.LifeTime)),
+                expires: expires,
                 signingCredentials: new SigningCredentials(
                     JWTAuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256
                 )
             );
 
-            var encodedToken = new JwtSecurityTokenHandler().WriteToken(token);
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
 
-            return new AuthResponce
+        private RefreshToken GetRefreshToken(User user)
+        {
+            return new RefreshToken
             {
-                AccessToken = encodedToken,
-                UserName = claimsIdentity.Name
+                Token = Guid.NewGuid().ToString().Replace("-", ""),
+                UserId = user.Id
             };
         }
     }

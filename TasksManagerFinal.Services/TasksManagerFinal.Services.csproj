@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TasksManagerFinal.DataAccess.UnitOfWork\TasksManagerFinal.DataAccess.UnitOfWork.csproj" />
-    <ProjectReference Include="..\TasksManagerFinal.Services.UnitOfWork\TasksManagerFinal.Services.UnitOfWork.csproj" />
   </ItemGroup>
 
   <ItemGroup>

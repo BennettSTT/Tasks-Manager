@@ -20,7 +20,7 @@ D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.DbImplementation\bin\Deb
 D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.DbImplementation\bin\Debug\netcoreapp2.0\TasksManagerFinal.DataAccess.UnitOfWork.pdb
 D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.DbImplementation\bin\Debug\netcoreapp2.0\TasksManagerFinal.Services.UnitOfWork.dll
 D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.DbImplementation\bin\Debug\netcoreapp2.0\TasksManagerFinal.Services.UnitOfWork.pdb
-D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.DbImplementation\bin\Debug\netcoreapp2.0\Microsoft.Extensions.Identity.Stores.dll
-D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.DbImplementation\bin\Debug\netcoreapp2.0\Microsoft.Extensions.Identity.Stores.xml
 D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.DbImplementation\bin\Debug\netcoreapp2.0\System.IdentityModel.Tokens.Jwt.dll
 D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.DbImplementation\bin\Debug\netcoreapp2.0\System.IdentityModel.Tokens.Jwt.xml
+D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.DbImplementation\bin\Debug\netcoreapp2.0\TasksManagerFinal.Services.dll
+D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.DbImplementation\bin\Debug\netcoreapp2.0\TasksManagerFinal.Services.pdb

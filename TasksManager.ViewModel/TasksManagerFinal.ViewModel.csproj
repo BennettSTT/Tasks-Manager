@@ -9,6 +9,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TasksManagerFinal.Entities\TasksManagerFinal.Entities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="System.IdentityModel.Tokens.Jwt">
       <HintPath>C:\Users\Benne\.nuget\packages\system.identitymodel.tokens.jwt\5.2.1\lib\netstandard1.4\System.IdentityModel.Tokens.Jwt.dll</HintPath>
     </Reference>

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace TasksManagerFinal.Db.Migrations
 {
-    public partial class addTasksStatus : Migration
+    public partial class userRef3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -22,6 +22,23 @@ namespace TasksManagerFinal.Db.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Projects", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Email = table.Column<string>(maxLength: 64, nullable: false),
+                    ExpiresInRefreshToken = table.Column<DateTime>(nullable: false),
+                    Password = table.Column<string>(maxLength: 64, nullable: false),
+                    RefreshTokenId = table.Column<int>(nullable: false),
+                    Role = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -71,6 +88,9 @@ namespace TasksManagerFinal.Db.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Tasks");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Projects");

@@ -10,5 +10,3 @@ D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.UnitOfWork\obj\Debug\net
 D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.UnitOfWork\obj\Debug\netcoreapp2.0\TasksManagerFinal.DataAccess.UnitOfWork.csproj.CopyComplete
 D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.UnitOfWork\obj\Debug\netcoreapp2.0\TasksManagerFinal.DataAccess.UnitOfWork.dll
 D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.UnitOfWork\obj\Debug\netcoreapp2.0\TasksManagerFinal.DataAccess.UnitOfWork.pdb
-D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.UnitOfWork\bin\Debug\netcoreapp2.0\Microsoft.Extensions.Identity.Stores.dll
-D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.UnitOfWork\bin\Debug\netcoreapp2.0\Microsoft.Extensions.Identity.Stores.xml

@@ -5,6 +5,6 @@ namespace TasksManagerFinal.DataAccess.Auth
 {
     public interface IAuthJWTCommand
     {
-        Task<AuthResponce> ExecuteAsync(AuthRequest request);
+        Task<AuthTokenResponce> ExecuteAsync(AuthRequest request);
     }
 }

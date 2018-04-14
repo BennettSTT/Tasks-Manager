@@ -1388,9 +1388,18 @@
           "TasksManagerFinal.Entities.dll": {}
         }
       },
+      "TasksManagerFinal.Services/1.0.0": {
+        "dependencies": {
+          "TasksManagerFinal.DataAccess.UnitOfWork": "1.0.0"
+        },
+        "runtime": {
+          "TasksManagerFinal.Services.dll": {}
+        }
+      },
       "TasksManagerFinal.Services.UnitOfWork/1.0.0": {
         "dependencies": {
-          "TasksManagerFinal.Entities": "1.0.0"
+          "TasksManagerFinal.Entities": "1.0.0",
+          "TasksManagerFinal.Services": "1.0.0"
         },
         "runtime": {
           "TasksManagerFinal.Services.UnitOfWork.dll": {}
@@ -1398,7 +1407,8 @@
       },
       "TasksManagerFinal.ViewModel/1.0.0": {
         "dependencies": {
-          "Microsoft.IdentityModel.Tokens": "5.2.1"
+          "Microsoft.IdentityModel.Tokens": "5.2.1",
+          "TasksManagerFinal.Entities": "1.0.0"
         },
         "runtime": {
           "TasksManagerFinal.ViewModel.dll": {}
@@ -2329,6 +2339,11 @@
       "sha512": ""
     },
     "TasksManagerFinal.Entities/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TasksManagerFinal.Services/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

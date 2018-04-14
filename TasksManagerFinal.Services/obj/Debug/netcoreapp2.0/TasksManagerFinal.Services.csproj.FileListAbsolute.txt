@@ -12,7 +12,3 @@ D:\asp\tasks-manager-final\TasksManagerFinal.Services\obj\Debug\netcoreapp2.0\Ta
 D:\asp\tasks-manager-final\TasksManagerFinal.Services\obj\Debug\netcoreapp2.0\TasksManagerFinal.Services.dll
 D:\asp\tasks-manager-final\TasksManagerFinal.Services\obj\Debug\netcoreapp2.0\TasksManagerFinal.Services.pdb
 D:\asp\tasks-manager-final\TasksManagerFinal.Services\obj\Debug\netcoreapp2.0\TasksManagerFinal.Services.csprojResolveAssemblyReference.cache
-D:\asp\tasks-manager-final\TasksManagerFinal.Services\bin\Debug\netcoreapp2.0\TasksManagerFinal.Services.UnitOfWork.dll
-D:\asp\tasks-manager-final\TasksManagerFinal.Services\bin\Debug\netcoreapp2.0\TasksManagerFinal.Services.UnitOfWork.pdb
-D:\asp\tasks-manager-final\TasksManagerFinal.Services\bin\Debug\netcoreapp2.0\Microsoft.Extensions.Identity.Stores.dll
-D:\asp\tasks-manager-final\TasksManagerFinal.Services\bin\Debug\netcoreapp2.0\Microsoft.Extensions.Identity.Stores.xml

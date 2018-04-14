@@ -740,8 +740,7 @@
       },
       "TasksManagerFinal.Services/1.0.0": {
         "dependencies": {
-          "TasksManagerFinal.DataAccess.UnitOfWork": "1.0.0",
-          "TasksManagerFinal.Services.UnitOfWork": "1.0.0"
+          "TasksManagerFinal.DataAccess.UnitOfWork": "1.0.0"
         },
         "runtime": {
           "TasksManagerFinal.Services.dll": {}
@@ -749,7 +748,8 @@
       },
       "TasksManagerFinal.Services.UnitOfWork/1.0.0": {
         "dependencies": {
-          "TasksManagerFinal.Entities": "1.0.0"
+          "TasksManagerFinal.Entities": "1.0.0",
+          "TasksManagerFinal.Services": "1.0.0"
         },
         "runtime": {
           "TasksManagerFinal.Services.UnitOfWork.dll": {}

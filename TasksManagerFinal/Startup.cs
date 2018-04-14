@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,31 +27,8 @@ namespace TasksManagerFinal
         public void ConfigureServices(IServiceCollection services)
         {
             RegisterModules(services);
+            ConfigureJwtAuthService(services);
             services.AddMvc();
-
-            services.Configure<JWTAuthOptions>(Configuration.GetSection("JWTAuthOptions"));
-
-            services
-                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
-                    options.RequireHttpsMetadata = false;
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
-                        ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true,
-
-                        ValidIssuer = Configuration["JWTAuthOptions:Issuer"],
-                        ValidAudience = Configuration["JWTAuthOptions:Audience"],
-                        
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(
-                            Configuration["JWTAuthOptions:Key"])
-                        )
-                    };
-                });
-
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IUnitOfWork uow)
@@ -92,6 +70,43 @@ namespace TasksManagerFinal
                 .RegisterUnitOfWorkDataAccess()
                 .RegisterServicesUnitOfWork()
                 ;
+        }
+
+        private void ConfigureJwtAuthService(IServiceCollection services)
+        {
+            services.Configure<JWTAuthOptions>(Configuration.GetSection("JWTAuthOptions"));
+
+            services
+                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.RequireHttpsMetadata = false;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+
+                        LifetimeValidator = CustomLifetimeValidator,
+
+                        ValidIssuer = Configuration["JWTAuthOptions:Issuer"],
+                        ValidAudience = Configuration["JWTAuthOptions:Audience"],
+
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(
+                            Configuration["JWTAuthOptions:Key"])
+                        )
+                    };
+                });
+        }
+
+        public static bool CustomLifetimeValidator(DateTime? notBefore, DateTime? expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+        {
+            if (expires != null)
+            {
+                return DateTime.UtcNow < expires;
+            }
+            return false;
         }
     }
 }

@@ -7,7 +7,6 @@ using TasksManagerFinal.ViewModel.Auth;
 
 namespace TasksManagerFinal.Controllers
 {
-    [Route("api/[controller]")]
     public class AccountController : Controller
     {
         public IUnitOfWork Uow { get; }
@@ -17,8 +16,8 @@ namespace TasksManagerFinal.Controllers
             Uow = uow;
         }
 
-        [HttpPost("token")]
-        [ProducesResponseType(200, Type = typeof(AuthResponce))]
+        [HttpPost("auth/token")]
+        [ProducesResponseType(200, Type = typeof(AuthTokenResponce))]
         [ProducesResponseType(400)]
         public async Task<IActionResult> Token([FromBody] AuthRequest request, [FromServices]IAuthJWTCommand command)
         {
@@ -27,7 +26,7 @@ namespace TasksManagerFinal.Controllers
                 return BadRequest(ModelState);
             }
 
-            AuthResponce identity;
+            AuthTokenResponce identity;
 
             try
             {

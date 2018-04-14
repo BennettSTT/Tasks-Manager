@@ -77,11 +77,20 @@ namespace TasksManagerFinal.Db.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(64);
 
-                    b.Property<string>("Password");
+                    b.Property<DateTime>("ExpiresInRefreshToken");
 
-                    b.Property<string>("Role");
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(64);
+
+                    b.Property<string>("RefreshToken");
+
+                    b.Property<string>("Role")
+                        .IsRequired();
 
                     b.HasKey("Id");
 

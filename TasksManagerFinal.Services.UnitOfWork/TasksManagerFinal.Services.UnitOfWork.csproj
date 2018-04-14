@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TasksManagerFinal.Entities\TasksManagerFinal.Entities.csproj" />
+    <ProjectReference Include="..\TasksManagerFinal.Services\TasksManagerFinal.Services.csproj" />
   </ItemGroup>
 
 </Project>

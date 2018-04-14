@@ -22,5 +22,3 @@ D:\asp\tasks-manager-final\TasksManager.Db\obj\Debug\netcoreapp2.0\TasksManagerF
 D:\asp\tasks-manager-final\TasksManager.Db\obj\Debug\netcoreapp2.0\TasksManagerFinal.Db.csproj.CopyComplete
 D:\asp\tasks-manager-final\TasksManager.Db\obj\Debug\netcoreapp2.0\TasksManagerFinal.Db.dll
 D:\asp\tasks-manager-final\TasksManager.Db\obj\Debug\netcoreapp2.0\TasksManagerFinal.Db.pdb
-D:\asp\tasks-manager-final\TasksManager.Db\bin\Debug\netcoreapp2.0\Microsoft.Extensions.Identity.Stores.dll
-D:\asp\tasks-manager-final\TasksManager.Db\bin\Debug\netcoreapp2.0\Microsoft.Extensions.Identity.Stores.xml

@@ -12,8 +12,8 @@ using TasksManagerFinal.Entities;
 namespace TasksManagerFinal.Db.Migrations
 {
     [DbContext(typeof(TasksContext))]
-    [Migration("20180411143544_addTasksStatus")]
-    partial class addTasksStatus
+    [Migration("20180414134950_userRef3")]
+    partial class userRef3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -71,6 +71,31 @@ namespace TasksManagerFinal.Db.Migrations
                     b.HasIndex("ProjectId");
 
                     b.ToTable("Tasks");
+                });
+
+            modelBuilder.Entity("TasksManagerFinal.Entities.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(64);
+
+                    b.Property<DateTime>("ExpiresInRefreshToken");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(64);
+
+                    b.Property<int>("RefreshTokenId");
+
+                    b.Property<string>("Role")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("TasksManagerFinal.Entities.Task", b =>

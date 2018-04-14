@@ -10,3 +10,5 @@ D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess\obj\Debug\netcoreapp2.0\
 D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess\obj\Debug\netcoreapp2.0\TasksManagerFinal.DataAccess.csproj.CopyComplete
 D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess\obj\Debug\netcoreapp2.0\TasksManagerFinal.DataAccess.dll
 D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess\obj\Debug\netcoreapp2.0\TasksManagerFinal.DataAccess.pdb
+D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess\bin\Debug\netcoreapp2.0\TasksManagerFinal.Entities.dll
+D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess\bin\Debug\netcoreapp2.0\TasksManagerFinal.Entities.pdb

@@ -8,8 +8,7 @@
     ".NETCoreApp,Version=v2.0": {
       "TasksManagerFinal.Services/1.0.0": {
         "dependencies": {
-          "TasksManagerFinal.DataAccess.UnitOfWork": "1.0.0",
-          "TasksManagerFinal.Services.UnitOfWork": "1.0.0"
+          "TasksManagerFinal.DataAccess.UnitOfWork": "1.0.0"
         },
         "runtime": {
           "TasksManagerFinal.Services.dll": {}
@@ -496,14 +495,6 @@
         "runtime": {
           "TasksManagerFinal.Entities.dll": {}
         }
-      },
-      "TasksManagerFinal.Services.UnitOfWork/1.0.0": {
-        "dependencies": {
-          "TasksManagerFinal.Entities": "1.0.0"
-        },
-        "runtime": {
-          "TasksManagerFinal.Services.UnitOfWork.dll": {}
-        }
       }
     }
   },
@@ -883,11 +874,6 @@
       "sha512": ""
     },
     "TasksManagerFinal.Entities/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "TasksManagerFinal.Services.UnitOfWork/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -10,3 +10,5 @@ D:\asp\tasks-manager-final\TasksManager.ViewModel\obj\Debug\netcoreapp2.0\TasksM
 D:\asp\tasks-manager-final\TasksManager.ViewModel\bin\Debug\netcoreapp2.0\System.IdentityModel.Tokens.Jwt.dll
 D:\asp\tasks-manager-final\TasksManager.ViewModel\bin\Debug\netcoreapp2.0\System.IdentityModel.Tokens.Jwt.xml
 D:\asp\tasks-manager-final\TasksManager.ViewModel\obj\Debug\netcoreapp2.0\TasksManagerFinal.ViewModel.csproj.CopyComplete
+D:\asp\tasks-manager-final\TasksManager.ViewModel\bin\Debug\netcoreapp2.0\TasksManagerFinal.Entities.dll
+D:\asp\tasks-manager-final\TasksManager.ViewModel\bin\Debug\netcoreapp2.0\TasksManagerFinal.Entities.pdb

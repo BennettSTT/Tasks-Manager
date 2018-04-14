@@ -12,8 +12,8 @@ using TasksManagerFinal.Entities;
 namespace TasksManagerFinal.Db.Migrations
 {
     [DbContext(typeof(TasksContext))]
-    [Migration("20180414044714_user")]
-    partial class user
+    [Migration("20180414135520_userRef4")]
+    partial class userRef4
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -78,11 +78,20 @@ namespace TasksManagerFinal.Db.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(64);
 
-                    b.Property<string>("Password");
+                    b.Property<DateTime>("ExpiresInRefreshToken");
 
-                    b.Property<string>("Role");
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(64);
+
+                    b.Property<string>("RefreshToken");
+
+                    b.Property<string>("Role")
+                        .IsRequired();
 
                     b.HasKey("Id");
 

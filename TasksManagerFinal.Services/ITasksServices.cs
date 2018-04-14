@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using TasksManagerFinal.Entities;
 
-namespace TasksManagerFinal.Services.UnitOfWork
+namespace TasksManagerFinal.Services
 {
     public interface ITasksServices
     {
