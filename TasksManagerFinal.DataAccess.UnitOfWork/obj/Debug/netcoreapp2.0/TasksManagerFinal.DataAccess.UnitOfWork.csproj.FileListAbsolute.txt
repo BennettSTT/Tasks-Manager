@@ -1,0 +1,14 @@
+D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.UnitOfWork\bin\Debug\netcoreapp2.0\TasksManagerFinal.DataAccess.UnitOfWork.deps.json
+D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.UnitOfWork\bin\Debug\netcoreapp2.0\TasksManagerFinal.DataAccess.UnitOfWork.dll
+D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.UnitOfWork\bin\Debug\netcoreapp2.0\TasksManagerFinal.DataAccess.UnitOfWork.pdb
+D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.UnitOfWork\bin\Debug\netcoreapp2.0\TasksManagerFinal.Entities.dll
+D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.UnitOfWork\bin\Debug\netcoreapp2.0\TasksManagerFinal.Entities.pdb
+D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.UnitOfWork\obj\Debug\netcoreapp2.0\TasksManagerFinal.DataAccess.UnitOfWork.csprojResolveAssemblyReference.cache
+D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.UnitOfWork\obj\Debug\netcoreapp2.0\TasksManagerFinal.DataAccess.UnitOfWork.csproj.CoreCompileInputs.cache
+D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.UnitOfWork\obj\Debug\netcoreapp2.0\TasksManagerFinal.DataAccess.UnitOfWork.AssemblyInfoInputs.cache
+D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.UnitOfWork\obj\Debug\netcoreapp2.0\TasksManagerFinal.DataAccess.UnitOfWork.AssemblyInfo.cs
+D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.UnitOfWork\obj\Debug\netcoreapp2.0\TasksManagerFinal.DataAccess.UnitOfWork.csproj.CopyComplete
+D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.UnitOfWork\obj\Debug\netcoreapp2.0\TasksManagerFinal.DataAccess.UnitOfWork.dll
+D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.UnitOfWork\obj\Debug\netcoreapp2.0\TasksManagerFinal.DataAccess.UnitOfWork.pdb
+D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.UnitOfWork\bin\Debug\netcoreapp2.0\Microsoft.Extensions.Identity.Stores.dll
+D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.UnitOfWork\bin\Debug\netcoreapp2.0\Microsoft.Extensions.Identity.Stores.xml

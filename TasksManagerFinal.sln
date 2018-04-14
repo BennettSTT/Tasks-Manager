@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksManagerFinal", "TasksManagerFinal\TasksManagerFinal.csproj", "{554C5EA3-72FB-4EAC-9310-31F58BC2C6B8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksManagerFinal.Entities", "TasksManagerFinal.Entities\TasksManagerFinal.Entities.csproj", "{52548C47-49A0-4FD8-98ED-8DBD3936B1DC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksManagerFinal.Db", "TasksManager.Db\TasksManagerFinal.Db.csproj", "{711C1A4C-C8CD-4854-AE6B-07E82BF22F7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TasksManagerFinal.ViewModel", "TasksManager.ViewModel\TasksManagerFinal.ViewModel.csproj", "{7668CAEB-E123-439F-9CA5-6719BB66537E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TasksManagerFinal.DataAccess", "TasksManagerFinal.DataAccess\TasksManagerFinal.DataAccess.csproj", "{1A5928C4-B8CC-474D-BD74-F29104D449B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TasksManagerFinal.DataAccess.DbImplementation", "TasksManagerFinal.DataAccess.DbImplementation\TasksManagerFinal.DataAccess.DbImplementation.csproj", "{1BF3C691-7825-426C-89FC-A35FCF06EA8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TasksManagerFinal.DataAccess.UnitOfWork", "TasksManagerFinal.DataAccess.UnitOfWork\TasksManagerFinal.DataAccess.UnitOfWork.csproj", "{4A1AF108-63C2-4E8D-AD86-F0355EEA482F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TasksManagerFinal.DataAccess.UnitOfWork.EFCore", "TasksManagerFinal.DataAccess.UnitOfWork.EFCore\TasksManagerFinal.DataAccess.UnitOfWork.EFCore.csproj", "{E19A8891-6A24-4960-9E85-6A87EC85B458}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TasksManagerFinal.Services", "TasksManagerFinal.Services\TasksManagerFinal.Services.csproj", "{6B4AC166-23CD-436C-948E-6E66C416D510}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TasksManagerFinal.Services.UnitOfWork", "TasksManagerFinal.Services.UnitOfWork\TasksManagerFinal.Services.UnitOfWork.csproj", "{9BEE8AC3-BA42-42D3-84C5-5948209954D2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{554C5EA3-72FB-4EAC-9310-31F58BC2C6B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{554C5EA3-72FB-4EAC-9310-31F58BC2C6B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{554C5EA3-72FB-4EAC-9310-31F58BC2C6B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{554C5EA3-72FB-4EAC-9310-31F58BC2C6B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52548C47-49A0-4FD8-98ED-8DBD3936B1DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52548C47-49A0-4FD8-98ED-8DBD3936B1DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52548C47-49A0-4FD8-98ED-8DBD3936B1DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52548C47-49A0-4FD8-98ED-8DBD3936B1DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{711C1A4C-C8CD-4854-AE6B-07E82BF22F7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{711C1A4C-C8CD-4854-AE6B-07E82BF22F7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{711C1A4C-C8CD-4854-AE6B-07E82BF22F7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{711C1A4C-C8CD-4854-AE6B-07E82BF22F7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7668CAEB-E123-439F-9CA5-6719BB66537E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7668CAEB-E123-439F-9CA5-6719BB66537E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7668CAEB-E123-439F-9CA5-6719BB66537E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7668CAEB-E123-439F-9CA5-6719BB66537E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A5928C4-B8CC-474D-BD74-F29104D449B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A5928C4-B8CC-474D-BD74-F29104D449B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A5928C4-B8CC-474D-BD74-F29104D449B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A5928C4-B8CC-474D-BD74-F29104D449B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BF3C691-7825-426C-89FC-A35FCF06EA8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BF3C691-7825-426C-89FC-A35FCF06EA8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BF3C691-7825-426C-89FC-A35FCF06EA8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BF3C691-7825-426C-89FC-A35FCF06EA8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A1AF108-63C2-4E8D-AD86-F0355EEA482F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A1AF108-63C2-4E8D-AD86-F0355EEA482F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A1AF108-63C2-4E8D-AD86-F0355EEA482F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A1AF108-63C2-4E8D-AD86-F0355EEA482F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E19A8891-6A24-4960-9E85-6A87EC85B458}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E19A8891-6A24-4960-9E85-6A87EC85B458}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E19A8891-6A24-4960-9E85-6A87EC85B458}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E19A8891-6A24-4960-9E85-6A87EC85B458}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B4AC166-23CD-436C-948E-6E66C416D510}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B4AC166-23CD-436C-948E-6E66C416D510}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B4AC166-23CD-436C-948E-6E66C416D510}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B4AC166-23CD-436C-948E-6E66C416D510}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BEE8AC3-BA42-42D3-84C5-5948209954D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BEE8AC3-BA42-42D3-84C5-5948209954D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BEE8AC3-BA42-42D3-84C5-5948209954D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BEE8AC3-BA42-42D3-84C5-5948209954D2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {945B656C-FA76-4C09-A924-A8F893A7E59B}
+	EndGlobalSection
+EndGlobal

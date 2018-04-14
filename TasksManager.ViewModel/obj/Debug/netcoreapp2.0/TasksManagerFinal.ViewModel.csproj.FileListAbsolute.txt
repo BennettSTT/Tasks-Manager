@@ -1,0 +1,12 @@
+D:\asp\tasks-manager-final\TasksManager.ViewModel\bin\Debug\netcoreapp2.0\TasksManagerFinal.ViewModel.deps.json
+D:\asp\tasks-manager-final\TasksManager.ViewModel\bin\Debug\netcoreapp2.0\TasksManagerFinal.ViewModel.dll
+D:\asp\tasks-manager-final\TasksManager.ViewModel\bin\Debug\netcoreapp2.0\TasksManagerFinal.ViewModel.pdb
+D:\asp\tasks-manager-final\TasksManager.ViewModel\obj\Debug\netcoreapp2.0\TasksManagerFinal.ViewModel.csprojResolveAssemblyReference.cache
+D:\asp\tasks-manager-final\TasksManager.ViewModel\obj\Debug\netcoreapp2.0\TasksManagerFinal.ViewModel.csproj.CoreCompileInputs.cache
+D:\asp\tasks-manager-final\TasksManager.ViewModel\obj\Debug\netcoreapp2.0\TasksManagerFinal.ViewModel.AssemblyInfoInputs.cache
+D:\asp\tasks-manager-final\TasksManager.ViewModel\obj\Debug\netcoreapp2.0\TasksManagerFinal.ViewModel.AssemblyInfo.cs
+D:\asp\tasks-manager-final\TasksManager.ViewModel\obj\Debug\netcoreapp2.0\TasksManagerFinal.ViewModel.dll
+D:\asp\tasks-manager-final\TasksManager.ViewModel\obj\Debug\netcoreapp2.0\TasksManagerFinal.ViewModel.pdb
+D:\asp\tasks-manager-final\TasksManager.ViewModel\bin\Debug\netcoreapp2.0\System.IdentityModel.Tokens.Jwt.dll
+D:\asp\tasks-manager-final\TasksManager.ViewModel\bin\Debug\netcoreapp2.0\System.IdentityModel.Tokens.Jwt.xml
+D:\asp\tasks-manager-final\TasksManager.ViewModel\obj\Debug\netcoreapp2.0\TasksManagerFinal.ViewModel.csproj.CopyComplete
