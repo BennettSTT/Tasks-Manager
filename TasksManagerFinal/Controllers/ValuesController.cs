@@ -7,7 +7,7 @@ namespace TasksManagerFinal.Controllers
     public class ValuesController : Controller
     {
         [Authorize]
-        [Route("getlogin")]
+        [Route("login")]
         public IActionResult GetLogin()
         {
             return Ok($"Ваш логин: {User.Identity.Name}");

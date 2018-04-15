@@ -1,4 +1,3 @@
-using System;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -6,6 +5,7 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Text;
 using TasksManagerFinal.DataAccess.DbImplementation.Extensions;
 using TasksManagerFinal.DataAccess.UnitOfWork;
@@ -49,7 +49,6 @@ namespace TasksManagerFinal
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseDefaultFiles();
             app.UseStaticFiles();
 
             app.UseAuthentication();
@@ -59,6 +58,10 @@ namespace TasksManagerFinal
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapSpaFallbackRoute(
+                    name: "spa-fallback",
+                    defaults: new { controller = "Home", action = "Index" });
             });
         }
 
@@ -100,7 +103,8 @@ namespace TasksManagerFinal
                 });
         }
 
-        public static bool CustomLifetimeValidator(DateTime? notBefore, DateTime? expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+        private static bool CustomLifetimeValidator(DateTime? notBefore, DateTime? expires, 
+            SecurityToken securityToken, TokenValidationParameters validationParameters)
         {
             if (expires != null)
             {

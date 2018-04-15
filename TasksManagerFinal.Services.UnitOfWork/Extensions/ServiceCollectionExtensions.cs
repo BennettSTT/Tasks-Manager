@@ -8,6 +8,7 @@ namespace TasksManagerFinal.Services.UnitOfWork.Extensions
         {
             return services
                     .AddScoped<ITasksServices, GetTasksService>()
+                    .AddScoped<IAuthJWTTokenServices, AuthJWTTokenServices>()
                 ;
         }
     }

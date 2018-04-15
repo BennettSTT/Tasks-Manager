@@ -9,9 +9,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
-    <PackageReference Include="Swagger" Version="1.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="2.4.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="2.4.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.2.1" />
   </ItemGroup>
 
@@ -29,6 +26,7 @@
     <ProjectReference Include="..\TasksManager.ViewModel\TasksManagerFinal.ViewModel.csproj" />
     <ProjectReference Include="..\TasksManagerFinal.DataAccess.DbImplementation\TasksManagerFinal.DataAccess.DbImplementation.csproj" />
     <ProjectReference Include="..\TasksManagerFinal.DataAccess.UnitOfWork.EFCore\TasksManagerFinal.DataAccess.UnitOfWork.EFCore.csproj" />
+    <ProjectReference Include="..\TasksManagerFinal.DataAccess.UnitOfWork\TasksManagerFinal.DataAccess.UnitOfWork.csproj" />
     <ProjectReference Include="..\TasksManagerFinal.DataAccess\TasksManagerFinal.DataAccess.csproj" />
   </ItemGroup>
 

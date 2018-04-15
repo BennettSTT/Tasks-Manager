@@ -15,7 +15,10 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Extensions
                     .AddScoped<IProjectsListQuery, ProjectsListQuery>()
                     .AddScoped<IUpdateProjectCommand, UpdateProjectCommand>()
 
-                    .AddScoped<IAuthJWTCommand, AuthJWTCommand>()
+                    .AddScoped<IGetJWTTokenCommand, GetJWTTokenCommand>()
+                    .AddScoped<IRefreshJWTTokenCommand, RefreshJWTTokenCommand>()
+
+                    .AddScoped<IRegisterUserCommand, RegisterUserCommand>()
                 ;
         }
     }

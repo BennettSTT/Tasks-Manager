@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "b504f1b877a5d8b5ff09c5cc60cb1f4778e930ae"
+    "signature": "4bb203b149b3f38764e3c57d58c11528eba0c894"
   },
   "compilationOptions": {},
   "targets": {
@@ -12,8 +12,7 @@
           "TasksManagerFinal.DataAccess": "1.0.0",
           "TasksManagerFinal.DataAccess.UnitOfWork": "1.0.0",
           "TasksManagerFinal.Db": "1.0.0",
-          "TasksManagerFinal.Services.UnitOfWork": "1.0.0",
-          "System.IdentityModel.Tokens.Jwt": "5.2.1.0"
+          "TasksManagerFinal.Services.UnitOfWork": "1.0.0"
         },
         "runtime": {
           "TasksManagerFinal.DataAccess.DbImplementation.dll": {}
@@ -741,6 +740,15 @@
           }
         }
       },
+      "System.IdentityModel.Tokens.Jwt/5.2.1": {
+        "dependencies": {
+          "Microsoft.IdentityModel.Tokens": "5.2.1",
+          "Newtonsoft.Json": "10.0.1"
+        },
+        "runtime": {
+          "lib/netstandard1.4/System.IdentityModel.Tokens.Jwt.dll": {}
+        }
+      },
       "System.Interactive.Async/3.1.1": {
         "runtime": {
           "lib/netstandard1.3/System.Interactive.Async.dll": {}
@@ -1390,6 +1398,7 @@
       },
       "TasksManagerFinal.Services/1.0.0": {
         "dependencies": {
+          "System.IdentityModel.Tokens.Jwt": "5.2.1",
           "TasksManagerFinal.DataAccess.UnitOfWork": "1.0.0"
         },
         "runtime": {
@@ -1399,7 +1408,8 @@
       "TasksManagerFinal.Services.UnitOfWork/1.0.0": {
         "dependencies": {
           "TasksManagerFinal.Entities": "1.0.0",
-          "TasksManagerFinal.Services": "1.0.0"
+          "TasksManagerFinal.Services": "1.0.0",
+          "TasksManagerFinal.ViewModel": "1.0.0"
         },
         "runtime": {
           "TasksManagerFinal.Services.UnitOfWork.dll": {}
@@ -1412,11 +1422,6 @@
         },
         "runtime": {
           "TasksManagerFinal.ViewModel.dll": {}
-        }
-      },
-      "System.IdentityModel.Tokens.Jwt/5.2.1.0": {
-        "runtime": {
-          "System.IdentityModel.Tokens.Jwt.dll": {}
         }
       }
     }
@@ -1966,6 +1971,13 @@
       "path": "system.globalization.extensions/4.3.0",
       "hashPath": "system.globalization.extensions.4.3.0.nupkg.sha512"
     },
+    "System.IdentityModel.Tokens.Jwt/5.2.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QwALOmIQnwYXO7SZuzHvp+aF9+E8kouJl2JDHe9hyV/Mqzl2KhOwZMlN+mhyIYo5ggHcIVa/LN7E46WD26OEEg==",
+      "path": "system.identitymodel.tokens.jwt/5.2.1",
+      "hashPath": "system.identitymodel.tokens.jwt.5.2.1.nupkg.sha512"
+    },
     "System.Interactive.Async/3.1.1": {
       "type": "package",
       "serviceable": true,
@@ -2355,11 +2367,6 @@
     },
     "TasksManagerFinal.ViewModel/1.0.0": {
       "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "System.IdentityModel.Tokens.Jwt/5.2.1.0": {
-      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

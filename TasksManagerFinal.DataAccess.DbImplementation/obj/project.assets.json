@@ -1279,6 +1279,20 @@
           }
         }
       },
+      "System.IdentityModel.Tokens.Jwt/5.2.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IdentityModel.Tokens": "5.2.1",
+          "NETStandard.Library": "1.6.1",
+          "Newtonsoft.Json": "10.0.1"
+        },
+        "compile": {
+          "lib/netstandard1.4/System.IdentityModel.Tokens.Jwt.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.4/System.IdentityModel.Tokens.Jwt.dll": {}
+        }
+      },
       "System.Interactive.Async/3.1.1": {
         "type": "package",
         "dependencies": {
@@ -2269,6 +2283,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
         "dependencies": {
+          "System.IdentityModel.Tokens.Jwt": "5.2.1",
           "TasksManagerFinal.DataAccess.UnitOfWork": "1.0.0"
         },
         "compile": {
@@ -2283,7 +2298,8 @@
         "framework": ".NETCoreApp,Version=v2.0",
         "dependencies": {
           "TasksManagerFinal.Entities": "1.0.0",
-          "TasksManagerFinal.Services": "1.0.0"
+          "TasksManagerFinal.Services": "1.0.0",
+          "TasksManagerFinal.ViewModel": "1.0.0"
         },
         "compile": {
           "bin/placeholder/TasksManagerFinal.Services.UnitOfWork.dll": {}
@@ -4621,6 +4637,21 @@
         "runtimes/win/lib/netstandard1.3/System.Globalization.Extensions.dll",
         "system.globalization.extensions.4.3.0.nupkg.sha512",
         "system.globalization.extensions.nuspec"
+      ]
+    },
+    "System.IdentityModel.Tokens.Jwt/5.2.1": {
+      "sha512": "QwALOmIQnwYXO7SZuzHvp+aF9+E8kouJl2JDHe9hyV/Mqzl2KhOwZMlN+mhyIYo5ggHcIVa/LN7E46WD26OEEg==",
+      "type": "package",
+      "path": "system.identitymodel.tokens.jwt/5.2.1",
+      "files": [
+        "lib/net45/System.IdentityModel.Tokens.Jwt.dll",
+        "lib/net45/System.IdentityModel.Tokens.Jwt.xml",
+        "lib/net451/System.IdentityModel.Tokens.Jwt.dll",
+        "lib/net451/System.IdentityModel.Tokens.Jwt.xml",
+        "lib/netstandard1.4/System.IdentityModel.Tokens.Jwt.dll",
+        "lib/netstandard1.4/System.IdentityModel.Tokens.Jwt.xml",
+        "system.identitymodel.tokens.jwt.5.2.1.nupkg.sha512",
+        "system.identitymodel.tokens.jwt.nuspec"
       ]
     },
     "System.Interactive.Async/3.1.1": {

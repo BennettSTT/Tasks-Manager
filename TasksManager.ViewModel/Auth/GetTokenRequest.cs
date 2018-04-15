@@ -2,7 +2,7 @@
 
 namespace TasksManagerFinal.ViewModel.Auth
 {
-    public class AuthRequest
+    public class GetTokenRequest
     {
         [Required]
         [MaxLength(64)]

@@ -2,7 +2,7 @@
 
 namespace TasksManagerFinal.ViewModel.Auth
 {
-    public class AuthTokenResponce
+    public class RegisterUserResponce
     {
         public string accessToken { get; set; }
         public RefreshToken refreshToken { get; set; }

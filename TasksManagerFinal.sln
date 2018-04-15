@@ -9,19 +9,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksManagerFinal.Entities"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksManagerFinal.Db", "TasksManager.Db\TasksManagerFinal.Db.csproj", "{711C1A4C-C8CD-4854-AE6B-07E82BF22F7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TasksManagerFinal.ViewModel", "TasksManager.ViewModel\TasksManagerFinal.ViewModel.csproj", "{7668CAEB-E123-439F-9CA5-6719BB66537E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksManagerFinal.ViewModel", "TasksManager.ViewModel\TasksManagerFinal.ViewModel.csproj", "{7668CAEB-E123-439F-9CA5-6719BB66537E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TasksManagerFinal.DataAccess", "TasksManagerFinal.DataAccess\TasksManagerFinal.DataAccess.csproj", "{1A5928C4-B8CC-474D-BD74-F29104D449B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksManagerFinal.DataAccess", "TasksManagerFinal.DataAccess\TasksManagerFinal.DataAccess.csproj", "{1A5928C4-B8CC-474D-BD74-F29104D449B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TasksManagerFinal.DataAccess.DbImplementation", "TasksManagerFinal.DataAccess.DbImplementation\TasksManagerFinal.DataAccess.DbImplementation.csproj", "{1BF3C691-7825-426C-89FC-A35FCF06EA8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksManagerFinal.DataAccess.DbImplementation", "TasksManagerFinal.DataAccess.DbImplementation\TasksManagerFinal.DataAccess.DbImplementation.csproj", "{1BF3C691-7825-426C-89FC-A35FCF06EA8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TasksManagerFinal.DataAccess.UnitOfWork", "TasksManagerFinal.DataAccess.UnitOfWork\TasksManagerFinal.DataAccess.UnitOfWork.csproj", "{4A1AF108-63C2-4E8D-AD86-F0355EEA482F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksManagerFinal.DataAccess.UnitOfWork", "TasksManagerFinal.DataAccess.UnitOfWork\TasksManagerFinal.DataAccess.UnitOfWork.csproj", "{4A1AF108-63C2-4E8D-AD86-F0355EEA482F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TasksManagerFinal.DataAccess.UnitOfWork.EFCore", "TasksManagerFinal.DataAccess.UnitOfWork.EFCore\TasksManagerFinal.DataAccess.UnitOfWork.EFCore.csproj", "{E19A8891-6A24-4960-9E85-6A87EC85B458}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksManagerFinal.DataAccess.UnitOfWork.EFCore", "TasksManagerFinal.DataAccess.UnitOfWork.EFCore\TasksManagerFinal.DataAccess.UnitOfWork.EFCore.csproj", "{E19A8891-6A24-4960-9E85-6A87EC85B458}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TasksManagerFinal.Services", "TasksManagerFinal.Services\TasksManagerFinal.Services.csproj", "{6B4AC166-23CD-436C-948E-6E66C416D510}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksManagerFinal.Services", "TasksManagerFinal.Services\TasksManagerFinal.Services.csproj", "{6B4AC166-23CD-436C-948E-6E66C416D510}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TasksManagerFinal.Services.UnitOfWork", "TasksManagerFinal.Services.UnitOfWork\TasksManagerFinal.Services.UnitOfWork.csproj", "{9BEE8AC3-BA42-42D3-84C5-5948209954D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksManagerFinal.Services.UnitOfWork", "TasksManagerFinal.Services.UnitOfWork\TasksManagerFinal.Services.UnitOfWork.csproj", "{9BEE8AC3-BA42-42D3-84C5-5948209954D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

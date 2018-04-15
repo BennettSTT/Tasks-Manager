@@ -40,6 +40,18 @@ namespace TasksManagerFinal.Db.Migrations
                     b.ToTable("Projects");
                 });
 
+            modelBuilder.Entity("TasksManagerFinal.Entities.RefreshToken", b =>
+                {
+                    b.Property<string>("Token")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("UserId");
+
+                    b.HasKey("Token");
+
+                    b.ToTable("RefreshTokens");
+                });
+
             modelBuilder.Entity("TasksManagerFinal.Entities.Task", b =>
                 {
                     b.Property<int>("Id")
