@@ -2,12 +2,10 @@
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Options;
 using TasksManagerFinal.DataAccess.Auth;
 using TasksManagerFinal.DataAccess.UnitOfWork;
 using TasksManagerFinal.Entities;
 using TasksManagerFinal.Services;
-using TasksManagerFinal.ViewModel;
 using TasksManagerFinal.ViewModel.Auth;
 
 namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
@@ -45,6 +43,7 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
             
             var now = DateTime.UtcNow;
             var expires = TokenServices.GetExpires(now);
+
             var accessToken = TokenServices.GetAccessToken(user, now, expires);
             var refreshToken = TokenServices.GetRefreshToken(user);
 
@@ -58,11 +57,24 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
             // Поэтому записываем id руками
             refreshToken.UserId = user.Id;
 
-            return new RegisterUserResponce
+            var token = new Token
             {
                 expiresIn = expires.ToString(CultureInfo.InvariantCulture),
                 accessToken = accessToken,
                 refreshToken = refreshToken
+            };
+
+            return new RegisterUserResponce
+            {
+                token = token,
+                user = new User
+                {
+                    Id = user.Id,
+                    Role = user.Role,
+                    Email = user.Email,
+                    RefreshToken = user.RefreshToken,
+                    ExpiresInRefreshToken = user.ExpiresInRefreshToken
+                }
             };
         }
     }
