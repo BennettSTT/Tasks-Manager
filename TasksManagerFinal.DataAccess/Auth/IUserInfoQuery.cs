@@ -3,8 +3,8 @@ using TasksManagerFinal.ViewModel.Auth;
 
 namespace TasksManagerFinal.DataAccess.Auth
 {
-    public interface IGetJWTTokenCommand
+    public interface IUserInfoQuery
     {
-        Task<GetTokenResponse> ExecuteAsync(GetTokenRequest getTokenRequest);
+        Task<UserInfoResponse> ExecuteAsync(int userId);
     }
 }

@@ -5,6 +5,6 @@ namespace TasksManagerFinal.DataAccess.Auth
 {
     public interface IRegisterUserCommand
     {
-        Task<RegisterUserResponce> ExecuteAsync(RegisterUserRequest getTokenRequest);
+        Task<RegisterUserResponse> ExecuteAsync(RegisterUserRequest getTokenRequest);
     }
 }

@@ -24,7 +24,7 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
             TokenServices = tokenServices;
         }
 
-        public async Task<RegisterUserResponce> ExecuteAsync(RegisterUserRequest request)
+        public async Task<RegisterUserResponse> ExecuteAsync(RegisterUserRequest request)
         {
             var query = Uow.UsersRepository.Query()
                 .Select(u => u);
@@ -48,7 +48,7 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
             var refreshToken = TokenServices.GetRefreshToken(user);
 
             user.RefreshToken = refreshToken.Token;
-            user.ExpiresInRefreshToken = expires;
+            //user.ExpiresInRefreshToken = expires;
 
             Uow.UsersRepository.Add(user);
             await Uow.CommitAsync();
@@ -64,16 +64,15 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
                 refreshToken = refreshToken
             };
 
-            return new RegisterUserResponce
+            return new RegisterUserResponse
             {
                 token = token,
                 user = new User
                 {
-                    Id = user.Id,
                     Role = user.Role,
                     Email = user.Email,
-                    RefreshToken = user.RefreshToken,
-                    ExpiresInRefreshToken = user.ExpiresInRefreshToken
+                    RefreshToken = user.RefreshToken
+                    //ExpiresInRefreshToken = user.ExpiresInRefreshToken
                 }
             };
         }

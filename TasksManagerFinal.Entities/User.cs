@@ -18,6 +18,6 @@ namespace TasksManagerFinal.Entities
 
         public string RefreshToken { get; set; }
 
-        public DateTime ExpiresInRefreshToken { get; set; }
+        //public DateTime ExpiresInRefreshToken { get; set; }
     }
 }

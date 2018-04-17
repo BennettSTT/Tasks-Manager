@@ -14,13 +14,13 @@ class AuthPage extends Component {
         return (
             <div>
                 <h1>Auth page</h1>
-                <NavLink to = '/auth/signin' activeStyle = { { color: 'red' } }>sign in</NavLink>
-                <NavLink to = '/auth/signup' activeStyle = { { color: 'red' } }>sign up</NavLink>
+                <NavLink to = '/auth/sing-in' activeStyle = { { color: 'red' } }>sign in</NavLink>
+                <NavLink to = '/auth/sign-up' activeStyle = { { color: 'red' } }>sign up</NavLink>
 
-                <Route path = '/auth/signin' render = { () =>
+                <Route path = '/auth/sing-in' render = { () =>
                     <SignInForm onSubmit = { this.handleSignIn } /> } />
 
-                <Route path = '/auth/signup' render = { () =>
+                <Route path = '/auth/sign-up' render = { () =>
                     <SignUpForm onSubmit = { this.handleSignUp } /> } /> { loading && <Loader /> }
             </div>
         );

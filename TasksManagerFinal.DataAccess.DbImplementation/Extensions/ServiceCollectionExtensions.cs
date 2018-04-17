@@ -17,6 +17,7 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Extensions
 
                     .AddScoped<IGetJWTTokenCommand, GetJWTTokenCommand>()
                     .AddScoped<IRefreshJWTTokenCommand, RefreshJWTTokenCommand>()
+                    .AddScoped<IUserInfoQuery, UserInfoQuery>()
 
                     .AddScoped<IRegisterUserCommand, RegisterUserCommand>()
                 ;

@@ -1,9 +1,8 @@
-﻿using TasksManagerFinal.Entities;
-
-namespace TasksManagerFinal.ViewModel.Auth
+﻿namespace TasksManagerFinal.ViewModel.Auth
 {
     public class RefreshTokenRequest
     {
-        public RefreshToken refreshToken { get; set; }
+        public string Token { get; set; }
+        public int UserId { get; set; }
     }
 }

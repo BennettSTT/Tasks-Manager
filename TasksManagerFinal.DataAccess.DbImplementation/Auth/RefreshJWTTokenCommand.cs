@@ -23,18 +23,18 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
             TokenServices = tokenServices;
         }
 
-        public async Task<RefreshTokenResponce> ExecuteAsync(RefreshTokenRequest tokenRequest)
+        public async Task<RefreshTokenResponse> ExecuteAsync(RefreshTokenRequest tokenRequest)
         {
             var query = Uow.UsersRepository.Query()
                 .Select(u => u);
 
             var user = await Factory.CreateAsyncQueryble(query)
-                .FirstOrDefaultAsync(u => u.Id == tokenRequest.refreshToken.UserId);
+                .FirstOrDefaultAsync(u => u.Id == tokenRequest.UserId);
 
             if (user == null) 
                 throw new Exception("user not found");
 
-            if (!user.RefreshToken.Equals(tokenRequest.refreshToken.Token)) 
+            if (!user.RefreshToken.Equals(tokenRequest.Token)) 
                 throw new Exception("tokens not equals");
 
             var now = DateTime.UtcNow;
@@ -44,12 +44,12 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
             var refreshToken = TokenServices.GetRefreshToken(user);
 
             user.RefreshToken = refreshToken.Token;
-            user.ExpiresInRefreshToken = expires;
+            //user.ExpiresInRefreshToken = expires;
 
             Uow.UsersRepository.Update(user);
             await Uow.CommitAsync();
 
-            return new RefreshTokenResponce
+            return new RefreshTokenResponse
             {
                 accessToken = accessToken,
                 refreshToken = refreshToken,

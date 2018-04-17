@@ -5,6 +5,6 @@ namespace TasksManagerFinal.DataAccess.Auth
 {
     public interface IRefreshJWTTokenCommand
     {
-        Task<RefreshTokenResponce> ExecuteAsync(RefreshTokenRequest tokenRequest);
+        Task<RefreshTokenResponse> ExecuteAsync(RefreshTokenRequest tokenRequest);
     }
 }

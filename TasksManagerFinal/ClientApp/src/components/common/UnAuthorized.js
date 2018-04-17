@@ -7,7 +7,7 @@ class UnAuthorized extends Component {
     render() {
         return (
             <div>
-                <h1>Unauthorized, please <Link to = '/auth/signin'>Sign In</Link></h1>
+                <h1>Unauthorized, please <Link to = '/auth/sign-in'>Sign In</Link></h1>
             </div>
         );
     }

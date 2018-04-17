@@ -1,12 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Newtonsoft.Json;
 using TasksManagerFinal.DataAccess.Auth;
 using TasksManagerFinal.DataAccess.UnitOfWork;
 using TasksManagerFinal.ViewModel.Auth;
 
 namespace TasksManagerFinal.Controllers
 {
+    [Route("auth")]
     public class AccountController : Controller
     {
         public IUnitOfWork Uow { get; }
@@ -16,10 +19,34 @@ namespace TasksManagerFinal.Controllers
             Uow = uow;
         }
 
-        [HttpPost("auth/token")]
-        [ProducesResponseType(200, Type = typeof(GetTokenResponce))]
+        [Authorize]
+        [HttpGet("user-info/{userId}")]
+        [ProducesResponseType(200, Type = typeof(UserInfoResponse))]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> GetToken([FromBody] GetTokenRequest getTokenRequest, 
+        public async Task<IActionResult> GetUserAsync(int userId,
+            [FromServices]IUserInfoQuery query)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                UserInfoResponse user = await query.ExecuteAsync(userId);
+                return Ok(user);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(400, e.Message);
+            }
+        }
+
+
+        [HttpPost("token")]
+        [ProducesResponseType(200, Type = typeof(GetTokenResponse))]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> GetTokenAsync([FromBody] GetTokenRequest getTokenRequest, 
             [FromServices]IGetJWTTokenCommand tokenCommand)
         {
             if (!ModelState.IsValid)
@@ -27,7 +54,7 @@ namespace TasksManagerFinal.Controllers
                 return BadRequest(ModelState);
             }
 
-            GetTokenResponce identity;
+            GetTokenResponse identity;
 
             try
             {
@@ -42,10 +69,10 @@ namespace TasksManagerFinal.Controllers
         }
 
 
-        [HttpPost("auth/refresh-token")]
-        [ProducesResponseType(200, Type = typeof(RefreshTokenResponce))]
+        [HttpPost("refresh-token")]
+        [ProducesResponseType(200, Type = typeof(RefreshTokenResponse))]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenRequest tokenRequest, 
+        public async Task<IActionResult> RefreshTokenAsync([FromBody] RefreshTokenRequest tokenRequest, 
             [FromServices]IRefreshJWTTokenCommand tokenCommand)
         {
             if (!ModelState.IsValid)
@@ -53,25 +80,30 @@ namespace TasksManagerFinal.Controllers
                 return BadRequest(ModelState);
             }
 
-            RefreshTokenResponce responce;
+            RefreshTokenResponse response;
 
             try
             {
-                responce = await tokenCommand.ExecuteAsync(tokenRequest);
+                response = await tokenCommand.ExecuteAsync(tokenRequest);
             }
             catch (Exception e)
             {
-                return StatusCode(400, e.Message);
+                var errorJson = new
+                {
+                        message = e.Message
+                };
+
+                return StatusCode(401, JsonConvert.SerializeObject(errorJson));
             }
 
-            return Ok(responce);
+            return Ok(response);
         }
 
 
-        [HttpPost("auth/register")]
-        [ProducesResponseType(200, Type = typeof(RegisterUserResponce))]
+        [HttpPost("register")]
+        [ProducesResponseType(200, Type = typeof(RegisterUserResponse))]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> Register([FromBody] RegisterUserRequest request,
+        public async Task<IActionResult> RegisterAsync([FromBody] RegisterUserRequest request,
             [FromServices]IRegisterUserCommand command)
         {
             if (!ModelState.IsValid)
@@ -79,7 +111,7 @@ namespace TasksManagerFinal.Controllers
                 return BadRequest(ModelState);
             }
 
-            RegisterUserResponce identity;
+            RegisterUserResponse identity;
 
             try
             {

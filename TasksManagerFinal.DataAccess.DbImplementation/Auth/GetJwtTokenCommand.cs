@@ -23,7 +23,7 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
             TokenServices = tokenServices;
         }
 
-        public async Task<GetTokenResponce> ExecuteAsync(GetTokenRequest getTokenRequest)
+        public async Task<GetTokenResponse> ExecuteAsync(GetTokenRequest getTokenRequest)
         {
             //var t = new RefreshToken
             //{
@@ -56,12 +56,12 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
             var refreshToken = TokenServices.GetRefreshToken(user);
 
             user.RefreshToken = refreshToken.Token;
-            user.ExpiresInRefreshToken = expires;
+            //user.ExpiresInRefreshToken = expires;
 
             Uow.UsersRepository.Update(user);
             await Uow.CommitAsync();
 
-            return new GetTokenResponce
+            return new GetTokenResponse
             {
                 accessToken = accessToken,
                 refreshToken = refreshToken,
