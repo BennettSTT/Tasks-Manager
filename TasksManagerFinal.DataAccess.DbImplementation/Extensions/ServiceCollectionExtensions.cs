@@ -16,7 +16,7 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Extensions
                     .AddScoped<IUpdateProjectCommand, UpdateProjectCommand>()
 
                     .AddScoped<ILoginUserQuery, LoginUserQuery>()
-                    .AddScoped<IRefreshJWTTokenCommand, RefreshJWTTokenCommand>()
+                    .AddScoped<IRefreshTokenCommand, RefreshTokenCommand>()
                     .AddScoped<IUserInfoQuery, UserInfoQuery>()
                     
                     .AddScoped<ILoginUserQuery, LoginUserQuery>()

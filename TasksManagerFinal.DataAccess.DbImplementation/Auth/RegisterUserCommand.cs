@@ -41,29 +41,15 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
                 Password = request.Password, 
                 Role = "user"
             };
-            
-            var now = DateTime.UtcNow;
-            var expires = TokenServices.GetExpires(now);
 
-            var accessToken = TokenServices.GetAccessToken(user, now, expires);
-            var refreshToken = TokenServices.GetRefreshToken(user);
-
-            user.RefreshToken = refreshToken.Token;
-            //user.ExpiresInRefreshToken = expires;
+            Token token = TokenServices.GetJWTToken(user);
 
             Uow.UsersRepository.Add(user);
             await Uow.CommitAsync();
 
             // Т.к. юзер создается, id появляется только после сохранения юзера в базу
             // Поэтому записываем id руками
-            refreshToken.UserId = user.Id;
-
-            var token = new Token
-            {
-                expiresIn = expires.ToString(CultureInfo.InvariantCulture),
-                accessToken = accessToken,
-                refreshToken = refreshToken
-            };
+            token.refreshToken.UserId = user.Id;
 
             return new RegisterUserResponse
             {
@@ -72,7 +58,7 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
                 {
                     Role = user.Role,
                     Login = user.Login,
-                    RefreshToken = user.RefreshToken
+                    RefreshToken = token.refreshToken.Token
                 }
             };
         }

@@ -14,11 +14,11 @@ class SignUpForm extends Component {
                 <form onSubmit = { handleSubmit }>
                     <div>
                         <label>Login or Email</label>
-                        <Field name = 'login' component = 'input' type = 'login' />
+                        <Field name = 'login' component = {ErrorField} type = 'login' />
                     </div>
                     <div>
                         <label>Password</label>
-                        <Field name = 'password' component = 'input' type = 'password' />
+                        <Field name = 'password' component = {ErrorField} type = 'password' />
                     </div>
                     <div>
                         <input type = 'submit' />
@@ -38,7 +38,7 @@ const validate = ({ email, password }) => {
 
     if (!password) {
         errors.password = 'password is required';
-    } else if (password.length < 1) errors.password = 'to short';
+    } else if (password.length < 5) errors.password = 'to short';
 
     return errors;
 };

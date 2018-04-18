@@ -4,10 +4,15 @@ import { LinkContainer }                   from 'react-router-bootstrap';
 import { moduleName, signOut }             from "../../ducks/auth";
 import { connect }                         from "react-redux";
 import "./NavMenu.css";
+import { Link }                            from "react-router-dom";
 
 class NavMenu extends Component{
     render() {
-        const {signOut} = this.props;
+        const {signOut, signedIn} = this.props;
+
+        const btn = signedIn
+            ? <button onClick = { signOut }>Sign out</button>
+            : <Link to = '/auth/signin'>sign in</Link>;
 
         return (
             <Navbar inverse collapseOnSelect>
@@ -21,13 +26,13 @@ class NavMenu extends Component{
                     <Nav>
                         <LinkContainer to={'/projects'}>
                             <NavItem>
-                                <Glyphicon glyph='home' /> Home
+                                Projects
                             </NavItem>
                         </LinkContainer>
                     </Nav>
                     <Nav pullRight>
                         <NavItem>
-                            <button onClick={signOut}>sing Out</button>
+                            {btn}
                         </NavItem>
                     </Nav>
                 </Navbar.Collapse>

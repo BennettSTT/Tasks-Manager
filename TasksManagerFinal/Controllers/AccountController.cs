@@ -69,7 +69,7 @@ namespace TasksManagerFinal.Controllers
         [ProducesResponseType(200, Type = typeof(RefreshTokenResponse))]
         [ProducesResponseType(400)]
         public async Task<IActionResult> RefreshTokenAsync([FromBody] RefreshTokenRequest tokenRequest,
-            [FromServices] IRefreshJWTTokenCommand tokenCommand)
+            [FromServices] IRefreshTokenCommand tokenCommand)
         {
             if (!ModelState.IsValid)
             {

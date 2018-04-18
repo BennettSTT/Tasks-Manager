@@ -10,7 +10,6 @@ class AuthPage extends Component {
     static propTypes = {};
 
     render() {
-        // const { loading } = this.props;
         return (
             <div className = 'container'>
                 <div className = 'auth-page'>
@@ -39,4 +38,4 @@ class AuthPage extends Component {
     handleSignUp = ({ login, password }) => this.props.signUp(login, password);
 }
 
-export default connect(state => ( {} ), { signUp, signIn })(AuthPage);
+export default connect(null, { signUp, signIn })(AuthPage);

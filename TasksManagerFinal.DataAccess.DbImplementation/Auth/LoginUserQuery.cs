@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TasksManagerFinal.DataAccess.Auth;
 using TasksManagerFinal.DataAccess.UnitOfWork;
+using TasksManagerFinal.Entities;
 using TasksManagerFinal.Services;
 using TasksManagerFinal.ViewModel.Auth;
 
@@ -36,22 +37,16 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
 
             if (user == null) throw new Exception("user not found");
 
-            var now = DateTime.UtcNow;
-            var expires = TokenServices.GetExpires(now);
-
-            var accessToken = TokenServices.GetAccessToken(user, now, expires);
-            var refreshToken = TokenServices.GetRefreshToken(user);
-
-            user.RefreshToken = refreshToken.Token;
+            Token token = TokenServices.GetJWTToken(user);
 
             Uow.UsersRepository.Update(user);
             await Uow.CommitAsync();
 
             return new LoginUserResponse
             {
-                accessToken = accessToken,
-                refreshToken = refreshToken,
-                expiresIn = expires.ToString(CultureInfo.InvariantCulture)
+                accessToken = token.accessToken,
+                refreshToken = token.refreshToken,
+                expiresIn = token.expiresIn
             };
         }
     }

@@ -3,7 +3,6 @@ import { Record }                               from 'immutable';
 import { all, call, put, take }                 from 'redux-saga/effects';
 import { GWT0, getToken, setToken, clearToken } from "../utils";
 import { push }                                 from 'react-router-redux';
-import history                                  from '../history';
 import { fetchApi }                             from "../components/common/Api";
 
 const ReducerRecord = Record({
@@ -79,7 +78,6 @@ export default function reducer(state = new ReducerRecord(), action) {
         case INITIALIZE_APP_START:
             return state
                 .set('initializeAppLoading', true)
-                .set('initializeAppLoaded', false)
                 .set('loading', true)
                 .set('loaded', false);
 
@@ -92,6 +90,11 @@ export default function reducer(state = new ReducerRecord(), action) {
                 .set('user', new UserRecord(payload.user))
                 .set('loading', false)
                 .set('loaded', true);
+
+        case INITIALIZE_APP_NOT_AUTHORIZED:
+            return state
+                .set('initializeAppLoading', false)
+                .set('initializeAppLoaded', true);
         //#endregion
 
         default:
@@ -138,12 +141,10 @@ export const initializeAppSaga = function* () {
         let token = yield call(getToken);
 
         // Если токена нету - юзер не авторизован
-        // редиректим на авторизацию
         if (!token) {
             return yield put({
                 type: INITIALIZE_APP_NOT_AUTHORIZED
             });
-            // return yield put(push('/auth/sign-in'));
         }
 
         const expiresIn = new Date(token.expiresIn);

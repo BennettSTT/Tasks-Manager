@@ -1,31 +1,31 @@
-import React, { Component }                   from 'react';
-import { connect }                            from 'react-redux';
-import { Route }                              from 'react-router-dom';
-import { initializeApp, moduleName, signOut } from '../ducks/auth';
-import AuthPage                               from './routes/AuthPage';
-import { Link }                               from 'react-router-dom';
-import NotFound                               from './routes/NotFound';
-import ProjectPage                            from "./routes/ProjectPage";
-import ProtectedRoute                         from './common/ProtectedRoute';
-import { Switch }                             from "react-router";
-import HomePage                               from "./routes/HomePage";
+import React, { Component }                                 from 'react';
+import { connect }                                          from 'react-redux';
+import { Route }                                            from 'react-router-dom';
+import { initializeApp, moduleName as authModule, signOut } from '../ducks/auth';
+import AuthPage       from './routes/AuthPage';
+import NotFound       from './routes/NotFound';
+import ProjectPage    from "./routes/ProjectPage";
+import ProtectedRoute from './common/ProtectedRoute';
+import { Switch }     from "react-router";
+import HomePage       from "./routes/HomePage";
+import Loader         from "./common/Loader";
 
 class App extends Component {
 
     componentDidMount() {
-        const { initializeAppLoaded, initializeApp } = this.props;
+        const { initializeAppLoaded, initializeAppLoading, initializeApp } = this.props;
 
-        if (!initializeAppLoaded) {
+        console.log('componentDidMount', 'App', initializeAppLoaded, initializeAppLoading);
+
+        if (!initializeAppLoaded && !initializeAppLoading) {
             initializeApp();
         }
     }
 
     render() {
-        const { signOut, signedIn } = this.props;
+        const { initializeAppLoading } = this.props;
 
-        const btn = signedIn
-            ? <button onClick = { signOut }>Sign out</button>
-            : <Link to = '/auth/sing-in'>sign in</Link>;
+        if (initializeAppLoading) return <Loader/>;
 
         return (
             <Switch>
@@ -39,6 +39,7 @@ class App extends Component {
 }
 
 export default connect(state => ( {
-    signedIn: !!state[moduleName].user,
-    initializeAppLoaded: state[moduleName].initializeAppLoaded
+    signedIn: !!state[authModule].user,
+    initializeAppLoaded: state[authModule].initializeAppLoaded,
+    initializeAppLoading: state[authModule].initializeAppLoading,
 } ), { signOut, initializeApp }, null, { pure: false })(App);

@@ -1,8 +1,11 @@
 import React from 'react';
+import './Loader.css';
 
 function Loader(props) {
     return (
-        <h2>Loading...</h2>
+        <div className='loader'>
+            <h2>Loading...</h2>
+        </div>
     );
 }
 

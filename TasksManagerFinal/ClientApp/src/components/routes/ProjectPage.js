@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Layout }           from "../Layout";
+import './ProjectPage.css'
 
 class ProjectPage extends Component {
     static propTypes = {};
@@ -7,7 +8,9 @@ class ProjectPage extends Component {
     render() {
         return (
             <Layout>
-                <h1>Projects Page</h1>
+                <div className='projects-page'>
+                    <h1>Projects Page</h1>
+                </div>
             </Layout>
         );
     }
