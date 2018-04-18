@@ -10,6 +10,10 @@ namespace TasksManagerFinal.ViewModel.Auth
 
         [Required]
         [MaxLength(64)]
+        public string Login { get; set; }
+
+        [Required]
+        [MaxLength(64)]
         public string Password { get; set; }
     }
 }

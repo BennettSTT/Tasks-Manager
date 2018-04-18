@@ -12,8 +12,8 @@ using TasksManagerFinal.Entities;
 namespace TasksManagerFinal.Db.Migrations
 {
     [DbContext(typeof(TasksContext))]
-    [Migration("20180415043618_1")]
-    partial class _1
+    [Migration("20180418041544_init-db")]
+    partial class initdb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -93,8 +93,6 @@ namespace TasksManagerFinal.Db.Migrations
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(64);
-
-                    b.Property<DateTime>("ExpiresInRefreshToken");
 
                     b.Property<string>("Password")
                         .IsRequired()

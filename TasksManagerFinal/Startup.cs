@@ -1,5 +1,3 @@
-using System;
-using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,6 +5,8 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Text;
 using TasksManagerFinal.DataAccess.DbImplementation.Extensions;
 using TasksManagerFinal.DataAccess.UnitOfWork;
 using TasksManagerFinal.DataAccess.UnitOfWork.EFCore.Extensions;
@@ -26,6 +26,7 @@ namespace TasksManagerFinal
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddOptions();
             RegisterModules(services);
             ConfigureJwtAuthService(services);
             services.AddMvc();
@@ -52,6 +53,7 @@ namespace TasksManagerFinal
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
             app.UseAuthentication();
+
 
             app.UseMvc(routes =>
             {

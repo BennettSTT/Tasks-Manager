@@ -26,8 +26,8 @@ class AuthPage extends Component {
         );
     }
 
-    handleSignIn = ({ email, password }) => this.props.signIn(email, password);
-    handleSignUp = ({ email, password }) => this.props.signUp(email, password);
+    handleSignIn = ({ email, password, login }) => this.props.signIn(email, password, login);
+    handleSignUp = ({ login, password }) => this.props.signUp(login, password);
 }
 
 export default connect(state => ( {

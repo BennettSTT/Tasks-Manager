@@ -15,10 +15,11 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Extensions
                     .AddScoped<IProjectsListQuery, ProjectsListQuery>()
                     .AddScoped<IUpdateProjectCommand, UpdateProjectCommand>()
 
-                    .AddScoped<IGetJWTTokenCommand, GetJWTTokenCommand>()
+                    .AddScoped<ILoginUserQuery, LoginUserQuery>()
                     .AddScoped<IRefreshJWTTokenCommand, RefreshJWTTokenCommand>()
                     .AddScoped<IUserInfoQuery, UserInfoQuery>()
-
+                    
+                    .AddScoped<ILoginUserQuery, LoginUserQuery>()
                     .AddScoped<IRegisterUserCommand, RegisterUserCommand>()
                 ;
         }

@@ -93,7 +93,9 @@ namespace TasksManagerFinal.Db.Migrations
                         .IsRequired()
                         .HasMaxLength(64);
 
-                    b.Property<DateTime>("ExpiresInRefreshToken");
+                    b.Property<string>("Login")
+                        .IsRequired()
+                        .HasMaxLength(64);
 
                     b.Property<string>("Password")
                         .IsRequired()

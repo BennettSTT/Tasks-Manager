@@ -30,12 +30,13 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
                 .Select(u => u);
 
             User checkUser = await Factory.CreateAsyncQueryble(query)
-                .FirstOrDefaultAsync(u => u.Email == request.Email);
+                .FirstOrDefaultAsync(u => u.Email == request.Email || u.Login == request.Login);
 
-            if (checkUser != null) throw new Exception("This Email is already taken");
+            if (checkUser != null) throw new Exception("This Email or Login is already taken");
 
             User user = new User
             {
+                Login = request.Login,
                 Email = request.Email, 
                 Password = request.Password, 
                 Role = "user"
@@ -70,9 +71,8 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
                 user = new User
                 {
                     Role = user.Role,
-                    Email = user.Email,
+                    Login = user.Login,
                     RefreshToken = user.RefreshToken
-                    //ExpiresInRefreshToken = user.ExpiresInRefreshToken
                 }
             };
         }

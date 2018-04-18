@@ -4,31 +4,23 @@ using System.Collections.Generic;
 
 namespace TasksManagerFinal.Db.Migrations
 {
-    public partial class userRef4 : Migration
+    public partial class addLoginInUser : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "RefreshTokenId",
-                table: "Users");
-
             migrationBuilder.AddColumn<string>(
-                name: "RefreshToken",
+                name: "Login",
                 table: "Users",
-                nullable: true);
+                maxLength: 64,
+                nullable: false,
+                defaultValue: "");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "RefreshToken",
+                name: "Login",
                 table: "Users");
-
-            migrationBuilder.AddColumn<int>(
-                name: "RefreshTokenId",
-                table: "Users",
-                nullable: false,
-                defaultValue: 0);
         }
     }
 }

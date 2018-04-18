@@ -13,8 +13,8 @@ class SignUpForm extends Component {
                 <h2>Sign Up</h2>
                 <form onSubmit = { handleSubmit }>
                     <div>
-                        <label>Email</label>
-                        <Field name = 'email' component = 'input' type = 'email' />
+                        <label>Login or Email</label>
+                        <Field name = 'login' component = 'input' type = 'login' />
                     </div>
                     <div>
                         <label>Password</label>
@@ -38,7 +38,7 @@ const validate = ({ email, password }) => {
 
     if (!password) {
         errors.password = 'password is required';
-    } else if (password.length < 8) errors.password = 'to short';
+    } else if (password.length < 1) errors.password = 'to short';
 
     return errors;
 };

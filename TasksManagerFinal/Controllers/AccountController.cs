@@ -23,8 +23,7 @@ namespace TasksManagerFinal.Controllers
         [HttpGet("user-info/{userId}")]
         [ProducesResponseType(200, Type = typeof(UserInfoResponse))]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> GetUserAsync(int userId,
-            [FromServices]IUserInfoQuery query)
+        public async Task<IActionResult> GetUserAsync(int userId, [FromServices] IUserInfoQuery query)
         {
             if (!ModelState.IsValid)
             {
@@ -43,37 +42,34 @@ namespace TasksManagerFinal.Controllers
         }
 
 
-        [HttpPost("token")]
-        [ProducesResponseType(200, Type = typeof(GetTokenResponse))]
+        [HttpPost("sing-up")]
+        [ProducesResponseType(200, Type = typeof(LoginUserResponse))]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> GetTokenAsync([FromBody] GetTokenRequest getTokenRequest, 
-            [FromServices]IGetJWTTokenCommand tokenCommand)
+        public async Task<IActionResult> GetTokenAsync([FromBody] LoginUserRequest loginUserRequest,
+            [FromServices] ILoginUserQuery tokenCommand)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            GetTokenResponse identity;
-
             try
             {
-                identity = await tokenCommand.ExecuteAsync(getTokenRequest);
+                LoginUserResponse identity = await tokenCommand.ExecuteAsync(loginUserRequest);
+                return Ok(identity);
             }
             catch (Exception e)
             {
                 return StatusCode(400, e.Message);
             }
-
-            return Ok(identity);
         }
 
 
         [HttpPost("refresh-token")]
         [ProducesResponseType(200, Type = typeof(RefreshTokenResponse))]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> RefreshTokenAsync([FromBody] RefreshTokenRequest tokenRequest, 
-            [FromServices]IRefreshJWTTokenCommand tokenCommand)
+        public async Task<IActionResult> RefreshTokenAsync([FromBody] RefreshTokenRequest tokenRequest,
+            [FromServices] IRefreshJWTTokenCommand tokenCommand)
         {
             if (!ModelState.IsValid)
             {
@@ -90,7 +86,7 @@ namespace TasksManagerFinal.Controllers
             {
                 var errorJson = new
                 {
-                        message = e.Message
+                    message = e.Message
                 };
 
                 return StatusCode(401, JsonConvert.SerializeObject(errorJson));
@@ -99,12 +95,11 @@ namespace TasksManagerFinal.Controllers
             return Ok(response);
         }
 
-
         [HttpPost("register")]
         [ProducesResponseType(200, Type = typeof(RegisterUserResponse))]
         [ProducesResponseType(400)]
         public async Task<IActionResult> RegisterAsync([FromBody] RegisterUserRequest request,
-            [FromServices]IRegisterUserCommand command)
+            [FromServices] IRegisterUserCommand command)
         {
             if (!ModelState.IsValid)
             {

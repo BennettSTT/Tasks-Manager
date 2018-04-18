@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace TasksManagerFinal.Entities
 {
@@ -8,7 +7,11 @@ namespace TasksManagerFinal.Entities
         [Required]
         [MaxLength(64)]
         public string Email { get; set; }
-        
+
+        [Required]
+        [MaxLength(64)]
+        public string Login { get; set; }
+
         [Required]
         [MaxLength(64)]
         public string Password { get; set; }
@@ -17,7 +20,5 @@ namespace TasksManagerFinal.Entities
         public string Role { get; set; }
 
         public string RefreshToken { get; set; }
-
-        //public DateTime ExpiresInRefreshToken { get; set; }
     }
 }

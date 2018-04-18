@@ -2,11 +2,11 @@
 
 namespace TasksManagerFinal.ViewModel.Auth
 {
-    public class GetTokenRequest
+    public class LoginUserRequest
     {
         [Required]
         [MaxLength(64)]
-        public string Email { get; set; }
+        public string Login { get; set; }
         
         [Required]
         [MaxLength(64)]

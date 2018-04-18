@@ -12,8 +12,8 @@ using TasksManagerFinal.Entities;
 namespace TasksManagerFinal.Db.Migrations
 {
     [DbContext(typeof(TasksContext))]
-    [Migration("20180414135520_userRef4")]
-    partial class userRef4
+    [Migration("20180418080611_addLoginInUser")]
+    partial class addLoginInUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -39,6 +39,18 @@ namespace TasksManagerFinal.Db.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Projects");
+                });
+
+            modelBuilder.Entity("TasksManagerFinal.Entities.RefreshToken", b =>
+                {
+                    b.Property<string>("Token")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("UserId");
+
+                    b.HasKey("Token");
+
+                    b.ToTable("RefreshTokens");
                 });
 
             modelBuilder.Entity("TasksManagerFinal.Entities.Task", b =>
@@ -82,7 +94,9 @@ namespace TasksManagerFinal.Db.Migrations
                         .IsRequired()
                         .HasMaxLength(64);
 
-                    b.Property<DateTime>("ExpiresInRefreshToken");
+                    b.Property<string>("Login")
+                        .IsRequired()
+                        .HasMaxLength(64);
 
                     b.Property<string>("Password")
                         .IsRequired()

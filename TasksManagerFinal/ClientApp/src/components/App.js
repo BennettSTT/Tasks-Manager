@@ -8,8 +8,11 @@ import { Link }                               from 'react-router-dom';
 class App extends Component {
 
     componentDidMount() {
-        this.props.initializeApp();
-        console.log('componentDidMount', 'App');
+        const { initializeAppLoaded, initializeApp } = this.props;
+
+        if (!initializeAppLoaded) {
+            initializeApp();
+        }
     }
 
     render() {
@@ -28,5 +31,6 @@ class App extends Component {
 }
 
 export default connect(state => ( {
-    signedIn: !!state[moduleName].user
+    signedIn: !!state[moduleName].user,
+    initializeAppLoaded: state[moduleName].initializeAppLoaded
 } ), { signOut, initializeApp }, null, { pure: false })(App);
