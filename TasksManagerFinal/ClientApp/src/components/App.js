@@ -4,6 +4,11 @@ import { Route }                              from 'react-router-dom';
 import { initializeApp, moduleName, signOut } from '../ducks/auth';
 import AuthPage                               from './routes/AuthPage';
 import { Link }                               from 'react-router-dom';
+import NotFound                               from './routes/NotFound';
+import ProjectPage                            from "./routes/ProjectPage";
+import ProtectedRoute                         from './common/ProtectedRoute';
+import { Switch }                             from "react-router";
+import HomePage                               from "./routes/HomePage";
 
 class App extends Component {
 
@@ -23,9 +28,12 @@ class App extends Component {
             : <Link to = '/auth/sing-in'>sign in</Link>;
 
         return (
-            <div>
-                { btn } <Route path = '/auth' component = { AuthPage } />
-            </div>
+            <Switch>
+                <Route exact path = '/' component = {HomePage}/>
+                <Route path = '/auth' component = { AuthPage } />
+                <ProtectedRoute path = '/projects' component = { ProjectPage } />
+                <Route path = '*' component = { NotFound } />
+            </Switch>
         );
     }
 }

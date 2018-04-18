@@ -140,11 +140,10 @@ export const initializeAppSaga = function* () {
         // Если токена нету - юзер не авторизован
         // редиректим на авторизацию
         if (!token) {
-            yield put({
+            return yield put({
                 type: INITIALIZE_APP_NOT_AUTHORIZED
             });
-            yield call([history, history.push], '/auth/sing-in');
-            return;
+            // return yield put(push('/auth/sign-in'));
         }
 
         const expiresIn = new Date(token.expiresIn);
@@ -238,6 +237,8 @@ export const signUpSaga = function* () {
                 type: SIGN_UP_SUCCESS,
                 payload: { user, token }
             });
+
+            yield put(push('/projects'));
         } catch (error) {
             yield put({
                 type: SIGN_UP_ERROR,
@@ -269,10 +270,6 @@ export const signInSaga = function* () {
     while (true) {
         try {
             const action = yield take(SIGN_IN_REQUEST);
-
-            console.log(action.payload);
-            debugger;
-
             const headers = new Headers();
             headers.append("Content-Type", "application/json");
 
@@ -292,7 +289,7 @@ export const signInSaga = function* () {
                     token: body.token
                 }
             });
-
+            yield put(push('/projects'));
         } catch (error) {
             yield put({
                 type: SIGN_IN_ERROR,
