@@ -1,5 +1,5 @@
-﻿using System;
-using System.Globalization;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using TasksManagerFinal.DataAccess.Auth;
@@ -24,12 +24,12 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
             TokenServices = tokenServices;
         }
 
-        public async Task<RegisterUserResponse> ExecuteAsync(RegisterUserRequest request)
+        public async Task<Token> ExecuteAsync(RegisterUserRequest request)
         {
-            var query = Uow.UsersRepository.Query()
-                .Select(u => u);
-
-            User checkUser = await Factory.CreateAsyncQueryble(query)
+            User checkUser = await Factory.CreateAsyncQueryble(
+                    Uow.UsersRepository.Query()
+                        .Select(u => u)
+                )
                 .FirstOrDefaultAsync(u => u.Email == request.Email || u.Login == request.Login);
 
             if (checkUser != null) throw new Exception("This Email or Login is already taken");
@@ -37,10 +37,11 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
             User user = new User
             {
                 Login = request.Login,
-                Email = request.Email, 
-                Password = request.Password, 
-                Role = "user"
+                Email = request.Email,
+                Password = request.Password
             };
+
+            user.Password = new PasswordHasher<User>().HashPassword(user, user.Password);
 
             Token token = TokenServices.GetJWTToken(user);
 
@@ -51,16 +52,7 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
             // Поэтому записываем id руками
             token.refreshToken.UserId = user.Id;
 
-            return new RegisterUserResponse
-            {
-                token = token,
-                user = new User
-                {
-                    Role = user.Role,
-                    Login = user.Login,
-                    RefreshToken = token.refreshToken.Token
-                }
-            };
+            return token;
         }
     }
 }

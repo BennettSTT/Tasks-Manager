@@ -16,10 +16,12 @@ namespace TasksManagerFinal
         {
             BuildWebHost(args).Run();
         }
-
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseStartup<Startup>()
+                .UseKestrel()
+                .UseApplicationInsights()
                 .Build();
     }
 }

@@ -1,12 +1,16 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
+using TasksManager.AuthHandlers;
+using TasksManagerFinal.AuthHandlers;
 using TasksManagerFinal.DataAccess.DbImplementation.Extensions;
 using TasksManagerFinal.DataAccess.UnitOfWork;
 using TasksManagerFinal.DataAccess.UnitOfWork.EFCore.Extensions;
@@ -54,13 +58,8 @@ namespace TasksManagerFinal
             app.UseSpaStaticFiles();
             app.UseAuthentication();
 
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
-            });
+            // Настроить редирект на index.html И убрать роут projects/
+            RegisterRouters(app);
 
             app.UseSpa(spa =>
             {
@@ -73,6 +72,17 @@ namespace TasksManagerFinal
             });
         }
 
+        private void RegisterRouters(IApplicationBuilder app)
+        {
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller}/{action=Index}/{id?}"
+                );
+            });
+        }
+
         private void RegisterModules(IServiceCollection services)
         {
             var connectionString = Configuration.GetConnectionString("TasksContext");
@@ -80,6 +90,7 @@ namespace TasksManagerFinal
                 .RegisterUnitOfWorkEFCore(connectionString)
                 .RegisterUnitOfWorkDataAccess()
                 .RegisterServicesUnitOfWork()
+                .AddSingleton<IAuthorizationHandler, ProjectAuthorizationHandler>()
                 ;
         }
 

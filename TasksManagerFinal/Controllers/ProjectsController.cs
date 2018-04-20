@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using TasksManagerFinal.DataAccess.Projects;
@@ -7,20 +8,62 @@ using TasksManagerFinal.ViewModel.Projects;
 
 namespace TasksManagerFinal.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api")]
     public class ProjectsController : Controller
     {
-        [HttpGet]
-        [ProducesResponseType(200, Type = typeof(ListResponse<ProjectResponse>))]
-        public async Task<IActionResult> GetProjectsListAsync(
-            ProjectFilter filter, ListOptions options, [FromServices] IProjectsListQuery query)
+        public IAuthorizationService AuthorizationService { get; }
+
+        public ProjectsController(IAuthorizationService authorizationService)
         {
-            var response = await query.RunAsync(filter, options);
-            return Ok(response);
+            AuthorizationService = authorizationService;
         }
 
-        [HttpPost]
+        [Authorize]
+        [HttpGet("{login}")]
+        [ProducesResponseType(200, Type = typeof(ListResponse<ProjectResponse>))]
+        [ProducesResponseType(401)]
+        [ProducesResponseType(404)]
+        public async Task<IActionResult> GetProjectListAsync(string login, ProjectFilter filter,
+            ListOptions options, [FromServices] IProjectsListQuery query)
+        {
+            try
+            {
+                var response = await query.RunAsync(login, filter, options);
+                return Ok(response);
+            }
+            catch (CannotUpdateProjectNotFound error)
+            {
+                return NotFound(error.Message);
+            }
+            catch (Exception error)
+            {
+                return StatusCode(400, error.Message);
+            }
+        }
+
+        [Authorize]
+        [HttpGet("{userLogin}/{titleProject}")]
+        [ProducesResponseType(200, Type = typeof(ListResponse<ProjectResponse>))]
+        [ProducesResponseType(401)]
+        [ProducesResponseType(404)]
+        public async Task<IActionResult> GetProjectAsync(string userLogin, string titleProject,
+            [FromServices] IProjectQuery query)
+        {
+            try
+            {
+                var response = await query.ExecuteAsync(userLogin, titleProject);
+                return Ok(response);
+            }
+            catch (Exception error)
+            {
+                return StatusCode(400, error.Message);
+            }
+        }
+
+        [Authorize]
+        [HttpPost("new")]
         [ProducesResponseType(201, Type = typeof(ProjectResponse))]
+        [ProducesResponseType(401)]
         [ProducesResponseType(400)]
         public async Task<IActionResult> CreateProjectAsync([FromBody] CreateProjectRequest request,
             [FromServices] ICreateProjectCommand command)
@@ -29,42 +72,16 @@ namespace TasksManagerFinal.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            ProjectResponse response;
+            string email = User.Identity.Name;
             try
             {
-                response = await command.ExecuteAsync(request);
+                ProjectResponse project = await command.ExecuteAsync(email, request);
+                return StatusCode(201, project);
             }
             catch (Exception e)
             {
                 return StatusCode(400, e.Message);
             }
-
-            return StatusCode(201, response);
-        }
-
-        [HttpPut("{projectId}")]
-        [ProducesResponseType(200, Type = typeof(ProjectResponse))]
-        [ProducesResponseType(404)]
-        [ProducesResponseType(400)]
-        public async Task<IActionResult> UpdateProjectAsync(int projectId, [FromBody] UpdateProjectRequest request,
-            [FromServices] IUpdateProjectCommand command)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            ProjectResponse response;
-            try
-            {
-                response = await command.ExecuteAsunc(projectId, request);
-            }
-            catch (Exception e)
-            {
-                return NotFound(e.Message);
-            }
-
-            return Ok(response);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace TasksManagerFinal.Entities
 {
@@ -13,12 +14,11 @@ namespace TasksManagerFinal.Entities
         public string Login { get; set; }
 
         [Required]
-        [MaxLength(64)]
+        [MaxLength(516)]
         public string Password { get; set; }
 
-        [Required]
-        public string Role { get; set; }
+        public string UserRefreshToken { get; set; }
 
-        public string RefreshToken { get; set; }
+        public ICollection<Project> Projects { get; set; }
     }
 }

@@ -32,8 +32,7 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
             return new UserInfoResponse
             {
                 login = user.Login,
-                refreshToken = user.RefreshToken,
-                role = user.Role
+                refreshToken = user.UserRefreshToken
             };
         }
     }

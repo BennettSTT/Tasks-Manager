@@ -1,13 +1,10 @@
+import { OrderedMap, Map } from 'immutable';
+
 export function GWT0(now = new Date) {
     return new Date(now.valueOf() + now.getTimezoneOffset() * 60000);
 }
 
 export function getToken() {
-    // if (localStorage.getItem('token') === "undefined") {
-    //     return undefined;
-    // }
-    //
-    // return JSON.parse(localStorage.getItem('token'));
     return localStorage.getItem('token') !== "undefined" ? JSON.parse(localStorage.getItem('token')) : undefined;
 }
 
@@ -18,5 +15,15 @@ export function setToken(token) {
 }
 
 export function clearToken() {
-    return localStorage.setItem('token', undefined)
+    return localStorage.setItem('token', undefined);
+}
+
+export function arrToMap(arr, DataRecord = Map) {
+    return arr.reduce((acc, item) =>
+            acc.set(item.id, new DataRecord(item))
+        , new OrderedMap({}));
+}
+
+export function mapToArr(obj) {
+    return obj.valueSeq().toArray();
 }

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import SignInForm           from '../auth/SignInForm';
 import SignUpForm           from '../auth/SignUpForm';
+import { Switch }           from "react-router";
 import { Route, NavLink }   from 'react-router-dom';
 import { connect }          from 'react-redux';
-import { signUp, signIn }   from '../../ducks/auth';
+import { login, register }  from '../../ducks/auth';
 import './AuthPage.css';
 
 class AuthPage extends Component {
@@ -17,25 +18,27 @@ class AuthPage extends Component {
                     <br />
 
                     <div className='auth-page-link'>
-                        <NavLink to = '/auth/sing-in'>sign in</NavLink>
+                        <NavLink to = '/auth/register'>Register</NavLink>
                     </div>
 
                     <div className='auth-page-link'>
-                        <NavLink to = '/auth/sign-up'>sign up</NavLink>
+                        <NavLink to = '/auth/login'>Login</NavLink>
                     </div>
 
-                    <Route path = '/auth/sing-in' render = { () =>
+                    <Switch>
+                        <Route path = '/auth/register' render = { () =>
                         <SignInForm onSubmit = { this.handleSignIn } /> } />
 
-                    <Route path = '/auth/sign-up' render = { () =>
-                        <SignUpForm onSubmit = { this.handleSignUp } /> } />
+                        <Route path = '/auth/login' render = { () =>
+                            <SignUpForm onSubmit = { this.handleSignUp } /> } />
+                    </Switch>
                 </div>
             </div>
         );
     }
 
-    handleSignIn = ({ email, password, login }) => this.props.signIn(email, password, login);
-    handleSignUp = ({ login, password }) => this.props.signUp(login, password);
+    handleSignIn = ({ email, password, login }) => this.props.register(email, password, login);
+    handleSignUp = ({ login, password }) => this.props.login(login, password);
 }
 
-export default connect(null, { signUp, signIn })(AuthPage);
+export default connect(null, { login, register })(AuthPage);

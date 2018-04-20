@@ -32,8 +32,7 @@ namespace TasksManagerFinal.Services.UnitOfWork
 
             var claims = new List<Claim>
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Email),
-                new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role)
+                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Email)
             };
 
             ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "Token",
@@ -52,7 +51,7 @@ namespace TasksManagerFinal.Services.UnitOfWork
             );
 
             var accessToken = new JwtSecurityTokenHandler().WriteToken(token);
-            var refreshToken = new RefreshToken
+            var refreshToken = new RefreshTokenObject
             {
                 Token = Guid.NewGuid().ToString().Replace("-", ""),
                 UserId = user.Id
@@ -60,55 +59,13 @@ namespace TasksManagerFinal.Services.UnitOfWork
 
             // Добавляем refreshToken юзеру для сохранения в бд
             // И последующего хранения на клиенте
-            user.RefreshToken = refreshToken.Token;
+            user.UserRefreshToken = refreshToken.Token;
 
             return new Token
             {
                 accessToken = accessToken,
                 refreshToken = refreshToken,
                 expiresIn = expires.ToString(CultureInfo.InvariantCulture)
-            };
-        }
-
-
-
-        public DateTime GetExpires(DateTime now)
-        {
-            return now.Add(TimeSpan.FromMinutes(JWTAuthOptions.LifeTime));
-        }
-
-        public string GetAccessToken(User user, DateTime now, DateTime expires)
-        {
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Email),
-                new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role)
-            };
-
-            ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "Token",
-                ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType
-            );
-
-            SecurityToken token = new JwtSecurityToken(
-                issuer: JWTAuthOptions.Issuer,
-                audience: JWTAuthOptions.Audience,
-                notBefore: now,
-                claims: claimsIdentity.Claims,
-                expires: expires,
-                signingCredentials: new SigningCredentials(
-                    JWTAuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256
-                )
-            );
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
-        }
-
-        public RefreshToken GetRefreshToken(User user)
-        {
-            return new RefreshToken
-            {
-                Token = Guid.NewGuid().ToString().Replace("-", ""),
-                UserId = user.Id
             };
         }
     }

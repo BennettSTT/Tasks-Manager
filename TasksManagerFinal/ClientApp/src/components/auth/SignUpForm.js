@@ -10,7 +10,7 @@ class SignUpForm extends Component {
         const { handleSubmit } = this.props;
         return (
             <div>
-                <h2>Sign Up</h2>
+                <h2>Login</h2>
                 <form onSubmit = { handleSubmit }>
                     <div>
                         <label>Login or Email</label>

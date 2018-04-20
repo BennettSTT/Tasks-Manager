@@ -5,6 +5,6 @@ namespace TasksManagerFinal.DataAccess.Projects
 {
     public interface ICreateProjectCommand
     {
-        Task<ProjectResponse> ExecuteAsync(CreateProjectRequest request);
+        Task<ProjectResponse> ExecuteAsync(string email, CreateProjectRequest request);
     }
 }

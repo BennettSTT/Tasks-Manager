@@ -35,12 +35,16 @@ namespace TasksManagerFinal.Db.Migrations
                         .IsRequired()
                         .HasMaxLength(250);
 
+                    b.Property<int>("UserId");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Projects");
                 });
 
-            modelBuilder.Entity("TasksManagerFinal.Entities.RefreshToken", b =>
+            modelBuilder.Entity("TasksManagerFinal.Entities.RefreshTokenObject", b =>
                 {
                     b.Property<string>("Token")
                         .ValueGeneratedOnAdd();
@@ -49,7 +53,7 @@ namespace TasksManagerFinal.Db.Migrations
 
                     b.HasKey("Token");
 
-                    b.ToTable("RefreshTokens");
+                    b.ToTable("RefreshTokenObjects");
                 });
 
             modelBuilder.Entity("TasksManagerFinal.Entities.Task", b =>
@@ -67,7 +71,7 @@ namespace TasksManagerFinal.Db.Migrations
 
                     b.Property<int>("Priority");
 
-                    b.Property<int>("ProjectId");
+                    b.Property<int?>("ProjectId");
 
                     b.Property<int>("Status");
 
@@ -99,16 +103,21 @@ namespace TasksManagerFinal.Db.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(64);
+                        .HasMaxLength(516);
 
-                    b.Property<string>("RefreshToken");
-
-                    b.Property<string>("Role")
-                        .IsRequired();
+                    b.Property<string>("UserRefreshToken");
 
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("TasksManagerFinal.Entities.Project", b =>
+                {
+                    b.HasOne("TasksManagerFinal.Entities.User", "User")
+                        .WithMany("Projects")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("TasksManagerFinal.Entities.Task", b =>
@@ -119,8 +128,7 @@ namespace TasksManagerFinal.Db.Migrations
 
                     b.HasOne("TasksManagerFinal.Entities.Project", "Project")
                         .WithMany("Tasks")
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ProjectId");
                 });
 #pragma warning restore 612, 618
         }

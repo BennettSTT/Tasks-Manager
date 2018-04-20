@@ -22,7 +22,7 @@ class HomePage extends Component {
 
         return ( signedIn
             ? <div><h3>Hello, { user.login }</h3><h3>You can go to <strong><Link to = '/projects'>Projects</Link></strong></h3></div>
-            : <h3>Please <strong><Link to = '/auth/sign-in'>Sign In</Link></strong></h3> );
+            : <h3>Please <strong><Link to = '/auth/register'>Register</Link></strong></h3> );
     }
 }
 

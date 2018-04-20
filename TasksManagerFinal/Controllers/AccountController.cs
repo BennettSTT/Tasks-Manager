@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Newtonsoft.Json;
 using TasksManagerFinal.DataAccess.Auth;
 using TasksManagerFinal.DataAccess.UnitOfWork;
+using TasksManagerFinal.Entities;
 using TasksManagerFinal.ViewModel.Auth;
 
 namespace TasksManagerFinal.Controllers
 {
-    [Route("auth")]
+    [Route("api/auth")]
     public class AccountController : Controller
     {
         public IUnitOfWork Uow { get; }
@@ -19,30 +19,7 @@ namespace TasksManagerFinal.Controllers
             Uow = uow;
         }
 
-        [Authorize]
-        [HttpGet("user-info/{userId}")]
-        [ProducesResponseType(200, Type = typeof(UserInfoResponse))]
-        [ProducesResponseType(400)]
-        public async Task<IActionResult> GetUserAsync(int userId, [FromServices] IUserInfoQuery query)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            try
-            {
-                UserInfoResponse user = await query.ExecuteAsync(userId);
-                return Ok(user);
-            }
-            catch (Exception e)
-            {
-                return StatusCode(400, e.Message);
-            }
-        }
-
-
-        [HttpPost("sing-up")]
+        [HttpPost("login")]
         [ProducesResponseType(200, Type = typeof(LoginUserResponse))]
         [ProducesResponseType(400)]
         public async Task<IActionResult> GetTokenAsync([FromBody] LoginUserRequest loginUserRequest,
@@ -96,7 +73,7 @@ namespace TasksManagerFinal.Controllers
         }
 
         [HttpPost("register")]
-        [ProducesResponseType(200, Type = typeof(RegisterUserResponse))]
+        [ProducesResponseType(200, Type = typeof(Token))]
         [ProducesResponseType(400)]
         public async Task<IActionResult> RegisterAsync([FromBody] RegisterUserRequest request,
             [FromServices] IRegisterUserCommand command)
@@ -106,18 +83,15 @@ namespace TasksManagerFinal.Controllers
                 return BadRequest(ModelState);
             }
 
-            RegisterUserResponse identity;
-
             try
             {
-                identity = await command.ExecuteAsync(request);
+                Token token = await command.ExecuteAsync(request);
+                return Ok(token);
             }
             catch (Exception e)
             {
                 return StatusCode(400, e.Message);
             }
-
-            return Ok(identity);
         }
     }
 }

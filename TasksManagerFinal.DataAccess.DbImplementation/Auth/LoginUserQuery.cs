@@ -1,6 +1,7 @@
-﻿using System;
-using System.Globalization;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Linq;
+using System.Security.Authentication;
 using System.Threading.Tasks;
 using TasksManagerFinal.DataAccess.Auth;
 using TasksManagerFinal.DataAccess.UnitOfWork;
@@ -31,11 +32,14 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
 
             var user = await Factory.CreateAsyncQueryble(query)
                 .FirstOrDefaultAsync(u =>
-                    (u.Email == loginUserRequest.Login || u.Login == loginUserRequest.Login)
-                    && u.Password == loginUserRequest.Password
+                    u.Email == loginUserRequest.Login || u.Login == loginUserRequest.Login
                 );
 
-            if (user == null) throw new Exception("user not found");
+            if (user == null) throw new Exception("Login or password is incorrect");
+
+            if (new PasswordHasher<User>()
+                    .VerifyHashedPassword(user, user.Password, loginUserRequest.Password) == PasswordVerificationResult.Failed)
+                throw new AuthenticationException("Login or password is incorrect");
 
             Token token = TokenServices.GetJWTToken(user);
 

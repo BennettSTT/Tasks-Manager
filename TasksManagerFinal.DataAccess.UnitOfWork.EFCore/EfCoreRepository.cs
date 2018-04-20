@@ -30,11 +30,6 @@ namespace TasksManagerFinal.DataAccess.UnitOfWork.EFCore
             return query;
         }
 
-        //public IQueryable<TEntity> NoTrackingQuery(params Expression<Func<TEntity, object>>[] includes)
-        //{
-        //    return ApplyIncludes(includes, DbSet.AsNoTracking());
-        //}
-
         public void Add(TEntity entity)
         {
             DbSet.Add(entity);

@@ -17,7 +17,6 @@ namespace TasksManagerFinal.Entities
 
         // Крайний срок
         public DateTime? DueDate { get; set; }
-        
         public DateTime CreateDate { get; set; }
         public DateTime? CompleteDate { get; set; }
 
@@ -26,13 +25,13 @@ namespace TasksManagerFinal.Entities
         public Task Parent { get; set; }
 
         // Проект таска
-        public int ProjectId { get; set; }
+        public int? ProjectId { get; set; }
         public Project Project { get; set; }
+
+        public TaskStatus Status { get; set; }
+        public TaskPriority Priority { get; set; }
 
         public ICollection<Task> Children { get; set; }
 
-        public TaskStatus Status { get; set; }
-
-        public TaskPriority Priority { get; set; }
     }
 }

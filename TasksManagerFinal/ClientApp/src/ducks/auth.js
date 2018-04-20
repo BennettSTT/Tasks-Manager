@@ -16,8 +16,7 @@ const ReducerRecord = Record({
 
 const UserRecord = Record({
     login: null,
-    refreshToken: null,
-    role: null
+    refreshToken: null
 });
 
 export const moduleName = 'auth';
@@ -95,6 +94,12 @@ export default function reducer(state = new ReducerRecord(), action) {
             return state
                 .set('initializeAppLoading', false)
                 .set('initializeAppLoaded', true);
+
+        case INITIALIZE_APP_ERROR:
+            return state
+                .set('initializeAppLoading', false)
+                .set('initializeAppLoaded', true)
+                .set('error', error);
         //#endregion
 
         default:
@@ -110,7 +115,7 @@ export function initializeApp() {
 }
 
 // Вход в аккаунт
-export function signUp(login, password) {
+export function login(login, password) {
     return {
         type: SIGN_UP_REQUEST,
         payload: { login, password }
@@ -118,7 +123,7 @@ export function signUp(login, password) {
 }
 
 // Регистрация
-export function signIn(email, password, login) {
+export function register(email, password, login) {
     return {
         type: SIGN_IN_REQUEST,
         payload: { email, password, login }
@@ -182,7 +187,7 @@ const refreshTokenSaga = function* (token) {
         cache: 'no-cache'
     };
 
-    const res = yield call(fetchApi, '/auth/refresh-token', options);
+    const res = yield call(fetchApi, '/api/auth/refresh-token', options);
 
     if (res.status >= 400) {
         throw new Error(res.statusText);
@@ -200,7 +205,7 @@ const userInfoFetchSaga = function* (token) {
         cache: 'no-cache'
     };
 
-    const res = yield call(fetchApi, `/auth/user-info/${token.refreshToken.userId}`, options);
+    const res = yield call(fetchApi, `/api/users/${token.refreshToken.userId}`, options);
 
     if (res.status >= 400) {
         throw new Error(res.statusText);
@@ -209,7 +214,7 @@ const userInfoFetchSaga = function* (token) {
 };
 
 // Вход в аккаунт
-export const signUpSaga = function* () {
+export const loginSaga = function* () {
     while (true) {
         const action = yield take(SIGN_UP_REQUEST);
 
@@ -224,7 +229,7 @@ export const signUpSaga = function* () {
         };
 
         try {
-            const res = yield call(fetchApi, '/auth/sing-up', options);
+            const res = yield call(fetchApi, '/api/auth/login', options);
             if (res.status >= 400) {
                 throw new Error(res.statusText);
             }
@@ -259,7 +264,7 @@ export const signOutSaga = function* () {
             yield put({
                 type: SIGN_OUT_SUCCESS
             });
-            yield put(push('/auth/sign-in'));
+            yield put(push('/auth/login'));
         } catch (_) {
             //
         }
@@ -267,14 +272,14 @@ export const signOutSaga = function* () {
 };
 
 // Регистрация
-export const signInSaga = function* () {
+export const registerSaga = function* () {
     while (true) {
         try {
             const action = yield take(SIGN_IN_REQUEST);
             const headers = new Headers();
             headers.append("Content-Type", "application/json");
 
-            const res = yield call(fetch, '/auth/register',
+            const res = yield call(fetch, '/api/auth/register',
                 { method: 'POST', headers: headers, body: JSON.stringify(action.payload) }
             );
 
@@ -283,13 +288,16 @@ export const signInSaga = function* () {
             }
 
             const body = yield call([res, res.json]);
+            const user = yield call(userInfoFetchSaga, body.token);
+
             yield put({
                 type: SIGN_IN_SUCCESS,
                 payload: {
-                    user: body.user,
-                    token: body.token
+                    token: body.token,
+                    user
                 }
             });
+
             yield put(push('/projects'));
         } catch (error) {
             yield put({
@@ -302,8 +310,8 @@ export const signInSaga = function* () {
 
 export const saga = function* () {
     yield all([
-        signInSaga(),
-        signUpSaga(),
+        registerSaga(),
+        loginSaga(),
         signOutSaga(),
         initializeAppSaga()
     ]);

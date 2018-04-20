@@ -1,7 +1,11 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 using TasksManagerFinal.DataAccess.Projects;
 using TasksManagerFinal.DataAccess.UnitOfWork;
+using TasksManagerFinal.Entities;
 using TasksManagerFinal.ViewModel;
 using TasksManagerFinal.ViewModel.Projects;
 
@@ -18,35 +22,47 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Projects
             Factory = factory;
         }
 
-        public async Task<ListResponse<ProjectResponse>> RunAsync(ProjectFilter filter, ListOptions options)
+        public async Task<ListResponse<ProjectResponse>> RunAsync(string login, ProjectFilter filter, ListOptions options)
         {
-            var query = Uow.ProjectsRepository.Query()
+            var queryUser = Uow.UsersRepository.Query()
+                .Select(u => u);
+
+            User user = await Factory.CreateAsyncQueryble(queryUser)
+                .FirstOrDefaultAsync(u => u.Login == login);
+
+            if (user == null) throw new CannotUpdateProjectNotFound();
+
+            var queryProjects = Uow.ProjectsRepository.Query()
+                .Select(u => u)
+                .Where(u => u.UserId == user.Id)
                 .Select(p => new ProjectResponse
                 {
                     Id = p.Id,
                     Title = p.Title,
                     InArchive = p.InArchive,
                     Description = p.Description,
-                    OpenTasksCount = p.Tasks.Count(t => t.Status != Entities.TaskStatus.Completed)
+                    OpenTasksCount = p.OpenTasksCount
                 });
 
-            query = ApplyFilter(query, filter);
-            int totalCount = await Factory
-                .CreateAsyncQueryble(query)
-                .CountAsync();
 
             if (options.Sort == null)
             {
                 options.Sort = "Id";
             }
 
-            query = options.ApplySort(query);
-            query = options.ApplyPaging(query);
+            queryProjects = ApplyFilter(queryProjects, filter);
+
+            int totalCount = await Factory
+                .CreateAsyncQueryble(queryProjects)
+                .CountAsync();
+
+            queryProjects = options.ApplySort(queryProjects);
+            queryProjects = options.ApplyPaging(queryProjects);
 
             return new ListResponse<ProjectResponse>
             {
                 Items = await Factory
-                    .CreateAsyncQueryble(query)
+                    .CreateAsyncQueryble(queryProjects)
                     .ToListAsync(),
                 Page = options.Page,
                 PageSize = options.PageSize ?? totalCount,
