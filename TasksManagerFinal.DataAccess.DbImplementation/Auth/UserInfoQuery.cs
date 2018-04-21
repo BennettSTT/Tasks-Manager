@@ -19,7 +19,7 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
             Uow = uow;
         }
 
-        public async Task<UserInfoResponse> ExecuteAsync(int userId)
+        public async Task<User> ExecuteAsync(int userId)
         {
             var query = Uow.UsersRepository.Query()
                 .Select(u => u);
@@ -28,12 +28,8 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
                 .FirstOrDefaultAsync(u => u.Id == userId);
 
             if (user == null) throw new Exception("User not found");
- 
-            return new UserInfoResponse
-            {
-                login = user.Login,
-                refreshToken = user.UserRefreshToken
-            };
+
+            return user;
         }
     }
 }

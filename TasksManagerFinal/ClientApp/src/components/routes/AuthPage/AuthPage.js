@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import SignInForm           from '../auth/SignInForm';
-import SignUpForm           from '../auth/SignUpForm';
+import SignInForm           from '../../auth/SignInForm';
+import SignUpForm           from '../../auth/SignUpForm';
 import { Switch }           from "react-router";
 import { Route, NavLink }   from 'react-router-dom';
 import { connect }          from 'react-redux';
-import { login, register }  from '../../ducks/auth';
+import { login, register }  from '../../../ducks/auth';
 import './AuthPage.css';
 
 class AuthPage extends Component {

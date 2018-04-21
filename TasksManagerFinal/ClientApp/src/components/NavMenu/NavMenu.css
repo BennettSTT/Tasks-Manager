@@ -1,9 +1,11 @@
 .navbar {
+    height: 51px;
     border-radius: 0;
 }
 
 @media (min-width: 768px) {
     .navbar {
         border-radius: 0;
+        height: 51px;
     }
 }

@@ -2,13 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using TasksManagerFinal.AuthHandlers;
 using TasksManagerFinal.DataAccess.Projects;
 using TasksManagerFinal.ViewModel;
 using TasksManagerFinal.ViewModel.Projects;
 
 namespace TasksManagerFinal.Controllers
 {
-    [Route("api")]
+    [Route("api/[controller]")]
     public class ProjectsController : Controller
     {
         public IAuthorizationService AuthorizationService { get; }
@@ -42,7 +43,7 @@ namespace TasksManagerFinal.Controllers
         }
 
         [Authorize]
-        [HttpGet("{userLogin}/{titleProject}")]
+        [HttpGet("{titleProject}")]
         [ProducesResponseType(200, Type = typeof(ListResponse<ProjectResponse>))]
         [ProducesResponseType(401)]
         [ProducesResponseType(404)]
@@ -59,6 +60,36 @@ namespace TasksManagerFinal.Controllers
                 return StatusCode(400, error.Message);
             }
         }
+
+        [Authorize]
+        [HttpPut("{projectId}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(403)]
+        [ProducesResponseType(404)]
+        public async Task<IActionResult> UpdateProjectAsync(int projectId, [FromBody] UpdateProjectRequest request,
+            [FromServices] IUpdateProjectCommand command, [FromServices] IGetProjectQuery query)
+        {
+            try
+            {
+                var user = User.Identity.Name;
+                var project = await query.ExecuteAsync(projectId);
+
+                var authorizationResult = await AuthorizationService.AuthorizeAsync(User, project, Operations.Update);
+
+                if (!authorizationResult.Succeeded) return StatusCode(403);
+                var response = await command.ExecuteAsunc(projectId, request, user);
+                return Ok(response);
+            }
+            catch (ProjectNotFound)
+            {
+                return NotFound();
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
 
         [Authorize]
         [HttpPost("new")]

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
 using TasksManagerFinal.DataAccess.Auth;
@@ -9,12 +8,12 @@ using TasksManagerFinal.ViewModel.Auth;
 
 namespace TasksManagerFinal.Controllers
 {
-    [Route("api/auth")]
-    public class AccountController : Controller
+    [Route("api/[controller]")]
+    public class AuthController : Controller
     {
         public IUnitOfWork Uow { get; }
 
-        public AccountController(IUnitOfWork uow)
+        public AuthController(IUnitOfWork uow)
         {
             Uow = uow;
         }
@@ -41,7 +40,6 @@ namespace TasksManagerFinal.Controllers
             }
         }
 
-
         [HttpPost("refresh-token")]
         [ProducesResponseType(200, Type = typeof(RefreshTokenResponse))]
         [ProducesResponseType(400)]
@@ -53,23 +51,15 @@ namespace TasksManagerFinal.Controllers
                 return BadRequest(ModelState);
             }
 
-            RefreshTokenResponse response;
-
             try
             {
-                response = await tokenCommand.ExecuteAsync(tokenRequest);
+                var token = await tokenCommand.ExecuteAsync(tokenRequest);
+                return Ok(token);
             }
             catch (Exception e)
             {
-                var errorJson = new
-                {
-                    message = e.Message
-                };
-
-                return StatusCode(401, JsonConvert.SerializeObject(errorJson));
+                return StatusCode(401, e.Message);
             }
-
-            return Ok(response);
         }
 
         [HttpPost("register")]

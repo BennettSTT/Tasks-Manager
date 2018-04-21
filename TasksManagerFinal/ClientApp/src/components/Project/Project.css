@@ -1,0 +1,22 @@
+.projects-btn {
+    margin: 5px;
+    display: inline-block;
+}
+
+.projects-title {
+    text-align: center;
+}
+
+.projects-body {
+    text-align: center;
+}
+
+.projects-btn-group {
+    text-align: center;
+
+}
+
+.projects-btn-tasks {
+    text-align: center;
+    margin-right: 5px;
+}

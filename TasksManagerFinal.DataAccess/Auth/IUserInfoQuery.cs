@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
-using TasksManagerFinal.ViewModel.Auth;
+using TasksManagerFinal.Entities;
 
 namespace TasksManagerFinal.DataAccess.Auth
 {
     public interface IUserInfoQuery
     {
-        Task<UserInfoResponse> ExecuteAsync(int userId);
+        Task<User> ExecuteAsync(int userId);
     }
 }

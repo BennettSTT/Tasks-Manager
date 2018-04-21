@@ -10,12 +10,7 @@ namespace TasksManagerFinal.AuthHandlers
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, 
             OperationAuthorizationRequirement requirement, Project project)
         {
-            if (requirement.Name == Operations.Create.Name && context.User.Identity.Name == project?.User.Email)
-            {
-                context.Succeed(requirement);
-            }
-
-            if (requirement.Name == Operations.CreateTask.Name && context.User.Identity.Name == project?.User.Login)
+            if (requirement.Name == Operations.Update.Name && context.User.Identity.Name == project?.User.Email)
             {
                 context.Succeed(requirement);
             }

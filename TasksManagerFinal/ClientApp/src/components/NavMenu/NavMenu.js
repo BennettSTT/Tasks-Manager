@@ -1,18 +1,15 @@
-import React, { Component }                from 'react';
-import { Glyphicon, Nav, Navbar, NavItem } from "react-bootstrap";
-import { LinkContainer }                   from 'react-router-bootstrap';
-import { moduleName, signOut }             from "../../ducks/auth";
-import { connect }                         from "react-redux";
+import React, { Component }                        from 'react';
+import { Button, Glyphicon, Nav, Navbar, NavItem } from "react-bootstrap";
+import { LinkContainer }                           from 'react-router-bootstrap';
+import { moduleName, signOut }                     from "../../ducks/auth";
+import { connect }                                 from "react-redux";
 import "./NavMenu.css";
-import { Link }                            from "react-router-dom";
 
 class NavMenu extends Component{
     render() {
-        const {signOut, signedIn} = this.props;
+        const {signOut, login} = this.props;
 
-        const btn = signedIn
-            ? <button onClick = { signOut }>Sign out</button>
-            : <Link to = '/auth/signin'>sign in</Link>;
+        const btn = <Button onClick = { signOut }>Sign out</Button>;
 
         return (
             <Navbar inverse collapseOnSelect>
@@ -24,9 +21,9 @@ class NavMenu extends Component{
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav>
-                        <LinkContainer to={'/projects'}>
+                        <LinkContainer to={`/${login}`}>
                             <NavItem>
-                                Projects
+                                My Project
                             </NavItem>
                         </LinkContainer>
                     </Nav>
@@ -42,5 +39,5 @@ class NavMenu extends Component{
 }
 
 export default connect(state => ( {
-    signedIn: !!state[moduleName].user,
+    login: state[moduleName].getIn(['user', 'login']),
 } ), { signOut }, null, { pure: false })(NavMenu)

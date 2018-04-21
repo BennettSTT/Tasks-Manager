@@ -1,9 +1,10 @@
-import { appName }                              from '../config';
-import { Record }                               from 'immutable';
-import { all, call, put, take }                 from 'redux-saga/effects';
-import { GWT0, getToken, setToken, clearToken } from "../utils";
-import { push }                                 from 'react-router-redux';
-import { fetchApi }                             from "../components/common/Api";
+import { appName }                                    from '../config';
+import { Record }                                     from 'immutable';
+import { all, call, put, take }                       from 'redux-saga/effects';
+import { GWT0 }                                       from "../utils";
+import { getToken, setToken, clearToken, checkToken } from "../token";
+import { push }                                       from 'react-router-redux';
+import { fetchApi, refreshToken }                     from "../api";
 
 const ReducerRecord = Record({
     user: null,
@@ -11,7 +12,8 @@ const ReducerRecord = Record({
     loading: false,
     loaded: false,
     initializeAppLoaded: false,
-    initializeAppLoading: false
+    initializeAppLoading: false,
+    OpenInArchive: false
 });
 
 const UserRecord = Record({
@@ -39,12 +41,23 @@ export const SIGN_IN_ERROR = `${prefix}/SIGN_IN_ERROR`;
 export const SIGN_OUT_REQUEST = `${prefix}/SIGN_OUT_REQUEST`;
 export const SIGN_OUT_SUCCESS = `${prefix}/SIGN_OUT_SUCCESS`;
 
+export const SHOW_ARCHIVE_PROJECTS = `${prefix}/SHOW_ARCHIVE_PROJECTS`;
+export const SHOW_OPEN_PROJECTS = `${prefix}/SHOW_OPEN_PROJECTS`;
+
 //#endregion
 
 export default function reducer(state = new ReducerRecord(), action) {
     const { type, payload, error } = action;
 
     switch (type) {
+
+        case SHOW_ARCHIVE_PROJECTS:
+            return state
+                .set('OpenInArchive', true);
+
+        case SHOW_OPEN_PROJECTS:
+            return state
+                .set('OpenInArchive', false);
 
         //#region Юзер
         case SIGN_UP_REQUEST:
@@ -107,6 +120,18 @@ export default function reducer(state = new ReducerRecord(), action) {
     }
 }
 
+export function showOpenProjects() {
+    return {
+        type: SHOW_OPEN_PROJECTS
+    };
+}
+
+export function showArchiveProjects() {
+    return {
+        type: SHOW_ARCHIVE_PROJECTS
+    };
+}
+
 //#region Actions Creators
 export function initializeApp() {
     return {
@@ -152,47 +177,26 @@ export const initializeAppSaga = function* () {
             });
         }
 
-        const expiresIn = new Date(token.expiresIn);
-        const GWT0Now = yield call(GWT0);
+        const check = yield call(checkToken);
+        if (check) yield call(refreshToken);
 
-        // Если токен старый - обновляем все токены
-        const newToken = expiresIn < GWT0Now
-            ? yield call(refreshTokenSaga, token.refreshToken)
-            : token;
+        token = yield call(getToken);
 
         // загружаем инфу о юзере
-        const user = yield call(userInfoFetchSaga, newToken);
+        const user = yield call(userInfoFetchSaga, token);
 
         yield put({
             type: INITIALIZE_APP_AUTHORIZED,
-            payload: { user, token: newToken }
+            payload: { user, token }
         });
     } catch (error) {
+        debugger;
         yield put({
             type: INITIALIZE_APP_ERROR,
             error
         });
     }
 
-};
-
-const refreshTokenSaga = function* (token) {
-    const headers = new Headers();
-    headers.append("Content-Type", "application/json");
-
-    const options = {
-        method: 'POST',
-        headers: headers,
-        body: JSON.stringify(token),
-        cache: 'no-cache'
-    };
-
-    const res = yield call(fetchApi, '/api/auth/refresh-token', options);
-
-    if (res.status >= 400) {
-        throw new Error(res.statusText);
-    }
-    return yield call([res, res.json]);
 };
 
 const userInfoFetchSaga = function* (token) {
@@ -205,7 +209,7 @@ const userInfoFetchSaga = function* (token) {
         cache: 'no-cache'
     };
 
-    const res = yield call(fetchApi, `/api/users/${token.refreshToken.userId}`, options);
+    const res = yield call(fetchApi, `/api/Users/${token.refreshToken.userId}`, options);
 
     if (res.status >= 400) {
         throw new Error(res.statusText);
@@ -229,7 +233,7 @@ export const loginSaga = function* () {
         };
 
         try {
-            const res = yield call(fetchApi, '/api/auth/login', options);
+            const res = yield call(fetchApi, '/api/Auth/login', options);
             if (res.status >= 400) {
                 throw new Error(res.statusText);
             }
@@ -244,8 +248,9 @@ export const loginSaga = function* () {
                 payload: { user, token }
             });
 
-            yield put(push('/projects'));
+            yield put(push(`/${user.login}`));
         } catch (error) {
+            debugger;
             yield put({
                 type: SIGN_UP_ERROR,
                 error
@@ -279,7 +284,7 @@ export const registerSaga = function* () {
             const headers = new Headers();
             headers.append("Content-Type", "application/json");
 
-            const res = yield call(fetch, '/api/auth/register',
+            const res = yield call(fetch, '/api/Auth/register',
                 { method: 'POST', headers: headers, body: JSON.stringify(action.payload) }
             );
 
@@ -298,7 +303,7 @@ export const registerSaga = function* () {
                 }
             });
 
-            yield put(push('/projects'));
+            yield put(push(`${user.login}`));
         } catch (error) {
             yield put({
                 type: SIGN_IN_ERROR,

@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Routing;
@@ -8,8 +9,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Text;
-using Microsoft.AspNetCore.Authorization;
-using TasksManager.AuthHandlers;
 using TasksManagerFinal.AuthHandlers;
 using TasksManagerFinal.DataAccess.DbImplementation.Extensions;
 using TasksManagerFinal.DataAccess.UnitOfWork;
@@ -34,6 +33,7 @@ namespace TasksManagerFinal
             RegisterModules(services);
             ConfigureJwtAuthService(services);
             services.AddMvc();
+            //services.AddAutoMapper();
 
             services.AddSpaStaticFiles(configuration =>
             {
@@ -91,6 +91,7 @@ namespace TasksManagerFinal
                 .RegisterUnitOfWorkDataAccess()
                 .RegisterServicesUnitOfWork()
                 .AddSingleton<IAuthorizationHandler, ProjectAuthorizationHandler>()
+                .AddSingleton<IAuthorizationHandler, UserAuthorizationHandler>()
                 ;
         }
 
