@@ -24,7 +24,6 @@ class ProjectList extends Component {
         if (this.props.loading || !this.props.loaded) {
             return <Loader />;
         }
-        const { projects, login } = this.props;
 
         return (
             <div className = 'projects-page-container'>
@@ -36,7 +35,7 @@ class ProjectList extends Component {
     }
 
     getDescription = (project) => {
-        const MAX_LENGTH_DESCRIPTION = 20;
+        const MAX_LENGTH_DESCRIPTION = 40;
 
         const description = project.get('description');
         let str = description.substring(0, MAX_LENGTH_DESCRIPTION + 1);

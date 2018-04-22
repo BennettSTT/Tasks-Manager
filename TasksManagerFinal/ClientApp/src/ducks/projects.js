@@ -6,7 +6,7 @@ import { fetchApi, refreshToken }       from "../api";
 import { getToken, checkToken }         from "../token";
 import { createSelector }               from "reselect";
 import { moduleName as authModule }     from './auth';
-import { connect }                      from "react-redux";
+import { push }                         from 'react-router-redux';
 
 const ProjectRecord = Record({
     id: null,
@@ -88,6 +88,7 @@ export default function reducer(state = new ReducerState(), action) {
                 .updateIn(['projectsUsers', payload.login, 'entities'], entities =>
                     entities.update(response.project.id, project => project.merge(response.project))
                 );
+                // .updateIn(['projectsUsers', payload.login, 'edit']);
 
         case CREATE_PROJECT_SUCCESS:
             return state
@@ -221,7 +222,7 @@ export function* updateProjectSaga() {
             yield call([headers, headers.append], 'Authorization', `Bearer ${accessToken}`);
 
             const response = yield call(fetchApi, `/api/Projects/${id}`, {
-                method: 'PUT', headers: headers, body: JSON.stringify({ title, description, inArchive: !inArchive })
+                method: 'PUT', headers: headers, body: JSON.stringify({ title, description, inArchive })
             });
 
             if (response.status >= 400) {
@@ -236,6 +237,8 @@ export function* updateProjectSaga() {
                 payload: { login },
                 response: { project: body }
             });
+
+            yield put(push(`/${login}/${body.title}`))
 
         } catch (error) {
             debugger;
@@ -267,14 +270,15 @@ export function* createProjectSaga() {
                 throw new Error(response.statusText);
             }
 
-            const body = yield call([response, response.json]);
+            const project = yield call([response, response.json]);
 
             yield put({
                 type: CREATE_PROJECT_SUCCESS,
                 payload: { login },
-                response: { project: body }
+                response: { project }
             });
 
+            yield put(push(`/${login}/${project.title}`));
         } catch (error) {
             // TODO: Сделать реакцию на CREATE_PROJECT_FAIL
             yield put({

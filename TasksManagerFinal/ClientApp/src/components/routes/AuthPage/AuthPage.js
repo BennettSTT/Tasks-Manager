@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import SignInForm           from '../../auth/SignInForm';
-import SignUpForm           from '../../auth/SignUpForm';
+import SignInForm           from '../../forms/auth/SignInForm';
+import SignUpForm           from '../../forms/auth/SignUpForm';
 import { Switch }           from "react-router";
 import { Route, NavLink }   from 'react-router-dom';
 import { connect }          from 'react-redux';

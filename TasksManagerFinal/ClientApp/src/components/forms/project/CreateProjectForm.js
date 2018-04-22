@@ -1,11 +1,11 @@
 import React, { Component }         from 'react';
 import { Button, PageHeader }       from "react-bootstrap";
-import { moduleName as userModule } from "../../ducks/auth";
+import { moduleName as userModule } from "../../../ducks/auth";
 import { connect }                  from "react-redux";
 import { reduxForm, Field }         from 'redux-form';
-import ErrorField                   from "../common/ErrorField";
+import ProjectField                 from "../field/ProjectField";
 
-class NewProjectForm extends Component {
+class CreateProjectForm extends Component {
     render() {
         const { handleSubmit } = this.props;
 
@@ -18,12 +18,12 @@ class NewProjectForm extends Component {
                 <form onSubmit = { handleSubmit }>
                     <div className = 'form-group'>
                         <label className = 'control-label'>Title project</label>
-                        <Field name = 'title' component = { ErrorField } />
+                        <Field name = 'title' component = { ProjectField } />
                     </div>
 
                     <div className = 'form-group'>
                         <label className = 'control-label'>Description</label>
-                        <Field name = 'description' component = { ErrorField } />
+                        <Field name = 'description' component = { ProjectField } />
                     </div>
                     <br />
                     <div>
@@ -38,8 +38,11 @@ class NewProjectForm extends Component {
 const validate = ({ title, description }) => {
     const errors = {};
 
+
     if (!title) {
         errors.title = 'Title is required';
+    } else if (title.split(' ').length > 1) {
+        errors.title = "Do not use spaces";
     } else if (title.length > 200) {
         errors.title = "Long title";
     }
@@ -56,4 +59,4 @@ export default connect(store => ( {
 } ))(reduxForm({
     form: 'newProject',
     validate
-})(NewProjectForm));
+})(CreateProjectForm));

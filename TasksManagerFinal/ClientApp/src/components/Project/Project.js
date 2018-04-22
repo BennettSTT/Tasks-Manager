@@ -1,97 +1,77 @@
 import React, { Component }          from 'react';
-import { connect }                   from 'react-redux';
-import { Link }                      from "react-router-dom";
-import { Button, Modal, PageHeader } from "react-bootstrap";
-import { updateProject }             from '../../ducks/projects';
+import { PageHeader } from "react-bootstrap";
 import './Project.css';
 
 class Project extends Component {
-    state = {
-        show: false
-    };
-
     render() {
-        // TODO: Не давать редавктировать если это не проектюзера
-        const { project: { title, description, openTasksCount } ,login  } = this.props;
-
+        const { project: { title, description, openTasksCount } } = this.props;
         return (
             <div>
-                <div className = 'projects-title'>
-                    <PageHeader>
-                        <Link to = { `/${login}/${title}` }>{ title }</Link>
-                        <br/>
-                        <small>Open Tasks Count: <strong>{ openTasksCount }</strong></small>
-                    </PageHeader>
+                <div className = 'project-tasks-counter'>
+                    Open Tasks Count: <strong>{ openTasksCount }</strong>
                 </div>
-                <div className = 'projects-body'>
-                    <h5>{ description }</h5>
+                <hr />
+                <div>
+                    <div className = 'projects-title'>
+                        <PageHeader>
+                            { title }
+                        </PageHeader>
+                    </div>
+                    <div className = 'projects-body'>
+                        { description }
+                    </div>
                 </div>
-                { this.itemsHandler() }
-                { this.modalItem() }
             </div>
         );
     }
 
-    handleHide = () => {
-        this.setState({ show: false });
-    };
+        // return (
+        //     <form onSubmit = { handleSubmit }>
+        //         <div>
+        //             <label>Title</label> <Field name = 'title' component = { ProjectField } />
+        //         </div>
+        //         <br />
+        //         <div>
+        //             <label>Description</label> <Field name = 'description' component = { ProjectField } />
+        //         </div>
+        //         <br />
+        //
+        //         <div>
+        //             <Button bsStyle = 'success' type = 'submit'>Update</Button>
+        //         </div>
+        //     </form>
+    // );
+    // };
 
-    modalItem () {
-        return(
-            <Modal
-                show = { this.state.show }
-                onHide = { this.handleHide }
-                container = { this }
-                aria-labelledby="contained-modal-title"
-            >
-                <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title">
-                        { this.titleArchiveButton() } project
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    Do you really want to do this?
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button bsStyle = 'primary' onClick={ this.handlerArchiveButton }>{ this.titleArchiveButton() }</Button>
-                    <Button onClick={ this.handleHide }>Close</Button>
-                </Modal.Footer>
-            </Modal>
-        )
-    }
-
-    handlerArchiveButton = () => {
-        const { updateProject, project } = this.props;
-        updateProject(project);
-
-        this.setState({ show: !this.state.show });
-    };
-
-    titleArchiveButton() {
-        const { project: { inArchive } } = this.props;
-        if (inArchive) return "Open";
-
-        return "Archive";
-    }
-
-    itemsHandler() {
-        const { login, loginUser } = this.props;
-        if (loginUser === login) {
-            return ( <div className = 'projects-btn-group'>
-                <div className = 'projects-btn'>
-                    <Button
-                            bsStyle = 'primary'
-
-                    >Edit</Button>
-                </div>
-
-                <div className = 'projects-btn'>
-                    <Button onClick = { () => this.setState({ show: true }) } bsStyle = 'primary'>{ this.titleArchiveButton() }</Button>
-                </div>
-            </div> );
-        }
-        return null;
-    }
 }
 
-export default connect(null, {updateProject})(Project);
+// const validate = ({ title, description }) => {
+//     const errors = {};
+//
+//     if (!title) {
+//         errors.title = 'Title is required';
+//     } else if (title.split(' ').length > 1) {
+//         errors.title = "Do not use spaces";
+//     } else if (title.length > 200) {
+//         errors.title = "Long title";
+//     }
+//
+//     if (description && description.length > 2000) {
+//         errors.description = "Long description";
+//     }
+//
+//     return errors;
+// };
+
+
+// function mapStateToProps(state, { project: { title, description } }) {
+//     return {
+//         loginUser: state[moduleName].getIn(['user', 'login']),
+//         initialValues: {
+//             title: title,
+//             description: description
+//         }
+//     };
+// }
+
+export default (Project);

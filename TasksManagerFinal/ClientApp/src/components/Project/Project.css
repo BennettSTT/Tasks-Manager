@@ -8,15 +8,19 @@
 }
 
 .projects-body {
-    text-align: center;
+    font-size: 18px;
 }
 
 .projects-btn-group {
-    text-align: center;
-
+    text-align: right;
 }
 
 .projects-btn-tasks {
     text-align: center;
     margin-right: 5px;
+}
+
+.project-tasks-counter{
+    text-align: left;
+    font-size: 16px;
 }

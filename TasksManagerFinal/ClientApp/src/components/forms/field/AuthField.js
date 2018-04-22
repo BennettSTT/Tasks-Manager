@@ -1,16 +1,14 @@
 import React from 'react';
 
-function ErrorField(props) {
+function AuthField(props) {
     const { input, type, meta: { error, touched } } = props;
     const errorText = touched && error && <div style = { { color: 'red' } }>{ error }</div>;
 
     return (
         <div>
-            <input className='form-control' { ...input } type = { type } /> { errorText }
+            <input { ...input } type = { type } /> { errorText }
         </div>
     );
 }
 
-ErrorField.propTypes = {};
-
-export default ErrorField;
+export default AuthField;

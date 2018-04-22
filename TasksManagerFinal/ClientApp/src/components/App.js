@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect }          from 'react-redux';
-import { Route }            from 'react-router-dom';
+import { Route }       from 'react-router-dom';
 import {
     initializeApp,
     moduleName as authModule,
@@ -12,7 +12,7 @@ import ProtectedRoute  from './common/ProtectedRoute';
 import { Switch }      from "react-router";
 import HomePage        from "./routes/HomePage/HomePage";
 import Loader          from "./common/Loader";
-import NewProjectPage  from "./routes/NewProjectPage/NewProjectPage";
+import NewProjectPage  from "./routes/CreateProjectPage/CreateProjectPage";
 import ProjectPage     from "./routes/ProjectPage/ProjectPage";
 
 class App extends Component {

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import NewProjectForm       from "../../Project/NewProjectForm";
-import './NewProjectPage.css';
+import NewProjectForm       from "../../forms/project/CreateProjectForm";
+import './CreateProjectPage.css';
 import { createProject }    from "../../../ducks/projects";
 import { connect }          from "react-redux";
 import { Layout }           from "../../Layout";
 
-class NewProjectPage extends Component {
+class CreateProjectPage extends Component {
     render() {
         return (
             <Layout>
@@ -19,4 +19,4 @@ class NewProjectPage extends Component {
     handleSignUp = ({ title, description }) => this.props.createProject(title, description);
 }
 
-export default connect(null, { createProject })(NewProjectPage);
+export default connect(null, { createProject })(CreateProjectPage);

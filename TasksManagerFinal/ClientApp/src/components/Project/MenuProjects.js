@@ -1,30 +1,33 @@
 import React, { Component }         from 'react';
-import { Nav, NavItem }             from "react-bootstrap";
-import { LinkContainer }            from 'react-router-bootstrap';
+import { Button }                   from "react-bootstrap";
 import { moduleName as userModule } from "../../ducks/auth";
 import { connect }                  from "react-redux";
-import './MenuProjects.css';
 
-class MenuProjects extends Component{
+class MenuProjects extends Component {
     render() {
-        const { login } = this.props.user;
+
         return (
-            <div className='menu-projects-container'>
-                <Nav bsStyle ='tabs'>
-                    <LinkContainer to={`/new`} >
-                        <NavItem>New project</NavItem>
-                    </LinkContainer>
+            <div className = 'project-menu-container'>
+                <div className = 'projects-btn-group'>
+                    <div className = 'projects-btn'>
+                        <Button onClick = { () => this.setState({ editProject: !this.state.editProject }) }
+                                bsStyle = 'primary'>Edit</Button>
+                    </div>
 
-                    <LinkContainer to={`/${login}#open`}>
-                        <NavItem>Show open projects</NavItem>
-                    </LinkContainer>
-
-                    <LinkContainer to={`/${login}#archive`}>
-                        <NavItem>Show archive of projects</NavItem>
-                    </LinkContainer>
-                </Nav>
+                    <div className = 'projects-btn'>
+                        <Button onClick = { () => this.setState({ show: true }) }
+                                bsStyle = 'primary'>{ this.titleArchiveButton() }</Button>
+                    </div>
+                </div>
             </div>
         );
+    }
+
+    titleArchiveButton() {
+        const { project: { inArchive } } = this.props;
+        if (inArchive) return "Open";
+
+        return "Archive";
     }
 }
 

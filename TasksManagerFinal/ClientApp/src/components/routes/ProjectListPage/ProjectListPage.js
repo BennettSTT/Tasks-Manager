@@ -1,5 +1,5 @@
 import React, { Component }                                                from 'react';
-import ProjectsPagination                                                  from "../../Project/ProjectList";
+import ProjectList                                                  from "../../Project/ProjectList";
 import { showArchiveProjects, moduleName as userModule, showOpenProjects } from '../../../ducks/auth';
 import { connect }                                                         from 'react-redux';
 import { Layout }                                                          from "../../Layout";
@@ -14,7 +14,7 @@ class ProjectListPage extends Component {
         return (
             <Layout>
                 <div className = 'container'>
-                    { this.getMenu() } <ProjectsPagination login = { match.params.login } inArchive = { inArchive } />
+                    { this.getMenu() } <ProjectList login = { match.params.login } inArchive = { inArchive } />
                 </div>
             </Layout>
         );

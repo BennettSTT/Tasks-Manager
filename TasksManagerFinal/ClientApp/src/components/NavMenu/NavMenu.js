@@ -1,15 +1,13 @@
-import React, { Component }                        from 'react';
-import { Button, Glyphicon, Nav, Navbar, NavItem } from "react-bootstrap";
-import { LinkContainer }                           from 'react-router-bootstrap';
-import { moduleName, signOut }                     from "../../ducks/auth";
-import { connect }                                 from "react-redux";
+import React, { Component }     from 'react';
+import { Nav, Navbar, NavItem } from "react-bootstrap";
+import { LinkContainer }        from 'react-router-bootstrap';
+import { moduleName, signOut }  from "../../ducks/auth";
+import { connect }              from "react-redux";
 import "./NavMenu.css";
 
 class NavMenu extends Component{
     render() {
         const {signOut, login} = this.props;
-
-        const btn = <Button onClick = { signOut }>Sign out</Button>;
 
         return (
             <Navbar inverse collapseOnSelect>
@@ -28,8 +26,8 @@ class NavMenu extends Component{
                         </LinkContainer>
                     </Nav>
                     <Nav pullRight>
-                        <NavItem>
-                            {btn}
+                        <NavItem onClick={signOut} >
+                            Sign out
                         </NavItem>
                     </Nav>
                 </Navbar.Collapse>
