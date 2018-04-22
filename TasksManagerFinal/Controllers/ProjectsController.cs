@@ -4,6 +4,7 @@ using System;
 using System.Threading.Tasks;
 using TasksManagerFinal.AuthHandlers;
 using TasksManagerFinal.DataAccess.Projects;
+using TasksManagerFinal.DataAccess.Users;
 using TasksManagerFinal.ViewModel;
 using TasksManagerFinal.ViewModel.Projects;
 
@@ -32,32 +33,36 @@ namespace TasksManagerFinal.Controllers
                 var response = await query.RunAsync(login, filter, options);
                 return Ok(response);
             }
-            catch (CannotUpdateProjectNotFound error)
+            catch (UsersNotFound e)
             {
-                return NotFound(error.Message);
+                return NotFound(e.Message);
             }
             catch (Exception error)
             {
-                return StatusCode(400, error.Message);
+                return StatusCode(500, error.Message);
             }
         }
 
         [Authorize]
-        [HttpGet("{titleProject}")]
+        [HttpGet("{login}/{titleProject}")]
         [ProducesResponseType(200, Type = typeof(ListResponse<ProjectResponse>))]
         [ProducesResponseType(401)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> GetProjectAsync(string userLogin, string titleProject,
-            [FromServices] IProjectQuery query)
+        public async Task<IActionResult> GetProjectAsync(string login, string titleProject,
+            [FromServices] IProjectQuery projectQuery)
         {
             try
             {
-                var response = await query.ExecuteAsync(userLogin, titleProject);
+                var response = await projectQuery.ExecuteAsync(login, titleProject);
                 return Ok(response);
+            }
+            catch (ProjectNotFound e)
+            {
+                return NotFound(e.Message);
             }
             catch (Exception error)
             {
-                return StatusCode(400, error.Message);
+                return StatusCode(500, error.Message);
             }
         }
 
@@ -69,6 +74,10 @@ namespace TasksManagerFinal.Controllers
         public async Task<IActionResult> UpdateProjectAsync(int projectId, [FromBody] UpdateProjectRequest request,
             [FromServices] IUpdateProjectCommand command, [FromServices] IGetProjectQuery query)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             try
             {
                 var user = User.Identity.Name;
@@ -80,9 +89,9 @@ namespace TasksManagerFinal.Controllers
                 var response = await command.ExecuteAsunc(projectId, request, user);
                 return Ok(response);
             }
-            catch (ProjectNotFound)
+            catch (ProjectNotFound e)
             {
-                return NotFound();
+                return NotFound(e.Message);
             }
             catch (Exception e)
             {
@@ -109,9 +118,13 @@ namespace TasksManagerFinal.Controllers
                 ProjectResponse project = await command.ExecuteAsync(email, request);
                 return StatusCode(201, project);
             }
-            catch (Exception e)
+            catch (CannotCreateProjectExists e)
             {
                 return StatusCode(400, e.Message);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
             }
         }
     }

@@ -1,15 +1,22 @@
-import React      from 'react';
+import React, { Component } from 'react';
+import NewProjectForm       from "../../Project/NewProjectForm";
 import './NewProjectPage.css';
-import { Layout } from "../../Layout";
+import { createProject }    from "../../../ducks/projects";
+import { connect }          from "react-redux";
+import { Layout }           from "../../Layout";
 
-function NewProjectPage(props) {
-    return (
-        <div className = 'new-project-page-container'>
+class NewProjectPage extends Component {
+    render() {
+        return (
             <Layout>
-                <h1>New project page</h1>
+                <div className = 'container'>
+                    <NewProjectForm onSubmit = { this.handleSignUp } />
+                </div>
             </Layout>
-        </div>
-    );
+        );
+    }
+
+    handleSignUp = ({ title, description }) => this.props.createProject(title, description);
 }
 
-export default NewProjectPage;
+export default connect(null, { createProject })(NewProjectPage);

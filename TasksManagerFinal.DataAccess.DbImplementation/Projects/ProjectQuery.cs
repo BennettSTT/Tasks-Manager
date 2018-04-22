@@ -22,23 +22,21 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Projects
             TasksServices = tasksServices;
         }
 
-        public async Task<ProjectResponse> ExecuteAsync(string userLogin, string titleProject)
+        public async Task<ProjectResponse> ExecuteAsync(string login, string titleProject)
         {
-            var queryProj = Uow.ProjectsRepository.Query()
-                .Include(p => p.Tasks)
-                .Include(p => p.User)
-                .Select(p => p);
+            Project project = await Factory.CreateAsyncQueryble(
+                    Uow.ProjectsRepository.Query()
+                        .Include(p => p.Tasks)
+                        .Include(p => p.User)
+                        .Select(p => p)
+                )
+                .FirstOrDefaultAsync(u => u.Title == titleProject && u.User.Login == login);
 
-            Project project = await Factory.CreateAsyncQueryble(queryProj)
-                .FirstOrDefaultAsync(u => u.Title == titleProject && u.User.Login == userLogin);
-
-            foreach (var task in project.Tasks)
-            {
-                task.Children = TasksServices.GetChildren(task.Id);
-            }
+            if (project == null) throw new ProjectNotFound();
 
             return new ProjectResponse
             {
+                Id = project.Id,
                 Description = project.Description,
                 Title = project.Title,
                 InArchive = project.InArchive,

@@ -5,6 +5,6 @@ namespace TasksManagerFinal.DataAccess.Projects
 {
     public interface IProjectQuery
     {
-        Task<ProjectResponse> ExecuteAsync(string userLogin, string titleProject);
+        Task<ProjectResponse> ExecuteAsync(string login, string titleProject);
     }
 }

@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using TasksManagerFinal.DataAccess.Projects;
 using TasksManagerFinal.DataAccess.UnitOfWork;
 using TasksManagerFinal.Entities;
@@ -20,32 +22,36 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Projects
 
         public async Task<ProjectResponse> ExecuteAsync(string email, CreateProjectRequest request)
         {
-            var queruUser = Uow.UsersRepository.Query()
-                .Select(u => u);
+            Project project = await Factory.CreateAsyncQueryble(Uow.ProjectsRepository.Query()
+                    .Include(p => p.User)
+                    .Select(p => p))
+                .FirstOrDefaultAsync(p => p.Title == request.Title && p.User.Email == email);
 
-            User user = await Factory.CreateAsyncQueryble(queruUser)
-                .FirstOrDefaultAsync(u => u.Email == email);
+            if (project != null) throw new CannotCreateProjectExists();
 
-            var project = new Project
+            User user = await Factory.CreateAsyncQueryble(Uow.UsersRepository.Query()
+                    .Select(p => p))
+                .FirstOrDefaultAsync(p => p.Email == email);
+
+            var newProject = new Project
             {
                 Title = request.Title,
                 Description = request.Description,
                 UserId = user.Id,
-                InArchive = false,
+                InArchive = request.InArchive,
                 User = user
             };
 
-            Uow.ProjectsRepository.Add(project);
-
+            Uow.ProjectsRepository.Add(newProject);
             await Uow.CommitAsync();
 
             return new ProjectResponse
             {
-                Id = project.Id,
-                Title = project.Title,
-                Description = project.Description,
-                InArchive = project.InArchive,
-                OpenTasksCount = project.OpenTasksCount
+                Id = newProject.Id,
+                Title = newProject.Title,
+                Description = newProject.Description,
+                InArchive = newProject.InArchive,
+                OpenTasksCount = newProject.OpenTasksCount
             };
         }
     }

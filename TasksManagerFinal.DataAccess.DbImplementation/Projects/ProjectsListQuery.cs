@@ -1,10 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query.Internal;
 using TasksManagerFinal.DataAccess.Projects;
 using TasksManagerFinal.DataAccess.UnitOfWork;
+using TasksManagerFinal.DataAccess.Users;
 using TasksManagerFinal.Entities;
 using TasksManagerFinal.ViewModel;
 using TasksManagerFinal.ViewModel.Projects;
@@ -24,13 +22,13 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Projects
 
         public async Task<ListResponse<ProjectResponse>> RunAsync(string login, ProjectFilter filter, ListOptions options)
         {
-            var queryUser = Uow.UsersRepository.Query()
-                .Select(u => u);
-
-            User user = await Factory.CreateAsyncQueryble(queryUser)
+            User user = await Factory.CreateAsyncQueryble(
+                    Uow.UsersRepository.Query()
+                    .Select(u => u)
+                    )
                 .FirstOrDefaultAsync(u => u.Login == login);
 
-            if (user == null) throw new CannotUpdateProjectNotFound();
+            if (user == null) throw new UsersNotFound();
 
             var queryProjects = Uow.ProjectsRepository.Query()
                 .Select(u => u)
@@ -45,6 +43,7 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Projects
                 });
 
 
+
             if (options.Sort == null)
             {
                 options.Sort = "Id";
@@ -57,7 +56,7 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Projects
                 .CountAsync();
 
             queryProjects = options.ApplySort(queryProjects);
-            queryProjects = options.ApplyPaging(queryProjects);
+            //queryProjects = options.ApplyPaging(queryProjects);
 
             return new ListResponse<ProjectResponse>
             {

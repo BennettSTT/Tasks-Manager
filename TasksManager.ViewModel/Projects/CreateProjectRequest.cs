@@ -4,6 +4,11 @@ namespace TasksManagerFinal.ViewModel.Projects
 {
     public class CreateProjectRequest
     {
+        public CreateProjectRequest()
+        {
+            InArchive = false;
+        }
+
         [Required]
         [MaxLength(250)]
         public string Title { get; set; }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import emailValidator       from 'email-validator';
 import ErrorField           from "../common/ErrorField";
+import { Button }           from "react-bootstrap";
 
 class SignInForm extends Component {
     static propTypes = {};
@@ -26,7 +27,7 @@ class SignInForm extends Component {
                         <Field name = 'password' component={ErrorField} type = 'password' />
                     </div>
                     <div>
-                        <input type = 'submit' />
+                        <Button type = 'submit'>Submit</Button>
                     </div>
                 </form>
             </div>

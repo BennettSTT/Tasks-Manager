@@ -1,40 +1,70 @@
-import React, { Component }       from 'react';
-import { connect }                from 'react-redux';
-import { projectSelectorFactory } from "../../ducks/projects";
-import { Link }                   from "react-router-dom";
-import { Button }                 from "react-bootstrap";
-import { updateProject }          from '../../ducks/projects';
+import React, { Component }          from 'react';
+import { connect }                   from 'react-redux';
+import { Link }                      from "react-router-dom";
+import { Button, Modal, PageHeader } from "react-bootstrap";
+import { updateProject }             from '../../ducks/projects';
 import './Project.css';
-import { moduleName }             from "../../ducks/auth";
 
 class Project extends Component {
+    state = {
+        show: false
+    };
+
     render() {
-        const { project: { title, description, openTasksCount }, login  } = this.props;
+        // TODO: Не давать редавктировать если это не проектюзера
+        const { project: { title, description, openTasksCount } ,login  } = this.props;
 
         return (
             <div>
                 <div className = 'projects-title'>
-                    <h3>
+                    <PageHeader>
                         <Link to = { `/${login}/${title}` }>{ title }</Link>
-                    </h3>
+                        <br/>
+                        <small>Open Tasks Count: <strong>{ openTasksCount }</strong></small>
+                    </PageHeader>
                 </div>
-                <br />
                 <div className = 'projects-body'>
                     <h5>{ description }</h5>
                 </div>
-
-                <br />
-                <div className = 'projects-btn-tasks'>
-                    <p>Open Tasks Count: <strong>{ openTasksCount }</strong></p>
-                </div>
-                {this.itemsHandler()}
+                { this.itemsHandler() }
+                { this.modalItem() }
             </div>
         );
+    }
+
+    handleHide = () => {
+        this.setState({ show: false });
+    };
+
+    modalItem () {
+        return(
+            <Modal
+                show = { this.state.show }
+                onHide = { this.handleHide }
+                container = { this }
+                aria-labelledby="contained-modal-title"
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title">
+                        { this.titleArchiveButton() } project
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Do you really want to do this?
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button bsStyle = 'primary' onClick={ this.handlerArchiveButton }>{ this.titleArchiveButton() }</Button>
+                    <Button onClick={ this.handleHide }>Close</Button>
+                </Modal.Footer>
+            </Modal>
+        )
     }
 
     handlerArchiveButton = () => {
         const { updateProject, project } = this.props;
         updateProject(project);
+
+        this.setState({ show: !this.state.show });
     };
 
     titleArchiveButton() {
@@ -46,32 +76,22 @@ class Project extends Component {
 
     itemsHandler() {
         const { login, loginUser } = this.props;
-        debugger;
         if (loginUser === login) {
             return ( <div className = 'projects-btn-group'>
                 <div className = 'projects-btn'>
-                    <Button bsStyle = 'primary'>Edit</Button>
+                    <Button
+                            bsStyle = 'primary'
+
+                    >Edit</Button>
                 </div>
 
                 <div className = 'projects-btn'>
-                    <Button onClick = { this.handlerArchiveButton } bsStyle = 'primary'>{ this.titleArchiveButton() }</Button>
+                    <Button onClick = { () => this.setState({ show: true }) } bsStyle = 'primary'>{ this.titleArchiveButton() }</Button>
                 </div>
-            </div> )
+            </div> );
         }
-        return null
+        return null;
     }
 }
 
-
-const mapStateToProps = () => {
-    const projectSelector = projectSelectorFactory();
-
-    return (state, ownProps) => {
-        return {
-            project: projectSelector(state, ownProps),
-            loginUser: state[moduleName].getIn(['user', 'login'])
-        };
-    };
-};
-
-export default connect(mapStateToProps, { updateProject })(Project);
+export default connect(null, {updateProject})(Project);
