@@ -1,14 +1,12 @@
 import React, { Component }                                         from 'react';
 import { connect }                                                  from "react-redux";
 import { moduleName as projectModule, checkAndLoadProjectsForPage } from '../../ducks/projects';
-import { moduleName as userModule } from '../../ducks/auth';
-import Loader                       from "../common/Loader";
-import Project                      from './Project';
-import NotFound                     from "../routes/NotFound/NotFound";
+import { moduleName as userModule }                                 from '../../ducks/auth';
+import Loader                                                       from "../common/Loader";
+import NotFound                                                     from "../routes/NotFound/NotFound";
+import { mapToArr }                                                 from "../../utils";
+import { Link }                                                     from "react-router-dom";
 import './ProjectList.css';
-import { mapToArr }                 from "../../utils";
-import { Link }                     from "react-router-dom";
-import { Route }                    from "react-router";
 
 class ProjectList extends Component {
     componentWillMount() {
@@ -48,6 +46,10 @@ class ProjectList extends Component {
     getItems() {
         const { projects, login, inArchive } = this.props;
 
+        if (!projects) {
+            return <NotFound message = 'This user has no projects'/>;
+        }
+
         let projectFilter = mapToArr(projects)
             .filter(project => project.get('inArchive') === inArchive);
 
@@ -74,7 +76,7 @@ class ProjectList extends Component {
     }
 }
 
-export default connect((store, { login, inArchive }) => {
+export default connect((store, { login }) => {
     const { projectsUsers } = store[projectModule];
 
     return {

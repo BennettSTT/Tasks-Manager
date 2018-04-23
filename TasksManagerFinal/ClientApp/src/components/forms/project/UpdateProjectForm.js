@@ -3,6 +3,7 @@ import { reduxForm, Field } from 'redux-form';
 import { Button }           from "react-bootstrap";
 import { connect }          from "react-redux";
 import ProjectField         from "../field/ProjectField";
+import "./UpdateProjectForm.css";
 
 class UpdateProjectForm extends Component {
     static propTypes = {};
@@ -15,7 +16,7 @@ class UpdateProjectForm extends Component {
                     <label>Title</label> <Field name = 'title' component = { ProjectField } />
                 </div>
                 <br />
-                <div>
+                <div className='project-form-description'>
                     <label>Description</label> <Field name = 'description' component = { ProjectField } />
                 </div>
                 <br />

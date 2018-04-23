@@ -41,4 +41,4 @@ class AuthPage extends Component {
     handleSignUp = ({ login, password }) => this.props.login(login, password);
 }
 
-export default connect(null, { login, register })(AuthPage);
+export default connect(null, { login, register }, null, { pure: false })(AuthPage);

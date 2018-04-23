@@ -80,6 +80,7 @@ namespace TasksManagerFinal.Controllers
             }
             catch (Exception e)
             {
+
                 return StatusCode(400, e.Message);
             }
         }

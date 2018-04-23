@@ -67,8 +67,6 @@ export default function reducer(state = new ReducerRecord(), action) {
 
         case SIGN_UP_SUCCESS:
         case SIGN_IN_SUCCESS:
-            setToken(JSON.stringify(payload.token));
-
             return state
                 .set('loading', false)
                 .set('loaded', true)
@@ -82,6 +80,10 @@ export default function reducer(state = new ReducerRecord(), action) {
                 .set('error', error);
 
 
+        case SIGN_IN_ERROR:
+            return state
+                .set('error', error);
+
         case SIGN_OUT_SUCCESS:
             return new ReducerRecord();
         //#endregion
@@ -94,8 +96,6 @@ export default function reducer(state = new ReducerRecord(), action) {
                 .set('loaded', false);
 
         case INITIALIZE_APP_AUTHORIZED:
-            setToken(JSON.stringify(payload.token));
-
             return state
                 .set('initializeAppLoading', false)
                 .set('initializeAppLoaded', true)
@@ -180,14 +180,11 @@ export const initializeAppSaga = function* () {
         const check = yield call(checkToken);
         if (check) yield call(refreshToken);
 
-        token = yield call(getToken);
-
-        // загружаем инфу о юзере
-        const user = yield call(userInfoFetchSaga, token);
+        const user = yield call(userInfoFetchSaga);
 
         yield put({
             type: INITIALIZE_APP_AUTHORIZED,
-            payload: { user, token }
+            payload: { user }
         });
     } catch (error) {
         debugger;
@@ -199,22 +196,32 @@ export const initializeAppSaga = function* () {
 
 };
 
-const userInfoFetchSaga = function* (token) {
-    const headers = new Headers();
-    headers.append("Authorization", `Bearer ${token.accessToken}`);
+const userInfoFetchSaga = function* () {
+    try {
+        const check = yield call(checkToken);
+        if (check) yield call(refreshToken);
 
-    const options = {
-        method: 'GET',
-        headers: headers,
-        cache: 'no-cache'
-    };
+        const { accessToken, refreshToken: { userId } } = yield call(getToken);
 
-    const res = yield call(fetchApi, `/api/Users/${token.refreshToken.userId}`, options);
+        const headers = new Headers();
+        yield call([headers, headers.append], "Authorization", `Bearer ${accessToken}`);
 
-    if (res.status >= 400) {
-        throw new Error(res.statusText);
+        const res = yield call(fetchApi, `/api/Users/${userId}`, {
+            method: 'GET',
+            headers: headers,
+            cache: 'no-cache'
+        });
+
+        if (!res.ok) {
+            const message = yield call([res, res.text]);
+
+            throw new Error(message);
+        }
+        return yield call([res, res.json]);
+    } catch (e) {
+        console.error(e);
+        debugger;
     }
-    return yield call([res, res.json]);
 };
 
 // Вход в аккаунт
@@ -223,29 +230,33 @@ export const loginSaga = function* () {
         const action = yield take(SIGN_UP_REQUEST);
 
         const headers = new Headers();
-        headers.append("Content-Type", "application/json");
+        yield call([headers, headers.append], "Content-Type", "application/json");
 
-        const options = {
-            method: 'POST',
-            headers: headers,
-            body: JSON.stringify(action.payload),
-            cache: 'no-cache'
-        };
+        const body = yield call([JSON, JSON.stringify], action.payload);
 
         try {
-            const res = yield call(fetchApi, '/api/Auth/login', options);
-            if (res.status >= 400) {
-                throw new Error(res.statusText);
+            const res = yield call(fetchApi, '/api/Auth/login', {
+                method: 'POST',
+                headers: headers,
+                body: body,
+                cache: 'no-cache'
+            });
+
+            if (!res.ok) {
+                const message = yield call([res, res.text]);
+
+                throw new Error(message);
             }
 
             const token = yield call([res, res.json]);
+            const strToken = yield call([JSON, JSON.stringify], token);
+            yield call(setToken, strToken);
 
-            // загружаем инфу о юзере
-            const user = yield call(userInfoFetchSaga, token);
+            const user = yield call(userInfoFetchSaga);
 
             yield put({
                 type: SIGN_UP_SUCCESS,
-                payload: { user, token }
+                payload: { user }
             });
 
             yield put(push(`/${user.login}`));
@@ -288,26 +299,31 @@ export const registerSaga = function* () {
                 { method: 'POST', headers: headers, body: JSON.stringify(action.payload) }
             );
 
-            if (res.status >= 400) {
-                throw new Error(res.statusText);
+            if (!res.ok) {
+                const message = yield call([res, res.text]);
+
+                throw new Error(message);
             }
 
-            const body = yield call([res, res.json]);
-            const user = yield call(userInfoFetchSaga, body.token);
+            const token = yield call([res, res.json]);
+            const strToken = yield call([JSON, JSON.stringify], token);
+            yield call(setToken, strToken);
+
+            const user = yield call(userInfoFetchSaga);
 
             yield put({
                 type: SIGN_IN_SUCCESS,
                 payload: {
-                    token: body.token,
+                    token: strToken,
                     user
                 }
             });
 
-            yield put(push(`${user.login}`));
+            yield put(push(`/${user.login}`));
         } catch (error) {
             yield put({
                 type: SIGN_IN_ERROR,
-                error: error.message
+                error
             });
         }
     }
