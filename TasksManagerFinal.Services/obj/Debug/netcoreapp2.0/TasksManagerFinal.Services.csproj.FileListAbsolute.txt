@@ -12,3 +12,5 @@ D:\asp\tasks-manager-final\TasksManagerFinal.Services\obj\Debug\netcoreapp2.0\Ta
 D:\asp\tasks-manager-final\TasksManagerFinal.Services\obj\Debug\netcoreapp2.0\TasksManagerFinal.Services.dll
 D:\asp\tasks-manager-final\TasksManagerFinal.Services\obj\Debug\netcoreapp2.0\TasksManagerFinal.Services.pdb
 D:\asp\tasks-manager-final\TasksManagerFinal.Services\obj\Debug\netcoreapp2.0\TasksManagerFinal.Services.csprojResolveAssemblyReference.cache
+D:\asp\tasks-manager-final\TasksManagerFinal.Services\bin\Debug\netcoreapp2.0\TasksManagerFinal.ViewModel.dll
+D:\asp\tasks-manager-final\TasksManagerFinal.Services\bin\Debug\netcoreapp2.0\TasksManagerFinal.ViewModel.pdb

@@ -2,7 +2,9 @@
 using TasksManagerFinal.DataAccess.Auth;
 using TasksManagerFinal.DataAccess.DbImplementation.Auth;
 using TasksManagerFinal.DataAccess.DbImplementation.Projects;
+using TasksManagerFinal.DataAccess.DbImplementation.Tasks;
 using TasksManagerFinal.DataAccess.Projects;
+using TasksManagerFinal.DataAccess.Tasks;
 
 namespace TasksManagerFinal.DataAccess.DbImplementation.Extensions
 {
@@ -21,6 +23,12 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Extensions
                     .AddScoped<IRefreshTokenCommand, RefreshTokenCommand>()
                     .AddScoped<IUserInfoQuery, UserInfoQuery>()
                     
+                    .AddScoped<ITaskListQuery, TaskListQuery>()
+                    .AddScoped<ICreateTaskCommand, CreateTaskCommand>()
+                    .AddScoped<IDeleteTaskCommand, DeleteTaskCommand>()
+                    .AddScoped<IGetChildrenTaskCommand, GetChildrenTaskCommand>()
+                    .AddScoped<IUpdateTaskCommand, UpdateTaskCommand>()
+
                     .AddScoped<ILoginUserQuery, LoginUserQuery>()
                     .AddScoped<IRegisterUserCommand, RegisterUserCommand>()
                 ;

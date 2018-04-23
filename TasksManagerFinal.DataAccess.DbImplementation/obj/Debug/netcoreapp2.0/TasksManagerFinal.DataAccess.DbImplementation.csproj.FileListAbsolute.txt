@@ -22,3 +22,5 @@ D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.DbImplementation\bin\Deb
 D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.DbImplementation\bin\Debug\netcoreapp2.0\TasksManagerFinal.Services.UnitOfWork.pdb
 D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.DbImplementation\bin\Debug\netcoreapp2.0\TasksManagerFinal.Services.dll
 D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.DbImplementation\bin\Debug\netcoreapp2.0\TasksManagerFinal.Services.pdb
+D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.DbImplementation\bin\Debug\netcoreapp2.0\AutoMapper.dll
+D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.DbImplementation\bin\Debug\netcoreapp2.0\AutoMapper.xml

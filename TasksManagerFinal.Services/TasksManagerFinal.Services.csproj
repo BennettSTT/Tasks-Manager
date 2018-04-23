@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TasksManager.ViewModel\TasksManagerFinal.ViewModel.csproj" />
     <ProjectReference Include="..\TasksManagerFinal.DataAccess.UnitOfWork\TasksManagerFinal.DataAccess.UnitOfWork.csproj" />
   </ItemGroup>
 

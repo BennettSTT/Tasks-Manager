@@ -30,12 +30,16 @@ class SignUpForm extends Component {
     }
 }
 
-const validate = ({ email, password }) => {
+const validate = ({ login, email, password }) => {
     const errors = {};
 
-    if (!email) {
+    if (!login) {
         errors.email = 'email is required';
-    } else if (!emailValidator.validate(email)) errors.email = 'invalid email';
+    } /*else if (/<[a-z][a-z0-9]*>/i.test(login)) {
+        alert('123');
+    }*/
+
+    else if (!emailValidator.validate(email)) errors.email = 'invalid email';
 
     if (!password) {
         errors.password = 'password is required';

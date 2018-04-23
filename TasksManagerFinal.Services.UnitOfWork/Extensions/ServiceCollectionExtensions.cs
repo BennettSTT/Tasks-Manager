@@ -7,7 +7,7 @@ namespace TasksManagerFinal.Services.UnitOfWork.Extensions
         public static IServiceCollection RegisterServicesUnitOfWork(this IServiceCollection services)
         {
             return services
-                    .AddScoped<ITasksServices, GetTasksService>()
+                    .AddScoped<ITasksServices, TasksService>()
                     .AddScoped<IAuthJWTTokenServices, AuthJWTTokenServices>()
                 ;
         }

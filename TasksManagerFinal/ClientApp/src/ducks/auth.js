@@ -112,7 +112,8 @@ export default function reducer(state = new ReducerRecord(), action) {
             return state
                 .set('initializeAppLoading', false)
                 .set('initializeAppLoaded', true)
-                .set('error', error);
+                .set('error', error)
+                .set('user', null);
         //#endregion
 
         default:
@@ -180,6 +181,20 @@ export const initializeAppSaga = function* () {
         const check = yield call(checkToken);
         if (check) yield call(refreshToken);
 
+
+
+        // const { accessToken } = yield call(getToken);
+        // const headers = new Headers();
+        // yield call([headers, headers.append], "Authorization", `Bearer ${accessToken}`);
+        //
+        // const res = yield call(fetchApi, `/api/Tasks/3`, {
+        //     method: 'GET',
+        //     headers: headers,
+        //     cache: 'no-cache'
+        // });
+        //
+        // debugger;
+
         const user = yield call(userInfoFetchSaga);
 
         yield put({
@@ -197,12 +212,10 @@ export const initializeAppSaga = function* () {
 };
 
 const userInfoFetchSaga = function* () {
-    try {
         const check = yield call(checkToken);
         if (check) yield call(refreshToken);
 
         const { accessToken, refreshToken: { userId } } = yield call(getToken);
-
         const headers = new Headers();
         yield call([headers, headers.append], "Authorization", `Bearer ${accessToken}`);
 
@@ -214,14 +227,10 @@ const userInfoFetchSaga = function* () {
 
         if (!res.ok) {
             const message = yield call([res, res.text]);
-
             throw new Error(message);
         }
-        return yield call([res, res.json]);
-    } catch (e) {
-        console.error(e);
-        debugger;
-    }
+
+    return yield call([res, res.json]);
 };
 
 // Вход в аккаунт

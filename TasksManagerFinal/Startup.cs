@@ -15,6 +15,7 @@ using TasksManagerFinal.DataAccess.UnitOfWork;
 using TasksManagerFinal.DataAccess.UnitOfWork.EFCore.Extensions;
 using TasksManagerFinal.Services.UnitOfWork.Extensions;
 using TasksManagerFinal.ViewModel;
+using AutoMapper;
 
 namespace TasksManagerFinal
 {
@@ -33,12 +34,13 @@ namespace TasksManagerFinal
             RegisterModules(services);
             ConfigureJwtAuthService(services);
             services.AddMvc();
-            //services.AddAutoMapper();
 
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services.AddAutoMapper();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IUnitOfWork uow)
@@ -54,9 +56,12 @@ namespace TasksManagerFinal
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseAuthentication();
+
+            app.UseMvc();
+
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
-            app.UseAuthentication();
 
             // Настроить редирект на index.html И убрать роут projects/
             RegisterRouters(app);
@@ -92,6 +97,7 @@ namespace TasksManagerFinal
                 .RegisterServicesUnitOfWork()
                 .AddSingleton<IAuthorizationHandler, ProjectAuthorizationHandler>()
                 .AddSingleton<IAuthorizationHandler, UserAuthorizationHandler>()
+                .AddSingleton<IAuthorizationHandler, TaskAuthorizationHandler>()
                 ;
         }
 

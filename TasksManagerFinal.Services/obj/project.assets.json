@@ -2016,6 +2016,20 @@
         "runtime": {
           "bin/placeholder/TasksManagerFinal.Entities.dll": {}
         }
+      },
+      "TasksManagerFinal.ViewModel/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "Microsoft.IdentityModel.Tokens": "5.1.0",
+          "TasksManagerFinal.Entities": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/TasksManagerFinal.ViewModel.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TasksManagerFinal.ViewModel.dll": {}
+        }
       }
     }
   },
@@ -6368,13 +6382,19 @@
       "type": "project",
       "path": "../TasksManagerFinal.Entities/TasksManagerFinal.Entities.csproj",
       "msbuildProject": "../TasksManagerFinal.Entities/TasksManagerFinal.Entities.csproj"
+    },
+    "TasksManagerFinal.ViewModel/1.0.0": {
+      "type": "project",
+      "path": "../TasksManager.ViewModel/TasksManagerFinal.ViewModel.csproj",
+      "msbuildProject": "../TasksManager.ViewModel/TasksManagerFinal.ViewModel.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
       "Microsoft.NETCore.App >= 2.0.0",
       "System.IdentityModel.Tokens.Jwt >= 5.2.1",
-      "TasksManagerFinal.DataAccess.UnitOfWork >= 1.0.0"
+      "TasksManagerFinal.DataAccess.UnitOfWork >= 1.0.0",
+      "TasksManagerFinal.ViewModel >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -6410,6 +6430,9 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
+            "D:\\asp\\tasks-manager-final\\TasksManager.ViewModel\\TasksManagerFinal.ViewModel.csproj": {
+              "projectPath": "D:\\asp\\tasks-manager-final\\TasksManager.ViewModel\\TasksManagerFinal.ViewModel.csproj"
+            },
             "D:\\asp\\tasks-manager-final\\TasksManagerFinal.DataAccess.UnitOfWork\\TasksManagerFinal.DataAccess.UnitOfWork.csproj": {
               "projectPath": "D:\\asp\\tasks-manager-final\\TasksManagerFinal.DataAccess.UnitOfWork\\TasksManagerFinal.DataAccess.UnitOfWork.csproj"
             }

@@ -14,11 +14,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SignUpForm.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/forms/auth/SignUpForm.js">
+      <file leaf-file-name="ProjectField.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/forms/field/ProjectField.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="10" column="44" lean-forward="true" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
+            <state relative-caret-position="285">
+              <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Project.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Project/Project.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="494">
+              <caret line="28" column="25" selection-end-line="28" selection-end-column="25" />
+              <folding>
+                <element signature="e#0#50#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TaskList.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Tasks/TaskList.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="475">
+              <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -26,47 +47,37 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SignInForm.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/forms/auth/SignInForm.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="44" />
-              <folding>
-                <element signature="e#0#49#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AuthPage.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/routes/AuthPage/AuthPage.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="29" column="66" selection-start-line="29" selection-start-column="54" selection-end-line="29" selection-end-column="66" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="api.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/api.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="20" column="31" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="auth.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="auth.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ducks/auth.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="204" selection-start-line="204" selection-end-line="204" />
+            <state relative-caret-position="306">
+              <caret line="195" column="20" lean-forward="true" selection-start-line="195" selection-start-column="20" selection-end-line="195" selection-end-column="20" />
               <folding>
                 <element signature="e#0#71#0" expanded="true" />
-                <element signature="e#7094#7381#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tasks.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ducks/tasks.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="95">
+              <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+              <folding>
+                <element signature="e#0#57#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/App.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="646">
+              <caret line="49" column="54" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="54" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -75,8 +86,8 @@
       <file leaf-file-name="ProjectList.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Project/ProjectList.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="767">
-              <caret line="50" column="9" lean-forward="true" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
+            <state relative-caret-position="285">
+              <caret line="23" column="9" selection-end-line="88" selection-end-column="49" />
               <folding>
                 <element signature="e#0#81#0" expanded="true" />
               </folding>
@@ -84,29 +95,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="token.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/token.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="utils.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/utils.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="13" column="24" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="projects.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ducks/projects.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="255" selection-start-line="255" selection-end-line="258" selection-end-column="57" />
+            <state relative-caret-position="1425">
+              <caret line="83" selection-end-line="363" selection-end-column="2" />
               <folding>
                 <element signature="e#0#57#0" expanded="true" />
                 <element signature="n#!!block;n#checkAndLoadProjectsForPage#0" />
@@ -114,19 +107,8 @@
                 <element signature="n#!!block;n#createProject#0" />
                 <element signature="n#!!block;n#checkAndLoadProjectsForPageSaga#0" />
                 <element signature="n#!!block;n#updateProjectSaga#0" />
+                <element signature="n#!!block;n#createProjectSaga#0" />
                 <element signature="n#!!block;n#checkAndLoadProjectSaga#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProjectPage.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/routes/ProjectPage/ProjectPage.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="28" column="23" lean-forward="true" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
-              <folding>
-                <element signature="e#0#83#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -137,8 +119,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -153,11 +135,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/routes/NotFound.css" />
-        <option value="$PROJECT_DIR$/src/components/routes/NotFound.js" />
-        <option value="$PROJECT_DIR$/src/components/routes/ProjectsPage.js" />
-        <option value="$PROJECT_DIR$/src/components/Layout.js" />
-        <option value="$PROJECT_DIR$/src/components/NavMenu/NavMenu.css" />
         <option value="$PROJECT_DIR$/src/components/routes/HomePage/HomePage.js" />
         <option value="$PROJECT_DIR$/src/api.js" />
         <option value="$PROJECT_DIR$/src/components/Project/MenuProject.css" />
@@ -183,10 +160,8 @@
         <option value="$PROJECT_DIR$/src/components/Project/MenuProjects.js" />
         <option value="$PROJECT_DIR$/src/components/forms/field/AuthField.js" />
         <option value="$PROJECT_DIR$/src/components/Project/NewProjectForm.js" />
-        <option value="$PROJECT_DIR$/src/components/Project/Project.js" />
         <option value="$PROJECT_DIR$/src/components/forms/project/NewProjectForm.js" />
         <option value="$PROJECT_DIR$/src/components/forms/project/CreateProjectForm.js" />
-        <option value="$PROJECT_DIR$/src/ducks/projects.js" />
         <option value="$PROJECT_DIR$/src/components/routes/ProjectPage/ProjectPage.js" />
         <option value="$PROJECT_DIR$/src/components/routes/ProjectPage/ProjectPage.css" />
         <option value="$PROJECT_DIR$/src/components/Project/Project.css" />
@@ -200,10 +175,17 @@
         <option value="$PROJECT_DIR$/src/components/forms/project/UpdateProjectForm.css" />
         <option value="$PROJECT_DIR$/src/components/routes/AuthPage/AuthPage.js" />
         <option value="$PROJECT_DIR$/src/components/forms/auth/SignInForm.js" />
-        <option value="$PROJECT_DIR$/src/components/forms/auth/SignUpForm.js" />
         <option value="$PROJECT_DIR$/src/token.js" />
-        <option value="$PROJECT_DIR$/src/ducks/auth.js" />
         <option value="$PROJECT_DIR$/src/components/Project/ProjectList.js" />
+        <option value="$PROJECT_DIR$/src/components/forms/auth/SignUpForm.js" />
+        <option value="$PROJECT_DIR$/src/components/Tasks/TasksList.js" />
+        <option value="$PROJECT_DIR$/src/components/Tasks/TaskList.css" />
+        <option value="$PROJECT_DIR$/src/components/Project/Project.js" />
+        <option value="$PROJECT_DIR$/src/components/Tasks/Task.js" />
+        <option value="$PROJECT_DIR$/src/components/Tasks/TaskList.js" />
+        <option value="$PROJECT_DIR$/src/ducks/projects.js" />
+        <option value="$PROJECT_DIR$/src/ducks/tasks.js" />
+        <option value="$PROJECT_DIR$/src/ducks/auth.js" />
       </list>
     </option>
   </component>
@@ -316,16 +298,7 @@
               <item name="ClientApp" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
-              <item name="AuthPage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ClientApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ClientApp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
-              <item name="ProjectPage" type="462c0819:PsiDirectoryNode" />
+              <item name="Tasks" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ClientApp" type="b2602c69:ProjectViewProjectNode" />
@@ -419,27 +392,29 @@
       <workItem from="1524369030689" duration="39101000" />
       <workItem from="1524415512719" duration="416000" />
       <workItem from="1524451481010" duration="4288000" />
+      <workItem from="1524455869504" duration="7304000" />
+      <workItem from="1524469455585" duration="1353000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="164009000" />
+    <option name="totallyTimeSpent" value="172666000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1536" height="864" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24739583" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19401042" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.47472256" />
-      <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -481,22 +456,33 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/NavMenu/NavMenu.js">
+    <entry file="file://$PROJECT_DIR$/src/ducks/projects.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="11" column="16" lean-forward="true" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+        <state relative-caret-position="1425">
+          <caret line="83" selection-end-line="363" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#57#0" expanded="true" />
+            <element signature="n#!!block;n#checkAndLoadProjectsForPage#0" />
+            <element signature="n#!!block;n#updateProject#0" />
+            <element signature="n#!!block;n#createProject#0" />
+            <element signature="n#!!block;n#checkAndLoadProjectsForPageSaga#0" />
+            <element signature="n#!!block;n#updateProjectSaga#0" />
+            <element signature="n#!!block;n#createProjectSaga#0" />
+            <element signature="n#!!block;n#checkAndLoadProjectSaga#0" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/routes/HomePage/HomePage.css">
+    <entry file="file://$PROJECT_DIR$/src/ducks/auth.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="22" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
+        <state relative-caret-position="3401">
+          <caret line="185" selection-start-line="185" selection-end-line="195" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#71#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/FetchData.js" />
-    <entry file="file://$PROJECT_DIR$/src/components/Home.js" />
     <entry file="file://$PROJECT_DIR$/src/components/Counter.js" />
     <entry file="file://$PROJECT_DIR$/src/components/common/Api.js" />
     <entry file="file://$PROJECT_DIR$/src/components/common/Loader.css">
@@ -657,9 +643,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
           <caret line="13" selection-start-line="13" selection-end-line="13" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -674,26 +657,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/routes/ProjectListPage/ProjectListPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="16" column="51" selection-start-line="16" selection-start-column="51" selection-end-line="16" selection-end-column="51" />
-          <folding>
-            <element signature="e#0#88#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/forms/field/ProjectField.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="16" column="28" lean-forward="true" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -701,9 +664,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="18" column="32" lean-forward="true" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -721,68 +681,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Project/Project.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-225">
-          <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="49" column="54" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="54" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/routes/AuthPage/AuthPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
+        <state relative-caret-position="551">
           <caret line="29" column="66" selection-start-line="29" selection-start-column="54" selection-end-line="29" selection-end-column="66" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/forms/auth/SignInForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/forms/auth/SignUpForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="10" column="44" lean-forward="true" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ducks/projects.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="255" selection-start-line="255" selection-end-line="258" selection-end-column="57" />
-          <folding>
-            <element signature="e#0#57#0" expanded="true" />
-            <element signature="n#!!block;n#checkAndLoadProjectsForPage#0" />
-            <element signature="n#!!block;n#updateProject#0" />
-            <element signature="n#!!block;n#createProject#0" />
-            <element signature="n#!!block;n#checkAndLoadProjectsForPageSaga#0" />
-            <element signature="n#!!block;n#updateProjectSaga#0" />
-            <element signature="n#!!block;n#checkAndLoadProjectSaga#0" />
           </folding>
         </state>
       </provider>
@@ -801,40 +705,132 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/token.js">
+    <entry file="file://$PROJECT_DIR$/src/components/routes/ProjectPage/ProjectPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+        <state relative-caret-position="-216">
+          <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#83#0" expanded="true" />
+            <element signature="e#1199#1221#0" />
+            <element signature="e#2413#2441#0" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ducks/auth.js">
+    <entry file="file://$PROJECT_DIR$/src/components/routes/ProjectListPage/ProjectListPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="204" selection-start-line="204" selection-end-line="204" />
+        <state relative-caret-position="437">
+          <caret line="35" column="63" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="63" />
           <folding>
-            <element signature="e#0#71#0" expanded="true" />
-            <element signature="e#7094#7381#0" />
+            <element signature="e#0#88#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/token.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="28" column="30" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/forms/auth/SignInForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="42" column="6" selection-start-line="42" selection-start-column="6" selection-end-line="42" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/forms/auth/SignUpForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/forms/field/ProjectField.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="49" column="54" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Project/Project.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="28" column="25" selection-end-line="28" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Project/ProjectList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="767">
-          <caret line="50" column="9" lean-forward="true" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
+        <state relative-caret-position="285">
+          <caret line="23" column="9" selection-end-line="88" selection-end-column="49" />
           <folding>
             <element signature="e#0#81#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/routes/ProjectPage/ProjectPage.js">
+    <entry file="file://$PROJECT_DIR$/src/components/Tasks/TaskList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="28" column="23" lean-forward="true" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
+        <state relative-caret-position="475">
+          <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
           <folding>
-            <element signature="e#0#83#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ducks/projects.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1425">
+          <caret line="83" selection-end-line="363" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#57#0" expanded="true" />
+            <element signature="n#!!block;n#checkAndLoadProjectsForPage#0" />
+            <element signature="n#!!block;n#updateProject#0" />
+            <element signature="n#!!block;n#createProject#0" />
+            <element signature="n#!!block;n#checkAndLoadProjectsForPageSaga#0" />
+            <element signature="n#!!block;n#updateProjectSaga#0" />
+            <element signature="n#!!block;n#createProjectSaga#0" />
+            <element signature="n#!!block;n#checkAndLoadProjectSaga#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ducks/tasks.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ducks/auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="195" column="20" lean-forward="true" selection-start-line="195" selection-start-column="20" selection-end-line="195" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#71#0" expanded="true" />
           </folding>
         </state>
       </provider>

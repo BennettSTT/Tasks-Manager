@@ -59,8 +59,6 @@ export default function reducer(state = new ReducerState(), action) {
     switch (type) {
         case LOAD_PROJECTS_FOR_PAGE_START:
             return state
-            // .setIn(['projectsUsers', payload.login, 'pagination', payload.inArchive, payload.page, 'loaded'], false)
-            // .setIn(['projectsUsers', payload.login, 'pagination', payload.inArchive, payload.page, 'loading'], true)
                 .setIn(['projectsUsers', payload.login, 'loaded'], false)
                 .setIn(['projectsUsers', payload.login, 'loading'], true);
 
@@ -69,17 +67,12 @@ export default function reducer(state = new ReducerState(), action) {
                 .setIn(['projectsUsers', payload.login, 'totalItemsCount'], response.totalItemsCount)
                 .setIn(['projectsUsers', payload.login, 'pageSize'], response.pageSize)
                 .setIn(['projectsUsers', payload.login, 'totalPagesCount'], response.totalPagesCount)
-                // .setIn(['projectsUsers', payload.login, 'pagination', payload.inArchive, payload.page, 'ids'], response.items.map(project => project.id))
-                // .setIn(['projectsUsers', payload.login, 'pagination', payload.inArchive, payload.page, 'loaded'], true)
-                // .setIn(['projectsUsers', payload.login, 'pagination', payload.inArchive, payload.page, 'loading'], false)
                 .setIn(['projectsUsers', payload.login, 'loaded'], true)
                 .setIn(['projectsUsers', payload.login, 'loading'], false)
                 .mergeIn(['projectsUsers', payload.login, 'entities'], arrToMap(response.items, ProjectRecord));
 
         case LOAD_PROJECTS_FOR_PAGE_NOT_FOUND:
             return state
-            // .setIn(['projectsUsers', payload.login, 'pagination', payload.inArchive, payload.page, 'loaded'], true)
-            // .setIn(['projectsUsers', payload.login, 'pagination', payload.inArchive, payload.page, 'loading'], false)
                 .setIn(['projectsUsers', payload.login, 'loaded'], true)
                 .setIn(['projectsUsers', payload.login, 'loading'], false);
 
@@ -88,7 +81,6 @@ export default function reducer(state = new ReducerState(), action) {
                 .updateIn(['projectsUsers', payload.login, 'entities'], entities =>
                     entities.update(response.project.id, project => project.merge(response.project))
                 );
-                // .updateIn(['projectsUsers', payload.login, 'edit']);
 
         case CREATE_PROJECT_SUCCESS:
             return state
@@ -188,8 +180,9 @@ export function* checkAndLoadProjectsForPageSaga() {
                 continue;
             }
 
-            if (res.status >= 400) {
-                throw new Error(res.statusText);
+            if (!res.ok) {
+                const message = yield call([res, res.text]);
+                throw new Error(message);
             }
 
             const body = yield call([res, res.json]);
@@ -225,8 +218,9 @@ export function* updateProjectSaga() {
                 method: 'PUT', headers: headers, body: JSON.stringify({ title, description, inArchive })
             });
 
-            if (response.status >= 400) {
-                throw new Error(response.statusText);
+            if (!response.ok) {
+                const message = yield call([response, response.text]);
+                throw new Error(message);
             }
 
             const body = yield call([response, response.json]);
@@ -266,8 +260,9 @@ export function* createProjectSaga() {
                 method: 'POST', headers: headers, body: JSON.stringify(action.payload.project)
             });
 
-            if (response.status >= 400) {
-                throw new Error(response.statusText);
+            if (!response.ok) {
+                const message = yield call([response, response.text]);
+                throw new Error(message);
             }
 
             const project = yield call([response, response.json]);
@@ -333,8 +328,9 @@ export function* checkAndLoadProjectSaga() {
                 continue;
             }
 
-            if (response.status >= 400) {
-                throw new Error(response.statusText);
+            if (!response.ok) {
+                const message = yield call([response, response.text]);
+                throw new Error(message);
             }
 
             const body = yield call([response, response.json]);

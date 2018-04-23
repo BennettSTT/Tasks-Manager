@@ -11,27 +11,48 @@ namespace TasksManagerFinal.Entities
             Children = new List<Task>();
         }
 
+        private TaskStatus _status;
+        private DateTime _createDate;
+
         [Required]
         [MaxLength(200)]
         public string Title { get; set; }
 
-        // Крайний срок
-        public DateTime? DueDate { get; set; }
-        public DateTime CreateDate { get; set; }
-        public DateTime? CompleteDate { get; set; }
+        public int Level { get; set; }
 
-        // Родитель и его Id
         public int? ParentId { get; set; }
         public Task Parent { get; set; }
 
-        // Проект таска
         public int? ProjectId { get; set; }
         public Project Project { get; set; }
 
-        public TaskStatus Status { get; set; }
+        // Крайний срок
+        public DateTime? DueDate { get; set; }
+        public DateTime CreateDate
+        {
+            get
+            {
+                if (_createDate == default(DateTime))
+                    _createDate = DateTime.Now;
+                return _createDate;
+            }
+            private set => _createDate = value;
+        }
+        public DateTime? CompleteDate { get; set; }
+
+        [Required]
+        public TaskStatus Status
+        {
+            get => _status;
+            set
+            {
+                if (value == TaskStatus.Completed)
+                    CompleteDate = DateTime.Now;
+                _status = value;
+            }
+        }
+
         public TaskPriority Priority { get; set; }
-
         public ICollection<Task> Children { get; set; }
-
     }
 }

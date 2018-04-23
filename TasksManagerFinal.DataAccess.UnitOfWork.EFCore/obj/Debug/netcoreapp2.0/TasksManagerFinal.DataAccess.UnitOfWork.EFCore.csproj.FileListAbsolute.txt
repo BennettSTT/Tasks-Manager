@@ -20,3 +20,5 @@ D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.UnitOfWork.EFCore\bin\De
 D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.UnitOfWork.EFCore\bin\Debug\netcoreapp2.0\TasksManagerFinal.Services.pdb
 D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.UnitOfWork.EFCore\bin\Debug\netcoreapp2.0\TasksManagerFinal.ViewModel.dll
 D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.UnitOfWork.EFCore\bin\Debug\netcoreapp2.0\TasksManagerFinal.ViewModel.pdb
+D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.UnitOfWork.EFCore\bin\Debug\netcoreapp2.0\AutoMapper.dll
+D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess.UnitOfWork.EFCore\bin\Debug\netcoreapp2.0\AutoMapper.xml

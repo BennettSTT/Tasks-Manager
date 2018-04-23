@@ -7,6 +7,6 @@ namespace TasksManagerFinal.DataAccess.Projects
     public class ProjectNotFound : Exception
     {
         public ProjectNotFound()
-            : base("Cannot archive project: Project not found in database") { }
+            : base("Project not found in database") { }
     }
 }

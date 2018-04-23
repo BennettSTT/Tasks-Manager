@@ -1,10 +1,14 @@
 ﻿using System.Collections.Generic;
-using TasksManagerFinal.Entities;
+using System.Threading.Tasks;
+using TasksManagerFinal.ViewModel.Tasks;
 
 namespace TasksManagerFinal.Services
 {
     public interface ITasksServices
     {
-        ICollection<Task> GetChildren(int parentId);
+        Task<IEnumerable<TaskResponse>> GetRoot(int projectId, int level);
+        Task<IEnumerable<TaskResponse>> GetChildren(int parentId);
+        Task<TaskResponse> AddNode(CreateTaskRequest request);
+        Task Delete(int id);
     }
 }

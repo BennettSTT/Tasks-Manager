@@ -67,6 +67,8 @@ namespace TasksManagerFinal.Db.Migrations
 
                     b.Property<DateTime?>("DueDate");
 
+                    b.Property<int>("Level");
+
                     b.Property<int?>("ParentId");
 
                     b.Property<int>("Priority");
