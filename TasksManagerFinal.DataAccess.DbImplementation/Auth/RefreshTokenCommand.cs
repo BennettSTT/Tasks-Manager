@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using TasksManagerFinal.DataAccess.Auth;
 using TasksManagerFinal.DataAccess.UnitOfWork;
 using TasksManagerFinal.Entities;
@@ -14,13 +15,15 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
         public IUnitOfWork Uow { get; }
         public IAsyncQueryableFactory Factory { get; }
         public IAuthJWTTokenServices TokenServices { get; }
+        public IMapper Mapper { get; }
 
         public RefreshTokenCommand(IUnitOfWork uow, IAsyncQueryableFactory factory,
-            IAuthJWTTokenServices tokenServices)
+            IAuthJWTTokenServices tokenServices, IMapper mapper)
         {
             Factory = factory;
             Uow = uow;
             TokenServices = tokenServices;
+            Mapper = mapper;
         }
 
         public async Task<RefreshTokenResponse> ExecuteAsync(RefreshTokenRequest tokenRequest)
@@ -42,12 +45,7 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
             Uow.UsersRepository.Update(user);
             await Uow.CommitAsync();
 
-            return new RefreshTokenResponse
-            {
-                accessToken = token.accessToken,
-                refreshToken = token.refreshToken,
-                expiresIn = token.expiresIn
-            };
+            return Mapper.Map<Token, RefreshTokenResponse>(token);
         }
     }
 }

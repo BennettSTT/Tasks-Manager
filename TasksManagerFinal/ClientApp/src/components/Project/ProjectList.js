@@ -47,7 +47,7 @@ class ProjectList extends Component {
         const { projects, login, inArchive } = this.props;
 
         if (!projects) {
-            return <NotFound message = 'This user has no projects'/>;
+            return <NotFound message = 'This user has no projects' />;
         }
 
         let projectFilter = mapToArr(projects)
@@ -69,7 +69,7 @@ class ProjectList extends Component {
 
 
         if (projectItems.length === 0) {
-            return <NotFound message = 'This user has no projects' />;
+            return <NotFound />;
         }
 
         return projectItems;

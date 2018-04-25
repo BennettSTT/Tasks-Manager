@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Linq;
+﻿using AutoMapper;
 using System.Threading.Tasks;
 using TasksManagerFinal.DataAccess.Projects;
 using TasksManagerFinal.DataAccess.UnitOfWork;
@@ -11,37 +10,30 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Projects
 {
     public class ProjectQuery : IProjectQuery
     {
-        private IUnitOfWork Uow { get; }
-        private IAsyncQueryableFactory Factory { get; }
-        private ITasksServices TasksServices { get; }
+        public IUnitOfWork Uow { get; }
+        public IAsyncQueryableFactory Factory { get; }
+        public ITasksServices TasksServices { get; }
+        public IMapper Mapper { get; }
 
-        public ProjectQuery(IUnitOfWork uow, IAsyncQueryableFactory factory, ITasksServices tasksServices)
+        public ProjectQuery(IUnitOfWork uow, IAsyncQueryableFactory factory,
+            ITasksServices tasksServices, IMapper mapper)
         {
             Uow = uow;
             Factory = factory;
             TasksServices = tasksServices;
+            Mapper = mapper;
         }
 
         public async Task<ProjectResponse> ExecuteAsync(string login, string titleProject)
         {
             Project project = await Factory.CreateAsyncQueryble(
-                    Uow.ProjectsRepository.Query()
-                        .Include(p => p.Tasks)
-                        .Include(p => p.User)
-                        .Select(p => p)
+                    Uow.ProjectsRepository.Query(p => p.Tasks, p => p.User)
                 )
                 .FirstOrDefaultAsync(u => u.Title == titleProject && u.User.Login == login);
 
             if (project == null) throw new ProjectNotFound();
 
-            return new ProjectResponse
-            {
-                Id = project.Id,
-                Description = project.Description,
-                Title = project.Title,
-                InArchive = project.InArchive,
-                OpenTasksCount = project.OpenTasksCount
-            };
+            return Mapper.Map<Project, ProjectResponse>(project);
         }
     }
 }

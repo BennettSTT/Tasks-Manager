@@ -20,10 +20,9 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Projects
 
         public async Task<Project> ExecuteAsync(int projectId)
         {
-            Project project = await Factory.CreateAsyncQueryble(Uow.ProjectsRepository.Query()
-                    .Include(p => p.User)
-                    .Include(p => p.Tasks)
-                    .Select(p => p))
+            Project project = await Factory.CreateAsyncQueryble(
+                    Uow.ProjectsRepository.Query(p => p.Tasks, p => p.User)
+                )
                 .FirstOrDefaultAsync(p => p.Id == projectId);
 
             if (project == null) throw new ProjectNotFound();

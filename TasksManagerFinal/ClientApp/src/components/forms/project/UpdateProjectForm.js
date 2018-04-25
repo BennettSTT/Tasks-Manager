@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { Button }           from "react-bootstrap";
 import { connect }          from "react-redux";
-import ProjectField         from "../field/ProjectField";
+import FormControlField     from "../field/FormControlField";
 import "./UpdateProjectForm.css";
 
 class UpdateProjectForm extends Component {
@@ -13,11 +13,11 @@ class UpdateProjectForm extends Component {
         return (
             <form onSubmit = { handleSubmit }>
                 <div>
-                    <label>Title</label> <Field name = 'title' component = { ProjectField } />
+                    <label>Title</label> <Field name = 'title' component = { FormControlField } />
                 </div>
                 <br />
                 <div className='project-form-description'>
-                    <label>Description</label> <Field name = 'description' component = { ProjectField } />
+                    <label>Description</label> <Field name = 'description' component = { FormControlField } />
                 </div>
                 <br />
 

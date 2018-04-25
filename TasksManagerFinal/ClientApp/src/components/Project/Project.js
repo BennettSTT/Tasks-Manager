@@ -1,5 +1,5 @@
-import React, { Component }          from 'react';
-import { PageHeader } from "react-bootstrap";
+import React, { Component } from 'react';
+import { PageHeader }       from "react-bootstrap";
 import './Project.css';
 
 class Project extends Component {
@@ -26,4 +26,4 @@ class Project extends Component {
     }
 }
 
-export default (Project);
+export default Project;

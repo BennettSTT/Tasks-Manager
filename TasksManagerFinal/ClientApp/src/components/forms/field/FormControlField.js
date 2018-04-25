@@ -1,7 +1,7 @@
 import React           from 'react';
 import { FormControl } from "react-bootstrap";
 
-function ProjectField(props) {
+function FormControlField(props) {
     const { input, type, meta: { error, touched } } = props;
     const errorText = touched && error && <div style = { { color: 'red' } }>{ error }</div>;
 
@@ -12,6 +12,4 @@ function ProjectField(props) {
     );
 }
 
-ProjectField.propTypes = {};
-
-export default ProjectField;
+export default FormControlField;

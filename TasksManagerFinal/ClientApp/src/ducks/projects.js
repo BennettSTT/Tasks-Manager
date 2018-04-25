@@ -49,7 +49,7 @@ export const CREATE_PROJECT_FAIL = `${prefix}/CREATE_PROJECT_FAIL`;
 const entitiesGetter = (state, { match: { params: { login } } }) => state[moduleName].getIn(['projectsUsers', login, 'entities']);
 const projectTitleGetter = (state, { match: { params: { projectTitle } } }) => projectTitle;
 export const projectSelectorFactory = () => createSelector(entitiesGetter, projectTitleGetter, (entities, projectTitle) =>
-  entities ? mapToArr(entities).filter(p => p.get('title') === projectTitle)[0] : undefined
+    entities ? mapToArr(entities).filter(p => p.get('title') === projectTitle)[0] : undefined
 );
 //#endregion
 
@@ -65,8 +65,6 @@ export default function reducer(state = new ReducerState(), action) {
         case LOAD_PROJECTS_FOR_PAGE_SUCCESS:
             return state
                 .setIn(['projectsUsers', payload.login, 'totalItemsCount'], response.totalItemsCount)
-                .setIn(['projectsUsers', payload.login, 'pageSize'], response.pageSize)
-                .setIn(['projectsUsers', payload.login, 'totalPagesCount'], response.totalPagesCount)
                 .setIn(['projectsUsers', payload.login, 'loaded'], true)
                 .setIn(['projectsUsers', payload.login, 'loading'], false)
                 .mergeIn(['projectsUsers', payload.login, 'entities'], arrToMap(response.items, ProjectRecord));
@@ -97,6 +95,11 @@ export default function reducer(state = new ReducerState(), action) {
                         return entities.set(response.project.id, new ProjectRecord(response.project));
                     }
                 );
+
+        case LOAD_PROJECT_NOT_FOUND:
+            return state
+                .setIn(['projectsUsers', payload.login, 'loaded'], true)
+                .setIn(['projectsUsers', payload.login, 'loading'], false);
     }
 
     return state;
@@ -235,7 +238,7 @@ export function* updateProjectSaga() {
                 response: { project: body }
             });
 
-            yield put(push(`/${login}/${body.title}`))
+            yield put(push(`/${login}/${body.title}`));
 
         } catch (error) {
             debugger;

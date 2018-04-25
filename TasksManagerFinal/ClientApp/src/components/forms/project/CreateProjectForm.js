@@ -3,7 +3,7 @@ import { Button, PageHeader }       from "react-bootstrap";
 import { moduleName as userModule } from "../../../ducks/auth";
 import { connect }                  from "react-redux";
 import { reduxForm, Field }         from 'redux-form';
-import ProjectField                 from "../field/ProjectField";
+import FormControlField             from "../field/FormControlField";
 
 class CreateProjectForm extends Component {
     render() {
@@ -18,12 +18,12 @@ class CreateProjectForm extends Component {
                 <form onSubmit = { handleSubmit }>
                     <div className = 'form-group'>
                         <label className = 'control-label'>Title project</label>
-                        <Field name = 'title' component = { ProjectField } />
+                        <Field name = 'title' component = { FormControlField } />
                     </div>
 
                     <div className = 'form-group'>
                         <label className = 'control-label'>Description</label>
-                        <Field name = 'description' component = { ProjectField } />
+                        <Field name = 'description' component = { FormControlField } />
                     </div>
                     <br />
                     <div>

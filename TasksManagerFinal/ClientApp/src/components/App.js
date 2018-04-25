@@ -20,7 +20,6 @@ class App extends Component {
 
     componentDidMount() {
         const { initializeAppLoaded, initializeAppLoading, initializeApp } = this.props;
-        // console.log('componentDidMount', 'App', initializeAppLoaded, initializeAppLoading);
         if (!initializeAppLoaded && !initializeAppLoading) {
             initializeApp();
         }

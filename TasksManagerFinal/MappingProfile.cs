@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using TasksManagerFinal.Entities;
+using TasksManagerFinal.ViewModel.Auth;
 using TasksManagerFinal.ViewModel.Projects;
 using TasksManagerFinal.ViewModel.Tasks;
 
@@ -23,8 +24,14 @@ namespace TasksManagerFinal
 
             CreateMap<ProjectResponse, Project>();
             CreateMap<Project, ProjectResponse>();
+
             CreateMap<CreateProjectRequest, Project>();
             CreateMap<Project, CreateProjectRequest>();
+
+            CreateMap<Token, LoginUserResponse>();
+            CreateMap<Token, RefreshTokenResponse>();
+
+            CreateMap<RegisterUserRequest, User>();
         }
     }
 }

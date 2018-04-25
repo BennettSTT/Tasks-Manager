@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using TasksManagerFinal.DataAccess.Auth;
 using TasksManagerFinal.DataAccess.UnitOfWork;
 using TasksManagerFinal.Entities;
@@ -15,13 +16,15 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
         public IUnitOfWork Uow { get; }
         public IAsyncQueryableFactory Factory { get; }
         public IAuthJWTTokenServices TokenServices { get; }
+        public IMapper Mapper { get; }
 
         public RegisterUserCommand(IUnitOfWork uow, IAsyncQueryableFactory factory,
-            IAuthJWTTokenServices tokenServices)
+            IAuthJWTTokenServices tokenServices, IMapper mapper)
         {
             Factory = factory;
             Uow = uow;
             TokenServices = tokenServices;
+            Mapper = mapper;
         }
 
         public async Task<Token> ExecuteAsync(RegisterUserRequest request)
@@ -34,12 +37,7 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
 
             if (checkUser != null) throw new Exception("This Email or Login is already taken");
 
-            User user = new User
-            {
-                Login = request.Login,
-                Email = request.Email,
-                Password = request.Password
-            };
+            User user = Mapper.Map<RegisterUserRequest, User>(request);
 
             user.Password = new PasswordHasher<User>().HashPassword(user, user.Password);
 

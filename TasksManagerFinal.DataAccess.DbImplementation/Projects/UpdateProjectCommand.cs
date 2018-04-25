@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using TasksManagerFinal.DataAccess.Projects;
 using TasksManagerFinal.DataAccess.UnitOfWork;
 using TasksManagerFinal.Entities;
@@ -10,13 +11,15 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Projects
 {
     public class UpdateProjectCommand : IUpdateProjectCommand
     {
-        private IUnitOfWork Uow { get; }
-        private IAsyncQueryableFactory Factory { get; }
+        public IUnitOfWork Uow { get; }
+        public IAsyncQueryableFactory Factory { get; }
+        public IMapper Mapper { get; }
 
-        public UpdateProjectCommand(IUnitOfWork uow, IAsyncQueryableFactory factory)
+        public UpdateProjectCommand(IUnitOfWork uow, IAsyncQueryableFactory factory, IMapper mapper)
         {
             Uow = uow;
             Factory = factory;
+            Mapper = mapper;
         }
 
         public async Task<ProjectResponse> ExecuteAsunc(int projectId, UpdateProjectRequest request, string user)
@@ -36,14 +39,7 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Projects
             Uow.ProjectsRepository.Update(project);
             await Uow.CommitAsync();
 
-            return new ProjectResponse
-            {
-                Id = project.Id,
-                Title = project.Title,
-                Description = project.Description,
-                InArchive = project.InArchive,
-                OpenTasksCount = project.Tasks.Count
-            };
+            return Mapper.Map<Project, ProjectResponse>(project);
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using TasksManagerFinal.DataAccess.Projects;
 using TasksManagerFinal.DataAccess.UnitOfWork;
 using TasksManagerFinal.DataAccess.Users;
@@ -11,43 +13,27 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Projects
 {
     public class ProjectsListQuery : IProjectsListQuery
     {
-        private IUnitOfWork Uow { get; }
-        private IAsyncQueryableFactory Factory { get; }
+        public IUnitOfWork Uow { get; }
+        public IAsyncQueryableFactory Factory { get; }
+        public IMapper Mapper { get; }
 
-        public ProjectsListQuery(IUnitOfWork uow, IAsyncQueryableFactory factory)
+        public ProjectsListQuery(IUnitOfWork uow, IAsyncQueryableFactory factory, IMapper mapper)
         {
             Uow = uow;
             Factory = factory;
+            Mapper = mapper;
         }
 
-        public async Task<ListResponse<ProjectResponse>> RunAsync(string login, ProjectFilter filter, ListOptions options)
+        public async Task<ListResponse<ProjectResponse>> RunAsync(string login, ProjectFilter filter)
         {
-            User user = await Factory.CreateAsyncQueryble(
-                    Uow.UsersRepository.Query()
-                    .Select(u => u)
-                    )
+            User user = await Factory.CreateAsyncQueryble(Uow.UsersRepository.Query())
                 .FirstOrDefaultAsync(u => u.Login == login);
 
             if (user == null) throw new UsersNotFound();
 
-            var queryProjects = Uow.ProjectsRepository.Query()
-                .Select(u => u)
+            var queryProjects = Uow.ProjectsRepository.Query(t => t.Tasks, t => t.User)
                 .Where(u => u.UserId == user.Id)
-                .Select(p => new ProjectResponse
-                {
-                    Id = p.Id,
-                    Title = p.Title,
-                    InArchive = p.InArchive,
-                    Description = p.Description,
-                    OpenTasksCount = p.OpenTasksCount
-                });
-
-
-
-            if (options.Sort == null)
-            {
-                options.Sort = "Id";
-            }
+                .Select(p => Mapper.Map<Project, ProjectResponse>(p));
 
             queryProjects = ApplyFilter(queryProjects, filter);
 
@@ -55,17 +41,11 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Projects
                 .CreateAsyncQueryble(queryProjects)
                 .CountAsync();
 
-            queryProjects = options.ApplySort(queryProjects);
-            //queryProjects = options.ApplyPaging(queryProjects);
-
             return new ListResponse<ProjectResponse>
             {
                 Items = await Factory
                     .CreateAsyncQueryble(queryProjects)
                     .ToListAsync(),
-                Page = options.Page,
-                PageSize = options.PageSize ?? totalCount,
-                Sort = options.Sort,
                 TotalItemsCount = totalCount
             };
         }

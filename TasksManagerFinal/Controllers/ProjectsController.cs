@@ -25,12 +25,12 @@ namespace TasksManagerFinal.Controllers
         [ProducesResponseType(200, Type = typeof(ListResponse<ProjectResponse>))]
         [ProducesResponseType(401)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> GetProjectListAsync(string login, ProjectFilter filter,
-            ListOptions options, [FromServices] IProjectsListQuery query)
+        public async Task<IActionResult> GetProjectListAsync(string login, ProjectFilter filter, 
+            [FromServices] IProjectsListQuery query)
         {
             try
             {
-                var response = await query.RunAsync(login, filter, options);
+                var response = await query.RunAsync(login, filter);
                 return Ok(response);
             }
             catch (UsersNotFound e)

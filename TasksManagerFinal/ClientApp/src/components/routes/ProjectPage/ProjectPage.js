@@ -1,5 +1,10 @@
-import React, { Component }                                           from 'react';
-import { checkAndLoadProject, projectSelectorFactory, updateProject } from '../../../ducks/projects';
+import React, { Component }         from 'react';
+import {
+    checkAndLoadProject,
+    moduleName as projectModule,
+    projectSelectorFactory,
+    updateProject
+}                                   from '../../../ducks/projects';
 import { connect }                  from 'react-redux';
 import { Layout }                   from "../../Layout";
 import Project                      from "../../Project/Project";
@@ -11,6 +16,7 @@ import UpdateProjectForm            from "../../forms/project/UpdateProjectForm"
 import { checkAndLoadTasksProject } from "../../../ducks/tasks";
 import { Route, Switch }            from "react-router";
 import { NavLink }                  from "react-router-dom";
+import NotFound                     from "../NotFound/NotFound";
 
 class ProjectPage extends Component {
     state = {
@@ -92,15 +98,19 @@ class ProjectPage extends Component {
         this.setState({ showModal: !this.state.showModal });
     };
 
-    handleHide = () => {
-        this.setState({ showModal: false });
-    };
+    handleHide = () => this.setState({ showModal: false });
+
 
     //#endregion
 
     render() {
         const { project, match: { params: { login, projectTitle } } } = this.props;
-        if (!project) return <Loader />;
+
+        if (this.props.loading || !this.props.loaded) {
+            return <Loader />;
+        }
+
+        if (!project) return ( <Layout> <NotFound /> </Layout> );
 
         const content = this.state.editProject
             ? <UpdateProjectForm onSubmit = { this.handleUpdateProject } project = { project } />
@@ -115,22 +125,9 @@ class ProjectPage extends Component {
 
                     { this.modalItem() }
                 </div>
-
-                <div className='auth-page-link'>
-                    <NavLink to = {`/${login}/${projectTitle}/tasks`}>View Tasks</NavLink>
+                <div className = 'auth-page-link'>
+                    <NavLink to = { `/${login}/${projectTitle}/tasks` }>View Tasks</NavLink>
                 </div>
-
-                {/*<div className='auth-page-link'>*/}
-                    {/*<NavLink to = '/auth/login'>Login</NavLink>*/}
-                {/*</div>*/}
-
-                {/*<Switch>*/}
-                    {/*<Route path = '/auth/register' render = { () => <SignInForm/> } />*/}
-
-                    {/*<Route path = '/auth/login' render = { () =>*/}
-                        {/*<SignUpForm onSubmit = { this.handleSignUp } /> } />*/}
-                {/*</Switch>*/}
-
             </Layout>
         );
     }
@@ -143,7 +140,7 @@ class ProjectPage extends Component {
             title,
             description,
             inArchive: project.inArchive,
-            openTasksCount: project.opacity
+            openTasksCount: project.openTasksCount
         });
 
         this.setState({ editProject: false });
@@ -154,13 +151,22 @@ function mapStateToProps() {
     const projectSelector = projectSelectorFactory();
 
     return (state, ownProps) => {
+        const { projectsUsers } = state[projectModule];
+        const { match: { params: { login } } } = ownProps;
+
         return {
+            loading: projectsUsers.getIn([login, 'loading']),
+            loaded: projectsUsers.getIn([login, 'loaded']),
             user: state[authModule].get('user'),
             project: projectSelector(state, ownProps)
         };
     };
 }
 
-export default connect(mapStateToProps, { checkAndLoadProject, updateProject, loadTasksProject: checkAndLoadTasksProject })(ProjectPage);
+export default connect(mapStateToProps, {
+    checkAndLoadProject,
+    updateProject,
+    loadTasksProject: checkAndLoadTasksProject
+})(ProjectPage);
 
 
