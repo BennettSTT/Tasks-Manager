@@ -1,0 +1,28 @@
+.update-task-form-container {
+    position: relative;
+
+    background: #fafafa;
+    color: #2e2e2e;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    padding: 5px;
+
+    margin: 10px;
+}
+.update-task-due-date{
+    margin-left: 5px;
+}
+.update-task-status{
+    margin: 5px;
+}
+.update-task-button-block {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 5px;
+}
+
+.update-task-button {
+    display: inline-block;
+    margin-left: 10px;
+}

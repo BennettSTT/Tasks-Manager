@@ -22,6 +22,7 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Projects
         {
             Project project = await Factory.CreateAsyncQueryble(Uow.ProjectsRepository.Query()
                     .Include(p => p.User)
+                    .Include(p => p.Tasks)
                     .Select(p => p))
                 .FirstOrDefaultAsync(p => p.Id == projectId);
 

@@ -12,7 +12,8 @@ namespace TasksManagerFinal.ViewModel.Tasks
         public DateTime? DueDate { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime? CompleteDate { get; set; }
-        
+
+        public TaskPriority Priority { get; set; }
         public TaskStatus Status { get; set; }
         public List<TaskResponse> Children { get; set; }
     }

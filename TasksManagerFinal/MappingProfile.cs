@@ -14,9 +14,17 @@ namespace TasksManagerFinal
         {
             CreateMap<Task, TaskResponse>();
             CreateMap<CreateTaskRequest, Task>();
+
             CreateMap<Task, TaskResponse>();
+                //.ForMember(dest => dest.Status, opt => opt.MapFrom(src => Enum.GetName(typeof(TaskStatus), src.Status)));
+
             CreateMap<Task, UpdateTaskRequest>();
             CreateMap<UpdateTaskRequest, Task>();
+
+            CreateMap<ProjectResponse, Project>();
+            CreateMap<Project, ProjectResponse>();
+            CreateMap<CreateProjectRequest, Project>();
+            CreateMap<Project, CreateProjectRequest>();
         }
     }
 }

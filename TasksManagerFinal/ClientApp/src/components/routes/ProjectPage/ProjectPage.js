@@ -1,13 +1,16 @@
 import React, { Component }                                           from 'react';
 import { checkAndLoadProject, projectSelectorFactory, updateProject } from '../../../ducks/projects';
-import { connect }                                                    from 'react-redux';
-import { Layout }                                                     from "../../Layout";
-import Project                                                        from "../../Project/Project";
+import { connect }                  from 'react-redux';
+import { Layout }                   from "../../Layout";
+import Project                      from "../../Project/Project";
 import './ProjectPage.css';
-import Loader                                                         from "../../common/Loader";
-import { Button, Glyphicon, Modal }                                   from "react-bootstrap";
-import { moduleName as authModule }                                   from "../../../ducks/auth";
-import UpdateProjectForm                                              from "../../forms/project/UpdateProjectForm";
+import Loader                       from "../../common/Loader";
+import { Button, Glyphicon, Modal } from "react-bootstrap";
+import { moduleName as authModule } from "../../../ducks/auth";
+import UpdateProjectForm            from "../../forms/project/UpdateProjectForm";
+import { checkAndLoadTasksProject } from "../../../ducks/tasks";
+import { Route, Switch }            from "react-router";
+import { NavLink }                  from "react-router-dom";
 
 class ProjectPage extends Component {
     state = {
@@ -32,14 +35,14 @@ class ProjectPage extends Component {
 
         const statusArchive = inArchive ? "Open" : "Archive";
         const statusEditProect = this.state.editProject
-            ? <Glyphicon glyph="glyphicon glyphicon-remove"/>
-            : <Glyphicon glyph="glyphicon glyphicon-pencil" />;
+            ? <Glyphicon glyph = 'glyphicon glyphicon-remove' />
+            : <Glyphicon glyph = 'glyphicon glyphicon-pencil' />;
         return (
             <div className = 'project-menu-container'>
                 <div className = 'projects-btn-group'>
                     <div className = 'projects-btn'>
                         <Button onClick = { () => this.setState({ editProject: !this.state.editProject }) }
-                                >{statusEditProect}</Button>
+                        >{ statusEditProect }</Button>
                     </div>
 
                     <div className = 'projects-btn'>
@@ -96,7 +99,7 @@ class ProjectPage extends Component {
     //#endregion
 
     render() {
-        const { project } = this.props;
+        const { project, match: { params: { login, projectTitle } } } = this.props;
         if (!project) return <Loader />;
 
         const content = this.state.editProject
@@ -112,6 +115,22 @@ class ProjectPage extends Component {
 
                     { this.modalItem() }
                 </div>
+
+                <div className='auth-page-link'>
+                    <NavLink to = {`/${login}/${projectTitle}/tasks`}>View Tasks</NavLink>
+                </div>
+
+                {/*<div className='auth-page-link'>*/}
+                    {/*<NavLink to = '/auth/login'>Login</NavLink>*/}
+                {/*</div>*/}
+
+                {/*<Switch>*/}
+                    {/*<Route path = '/auth/register' render = { () => <SignInForm/> } />*/}
+
+                    {/*<Route path = '/auth/login' render = { () =>*/}
+                        {/*<SignUpForm onSubmit = { this.handleSignUp } /> } />*/}
+                {/*</Switch>*/}
+
             </Layout>
         );
     }
@@ -142,6 +161,6 @@ function mapStateToProps() {
     };
 }
 
-export default connect(mapStateToProps, { checkAndLoadProject, updateProject })(ProjectPage);
+export default connect(mapStateToProps, { checkAndLoadProject, updateProject, loadTasksProject: checkAndLoadTasksProject })(ProjectPage);
 
 

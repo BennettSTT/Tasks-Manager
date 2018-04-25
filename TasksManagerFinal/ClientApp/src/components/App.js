@@ -14,6 +14,7 @@ import HomePage        from "./routes/HomePage/HomePage";
 import Loader          from "./common/Loader";
 import NewProjectPage  from "./routes/CreateProjectPage/CreateProjectPage";
 import ProjectPage     from "./routes/ProjectPage/ProjectPage";
+import TasksPage       from "./routes/TasksPage/TasksPage";
 
 class App extends Component {
 
@@ -35,6 +36,7 @@ class App extends Component {
                 <Route exact path = '/' component = {HomePage}/>
                 <Route path = '/auth' component = { AuthPage } />
                 <ProtectedRoute path = '/new' component = { NewProjectPage } />
+                <ProtectedRoute path = '/:login/:projectTitle/tasks' component = { TasksPage } />
                 <ProtectedRoute path = '/:login/:projectTitle' component = { ProjectPage } />
                 <ProtectedRoute path = '/:login' component = { ProjectListPage } />
                 {/*<Route path = '*' component = { NotFound } />*/}

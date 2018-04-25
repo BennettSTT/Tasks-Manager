@@ -32,16 +32,21 @@ class UpdateProjectForm extends Component {
 const validate = ({ title, description }) => {
     const errors = {};
 
+
     if (!title) {
         errors.title = 'Title is required';
     } else if (title.split(' ').length > 1) {
         errors.title = "Do not use spaces";
+    } else if (/<[a-z][a-z0-9]*>/i.test(title)) {
+        errors.title = "Incorrect characters";
     } else if (title.length > 200) {
         errors.title = "Long title";
     }
 
     if (description && description.length > 2000) {
         errors.description = "Long description";
+    } else if (/<[a-z][a-z0-9]*>/i.test(description)) {
+        errors.title = "Incorrect characters";
     }
 
     return errors;

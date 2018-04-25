@@ -1,0 +1,57 @@
+.task-container {
+    position: relative;
+
+    background: #fafafa;
+    color: #2e2e2e;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    padding: 5px;
+    margin-bottom: 15px;
+}
+.task-container hr {
+    margin: 0;
+}
+.task-info p{
+    margin: 0;
+}
+
+.task-info {
+    margin: 15px;
+}
+
+.task-status {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 15px 10px 10px 10px;
+    font-size: 15px;
+}
+
+.task-status p {
+    margin: 0 5px 0 0;
+    display: inline-block;
+}
+
+.task-button {
+    display: inline-block;
+    margin: 5px;
+}
+
+.task-button-block {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 5px;
+}
+
+
+.task-title{
+
+}
+/*.aw {*/
+    /*display: block;*/
+/*}*/
+
+/*.at {*/
+    /*display: block;*/
+/*}*/

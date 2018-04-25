@@ -162,6 +162,9 @@ export function* checkAndLoadProjectsForPageSaga() {
         });
 
         try {
+            const check = yield call(checkToken);
+            if (check) yield call(refreshToken);
+
             const headers = new Headers();
             const { accessToken } = yield call(getToken);
 

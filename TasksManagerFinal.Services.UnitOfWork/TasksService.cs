@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -38,6 +39,7 @@ namespace TasksManagerFinal.Services.UnitOfWork
 
             foreach (var root in roots)
             {
+                var a = Enum.GetName(typeof(TaskStatus), root.Status);
                 root.Children = LoadChildren(dict, root.Id, level);
                 rootsResponse.Add(Mapper.Map<Entities.Task, TaskResponse>(root));
             }

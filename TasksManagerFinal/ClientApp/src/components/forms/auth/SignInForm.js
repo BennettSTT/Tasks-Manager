@@ -40,10 +40,14 @@ const validate = ({ email, password }) => {
 
     if (!email) {
         errors.email = 'email is required';
+    } else if (/<[a-z][a-z0-9]*>/i.test(email)) {
+        errors.title = "Incorrect characters";
     } else if (!emailValidator.validate(email)) errors.email = 'invalid email';
 
     if (!password) {
         errors.password = 'password is required';
+    } else if (/<[a-z][a-z0-9]*>/i.test(password)) {
+        errors.title = "Incorrect characters";
     } else if (password.length < 5) errors.password = 'to short';
 
     return errors;

@@ -122,6 +122,10 @@ namespace TasksManagerFinal.Controllers
             {
                 return StatusCode(400, e.Message);
             }
+            catch (UsersNotFound e)
+            {
+                return NotFound(e.Message);
+            }
             catch (Exception e)
             {
                 return StatusCode(500, e.Message);

@@ -1,7 +1,6 @@
 import { appName }                                    from '../config';
 import { Record }                                     from 'immutable';
 import { all, call, put, take }                       from 'redux-saga/effects';
-import { GWT0 }                                       from "../utils";
 import { getToken, setToken, clearToken, checkToken } from "../token";
 import { push }                                       from 'react-router-redux';
 import { fetchApi, refreshToken }                     from "../api";
@@ -181,18 +180,17 @@ export const initializeAppSaga = function* () {
         const check = yield call(checkToken);
         if (check) yield call(refreshToken);
 
-
-
         // const { accessToken } = yield call(getToken);
         // const headers = new Headers();
         // yield call([headers, headers.append], "Authorization", `Bearer ${accessToken}`);
         //
-        // const res = yield call(fetchApi, `/api/Tasks/3`, {
+        // const res = yield call(fetchApi, `/api/Tasks?projectId=3&level=4`, {
         //     method: 'GET',
         //     headers: headers,
         //     cache: 'no-cache'
         // });
         //
+        // const body = yield call([res, res.json]);
         // debugger;
 
         const user = yield call(userInfoFetchSaga);

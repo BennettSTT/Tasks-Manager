@@ -1,0 +1,22 @@
+.tasks-page-container {
+    text-align: center;
+}
+
+.task-item {
+    text-align: left;
+}
+
+.tasks-page-menu {
+    background: #fafafa;
+    color: #2e2e2e;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    padding: 5px;
+    margin-bottom: 15px;
+    text-align: right;
+}
+
+.tasks-page-menu-btn {
+    display: inline-block;
+    margin-left: 10px;
+}

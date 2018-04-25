@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using TasksManagerFinal.AuthHandlers;
+using TasksManagerFinal.DataAccess.Projects;
 using TasksManagerFinal.DataAccess.Tasks;
 using TasksManagerFinal.ViewModel.Tasks;
 
@@ -23,18 +24,22 @@ namespace TasksManagerFinal.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(401)]
         [ProducesResponseType(403)]
-        public async Task<IActionResult> GetTasksAsync(int projectId, int level,
-            [FromServices] ITaskListQuery tasksQuery)
+        public async Task<IActionResult> GetTasksAsync(string login, string title, int level, 
+            [FromServices] ITaskListQuery query)
         {
             try
             {
-                var authorizationResult = 
+                var authorizationResult =
                     await AuthorizationService.AuthorizeAsync(User, new Entities.Task(), Operations.Read);
                 if (!authorizationResult.Succeeded) return StatusCode(403);
 
-                var response = await tasksQuery.RunAsync(projectId, level);
+                var response = await query.RunAsync(login, title, level);
                 if (response == null) return NotFound();
                 return Ok(response);
+            }
+            catch (ProjectNotFound e)
+            {
+                return NotFound(e.Message);
             }
             catch (Exception e)
             {

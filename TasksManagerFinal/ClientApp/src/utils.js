@@ -14,3 +14,13 @@ export function arrToMap(arr, DataRecord = Map) {
 export function mapToArr(obj) {
     return obj.valueSeq().toArray();
 }
+
+export function getDate() {
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth(), now.getDate()).valueOf()
+}
+
+export function dueDateParse(dueDate) {
+    const dueDateParse = new Date(dueDate);
+    return new Date(dueDateParse.getFullYear(), dueDateParse.getMonth(), dueDateParse.getDate()).valueOf();
+}

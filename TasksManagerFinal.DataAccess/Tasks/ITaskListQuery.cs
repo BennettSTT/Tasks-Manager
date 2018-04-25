@@ -6,6 +6,6 @@ namespace TasksManagerFinal.DataAccess.Tasks
 {
     public interface ITaskListQuery
     {
-        Task<IEnumerable<TaskResponse>> RunAsync(int projectId, int level);
+        Task<IEnumerable<TaskResponse>> RunAsync(string login, string title, int level);
     }
 }
