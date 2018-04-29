@@ -7,7 +7,7 @@ function FormControlField(props) {
 
     return (
         <div>
-            <FormControl componentClass="textarea" className='form-control' { ...input } type = { type } /> { errorText }
+            <FormControl className='form-control' { ...input } type = { type } /> { errorText }
         </div>
     );
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { PageHeader }       from "react-bootstrap";
+import ReactQuill           from 'react-quill';
 import './Project.css';
 
 class Project extends Component {
@@ -18,7 +19,7 @@ class Project extends Component {
                         </PageHeader>
                     </div>
                     <div className = 'projects-body'>
-                        { description }
+                        <ReactQuill value = { description } readOnly theme = { null } />
                     </div>
                 </div>
             </div>

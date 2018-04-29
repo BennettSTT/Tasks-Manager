@@ -1,3 +1,4 @@
+import './ProjectList.css';
 import React, { Component }                                         from 'react';
 import { connect }                                                  from "react-redux";
 import { moduleName as projectModule, checkAndLoadProjectsForPage } from '../../ducks/projects';
@@ -6,7 +7,7 @@ import Loader                                                       from "../com
 import NotFound                                                     from "../routes/NotFound/NotFound";
 import { mapToArr }                                                 from "../../utils";
 import { Link }                                                     from "react-router-dom";
-import './ProjectList.css';
+import ReactQuill                                                   from 'react-quill';
 
 class ProjectList extends Component {
     componentWillMount() {
@@ -35,12 +36,13 @@ class ProjectList extends Component {
     getDescription = (project) => {
         const MAX_LENGTH_DESCRIPTION = 40;
 
+        if (!project.get('description')) return null;
         const description = project.get('description');
         let str = description.substring(0, MAX_LENGTH_DESCRIPTION + 1);
 
         if (description.length > MAX_LENGTH_DESCRIPTION) str = `${str}...`;
 
-        return str;
+        return <ReactQuill value = { str } readOnly theme = { null } />
     };
 
     getItems() {

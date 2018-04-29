@@ -43,7 +43,12 @@ namespace TasksManagerFinal.Entities
         [Required]
         public TaskStatus Status
         {
-            get => _status;
+            get
+            {
+                if (_status == default(TaskStatus)) 
+                    _status = TaskStatus.Created;
+                return _status;
+            }
             set
             {
                 if (value == TaskStatus.Completed)

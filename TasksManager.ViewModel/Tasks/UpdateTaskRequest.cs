@@ -15,5 +15,6 @@ namespace TasksManagerFinal.ViewModel.Tasks
         public DateTime? CompleteDate { get; set; }
 
         public TaskStatus Status { get; set; }
+        public TaskPriority Priority { get; set; }
     }
 }

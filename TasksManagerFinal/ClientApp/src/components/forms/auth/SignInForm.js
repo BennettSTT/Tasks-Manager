@@ -9,23 +9,23 @@ class SignInForm extends Component {
 
     render() {
         const { handleSubmit } = this.props;
+
         return (
             <div>
-                <h2>Register</h2>
+                <h3>Register</h3>
+                <br/>
                 <form onSubmit = { handleSubmit }>
                     <div>
-                        <label>Login</label>
-                        <Field name = 'login' component={AuthField} type="login" />
+                        <label>Login</label> <Field name = 'login' component = { AuthField } type = 'login' />
                     </div>
 
                     <div>
-                        <label>Email</label>
-                        <Field name = 'email' component={AuthField} type="email" />
+                        <label>Email</label> <Field name = 'email' component = { AuthField } type = 'email' />
                     </div>
                     <div>
-                        <label>Password</label>
-                        <Field name = 'password' component={AuthField} type = 'password' />
+                        <label>Password</label> <Field name = 'password' component = { AuthField } type = 'password' />
                     </div>
+                    <br/>
                     <div>
                         <Button type = 'submit'>Submit</Button>
                     </div>

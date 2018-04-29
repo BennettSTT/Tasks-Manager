@@ -13,9 +13,7 @@ export function refreshToken() {
             cache: 'no-cache'
         })
         .then(res => {
-            if (res.status !== 200) {
-                return Promise.reject(res);
-            }
+            if (!res.ok) return Promise.reject(res);
             return res.json();
         })
         .then(token => setToken(JSON.stringify(token)))

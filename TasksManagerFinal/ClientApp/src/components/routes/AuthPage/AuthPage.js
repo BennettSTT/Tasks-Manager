@@ -1,37 +1,46 @@
-import React, { Component } from 'react';
-import SignInForm           from '../../forms/auth/SignInForm';
-import SignUpForm           from '../../forms/auth/SignUpForm';
-import { Switch }           from "react-router";
-import { Route, NavLink }   from 'react-router-dom';
-import { connect }          from 'react-redux';
-import { login, register }  from '../../../ducks/auth';
+import React, { Component }            from 'react';
+import SignInForm                      from '../../forms/auth/SignInForm';
+import SignUpForm                      from '../../forms/auth/SignUpForm';
+import { Switch }                      from "react-router";
+import { Route, NavLink }              from 'react-router-dom';
+import { connect }                     from 'react-redux';
+import { login, moduleName, register } from '../../../ducks/auth';
 import './AuthPage.css';
 
 class AuthPage extends Component {
     static propTypes = {};
 
     render() {
+        const { error } = this.props;
+
+        const messageError = error ? error.message : null;
         return (
             <div className = 'container'>
                 <div className = 'auth-page'>
                     <h1>Auth page</h1>
                     <br />
-
-                    <div className='auth-page-link'>
+                    <div className = 'auth-page-link'>
                         <NavLink to = '/auth/register'>Register</NavLink>
                     </div>
 
-                    <div className='auth-page-link'>
+                    <div className = 'auth-page-link'>
                         <NavLink to = '/auth/login'>Login</NavLink>
                     </div>
+                    <br />
 
                     <Switch>
                         <Route path = '/auth/register' render = { () =>
-                        <SignInForm onSubmit = { this.handleSignIn } /> } />
+                            <SignInForm onSubmit = { this.handleSignIn } /> } />
 
                         <Route path = '/auth/login' render = { () =>
                             <SignUpForm onSubmit = { this.handleSignUp } /> } />
                     </Switch>
+
+                    <br />
+
+                    <div style = { { color: "red" } }>
+                        { messageError }
+                    </div>
                 </div>
             </div>
         );
@@ -41,4 +50,6 @@ class AuthPage extends Component {
     handleSignUp = ({ login, password }) => this.props.login(login, password);
 }
 
-export default connect(null, { login, register }, null, { pure: false })(AuthPage);
+export default connect(state => ( {
+    error: state[moduleName].getIn(['error'])
+} ), { login, register }, null, { pure: false })(AuthPage);

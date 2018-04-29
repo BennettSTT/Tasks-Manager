@@ -1,15 +1,17 @@
-import React, { Component }                                 from 'react';
-import { Button, Modal }                                    from "react-bootstrap";
-import { checkAndLoadChildrenTask, deleteTask, updateTask } from "../../ducks/tasks";
-import { connect }                                          from 'react-redux';
-import UpdateTaskForm                                       from "../forms/task/UpdateTaskForm";
 import './Task.css';
+import React, { Component }                                             from 'react';
+import { Button, Modal }                                                from "react-bootstrap";
+import { checkAndLoadChildrenTask, createTask, deleteTask, updateTask } from "../../ducks/tasks";
+import { connect }                                                      from 'react-redux';
+import UpdateTaskForm                                                   from "../forms/task/UpdateTaskForm";
+import CreateTaskForm                                                   from "../forms/task/CreateTaskForm";
 
 class Task extends Component {
     state = {
         subtask: false,
         edit: false,
-        showModal: false
+        showModal: false,
+        addTaskForm: false
     };
 
     render() {
@@ -35,6 +37,17 @@ class Task extends Component {
                                           form = { `updateTaskForm_${task.id}` } />
                         : this.getTask()
                 }
+
+                {
+                    this.state.addTaskForm
+                        ? <CreateTaskForm key = { task.id }
+                                          form = { `createTaskForm_${task.id}` }
+                                          onSubmit = { this.handleCreateTask }
+                                          addTaskHandler = { this.addTaskHandler }
+                        />
+                        : null
+                }
+
                 <ul>
                     { child }
                 </ul>
@@ -42,6 +55,7 @@ class Task extends Component {
         );
     }
 
+    addTaskHandler = () => this.setState({ addTaskForm: !this.state.addTaskForm });
 
     getStatus = (status) => {
         switch (status) {
@@ -82,13 +96,16 @@ class Task extends Component {
 
                     <div className = 'task-button-block'>
                         <div className = 'task-button'>
+                            <Button onClick = { this.completeTask }>Complete task</Button>
+                        </div>
+                        <div className = 'task-button'>
                             <Button onClick = { this.viewSubtask }>View subtask</Button>
                         </div>
                         <div className = 'task-button'>
                             <Button onClick = { this.editTask }>Edit</Button>
                         </div>
                         <div className = 'task-button'>
-                            <Button bsStyle = 'success'>Add cubtask</Button>
+                            <Button onClick = { this.addTaskHandler } bsStyle = 'success'>Add cubtask</Button>
                         </div>
                     </div>
                 </div>
@@ -97,7 +114,30 @@ class Task extends Component {
         );
     };
 
-    editTask = () => this.setState({ edit: !this.state.edit });
+    completeTask = () => {
+        const { task, updateTask, login, title: titleProject } = this.props;
+        task.status === 4
+            ? alert("Task completed")
+            : updateTask(login, titleProject, Object.assign({}, task, { status: 4 }));
+    };
+
+    handleCreateTask = ({ priority, dueDate, title }) => {
+        const { login, title: titleProject, createTask, task, project } = this.props;
+        createTask(login, titleProject, Object.assign({}, task, {
+            priority,
+            dueDate,
+            title,
+            projectId: project.id
+        }), task.id);
+
+        this.setState({ addTaskForm: !this.state.addTaskForm, subtask: true });
+    };
+
+    editTask = () => {
+        this.props.task.status === 4
+            ? alert("Task completed")
+            : this.setState({ edit: !this.state.edit });
+    };
 
     getPriority = (priority) => {
         switch (priority) {
@@ -117,17 +157,10 @@ class Task extends Component {
         this.setState({ subtask: !this.state.subtask });
     };
 
-    handleUpdateTask = ({ status, dueDate, title }) => {
+    handleUpdateTask = ({ priority, dueDate, title }) => {
         const { task, updateTask, login, title: titleProject } = this.props;
 
-        updateTask(login, titleProject, {
-            id: task.id,
-            title,
-            dueDate,
-            completeDate: task.completeDate,
-            status
-        });
-
+        updateTask(login, titleProject, Object.assign({}, task, { priority, dueDate, title }));
         this.setState({ edit: !this.state.edit });
     };
 
@@ -139,13 +172,17 @@ class Task extends Component {
                 onHide = { this.handleHide }
                 container = { this }
                 aria-labelledby = 'contained-modal-title'
-            > <Modal.Header closeButton> <Modal.Title id = 'contained-modal-title'>Delete task</Modal.Title>
+            > <Modal.Header closeButton>
+                <Modal.Title id = 'contained-modal-title'>Delete task</Modal.Title>
             </Modal.Header>
 
                 <Modal.Body> Do you really want to do this?</Modal.Body>
 
-                <Modal.Footer> <Button bsStyle = 'danger' onClick = { this.deleteNode }>Delete</Button>
-                    <Button onClick = { this.handleHide }>Close</Button> </Modal.Footer> </Modal>
+                <Modal.Footer>
+                    <Button bsStyle = 'danger' onClick = { this.deleteNode }>Delete</Button>
+                    <Button onClick = { this.handleHide }>Close</Button>
+                </Modal.Footer>
+            </Modal>
         );
     }
 
@@ -160,4 +197,9 @@ class Task extends Component {
     //#endregion
 }
 
-export default connect(null, { checkAndLoadChildrenTask, deleteTask, updateTask }, null, { pure: false })(Task);
+export default connect(null, {
+    checkAndLoadChildrenTask,
+    deleteTask,
+    updateTask,
+    createTask
+}, null, { pure: false })(Task);

@@ -16,9 +16,18 @@ function loadChildren(obj, id) {
     }
 }
 
-export function addChildrenInTask(tasks, tasksId, children) {
-    for (let object of tasks) {
-        addChildren(object, tasksId, children);
+export function addTask(tasks, tasksId, children) {
+    // Если tasksId => значит это корневой элемент
+    if (tasksId === undefined) {
+        return tasks.push(children)
+    }
+
+    for (let i = 0; i < tasks.length; i++) {
+        if (tasks[i].id === tasksId) {
+            return tasks[i].children.push(children);
+        }
+
+        addChildren(tasks[i], tasksId, children);
     }
 }
 
@@ -38,7 +47,7 @@ export function deleteNode(tasks, id) {
             return tasks.splice(i, 1);
         }
 
-        return deleteTask(tasks[i], id);
+        deleteTask(tasks[i], id);
     }
 }
 
@@ -70,7 +79,7 @@ export function loadAndUpdateTask(tasks, task) {
                 children: t.children
             };
         }
-        return loadAndUpdateTaskInTasks(tasks[i], task);
+        loadAndUpdateTaskInTasks(tasks[i], task);
     }
 }
 

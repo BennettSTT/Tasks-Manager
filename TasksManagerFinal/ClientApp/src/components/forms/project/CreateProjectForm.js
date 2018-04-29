@@ -4,6 +4,7 @@ import { moduleName as userModule } from "../../../ducks/auth";
 import { connect }                  from "react-redux";
 import { reduxForm, Field }         from 'redux-form';
 import FormControlField             from "../field/FormControlField";
+import QuillField                   from '../field/QuillField';
 
 class CreateProjectForm extends Component {
     render() {
@@ -20,10 +21,10 @@ class CreateProjectForm extends Component {
                         <label className = 'control-label'>Title project</label>
                         <Field name = 'title' component = { FormControlField } />
                     </div>
-
+                    <br /> <br />
                     <div className = 'form-group'>
                         <label className = 'control-label'>Description</label>
-                        <Field name = 'description' component = { FormControlField } />
+                        <Field name = 'description' component = { QuillField } />
                     </div>
                     <br />
                     <div>
@@ -38,7 +39,6 @@ class CreateProjectForm extends Component {
 const validate = ({ title, description }) => {
     const errors = {};
 
-
     if (!title) {
         errors.title = 'Title is required';
     } else if (title.split(' ').length > 1) {
@@ -51,9 +51,10 @@ const validate = ({ title, description }) => {
 
     if (description && description.length > 2000) {
         errors.description = "Long description";
-    } else if (/<[a-z][a-z0-9]*>/i.test(description)) {
-        errors.title = "Incorrect characters";
     }
+    // } else if (/<[a-z][a-z0-9]*>/i.test(description)) {
+    //     errors.title = "Incorrect characters";
+    // }
 
     return errors;
 };

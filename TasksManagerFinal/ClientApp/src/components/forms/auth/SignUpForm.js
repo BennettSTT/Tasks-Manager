@@ -3,29 +3,33 @@ import { reduxForm, Field } from 'redux-form';
 import emailValidator       from 'email-validator';
 import AuthField            from '../field/AuthField';
 import { Button }           from "react-bootstrap";
+import { connect }          from "react-redux";
+import { moduleName }       from "../../../ducks/auth";
 
 class SignUpForm extends Component {
     static propTypes = {};
 
     render() {
         const { handleSubmit } = this.props;
+
         return (
             <div>
-                <h2>Login</h2>
+                <h3>Login</h3>
+                <br/>
                 <form onSubmit = { handleSubmit }>
                     <div>
-                        <label>Login or Email</label>
-                        <Field name = 'login' component = {AuthField} type = 'login' />
+                        <label>Login or Email</label> <Field name = 'login' component = { AuthField } type = 'login' />
                     </div>
                     <div>
-                        <label>Password</label>
-                        <Field name = 'password' component = {AuthField} type = 'password' />
+                        <label>Password</label> <Field name = 'password' component = { AuthField } type = 'password' />
                     </div>
+                    <br/>
                     <div>
                         <Button type = 'submit'>Submit</Button>
                     </div>
                 </form>
             </div>
+
         );
     }
 }
@@ -52,4 +56,4 @@ const validate = ({ login, email, password }) => {
 export default reduxForm({
     form: 'auth',
     validate
-})(SignUpForm)
+})(SignUpForm);

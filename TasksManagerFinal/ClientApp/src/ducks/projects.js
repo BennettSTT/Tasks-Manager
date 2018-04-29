@@ -94,7 +94,9 @@ export default function reducer(state = new ReducerState(), action) {
                         if (entities === undefined) entities = new Map({});
                         return entities.set(response.project.id, new ProjectRecord(response.project));
                     }
-                );
+                )
+                // .setIn(['projectsUsers', payload.login, 'loaded'], true)
+                // .setIn(['projectsUsers', payload.login, 'loading'], false);
 
         case LOAD_PROJECT_NOT_FOUND:
             return state

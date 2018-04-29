@@ -25,9 +25,9 @@ class UpdateTaskForm extends Component {
                     </div>
                     <br />
                     <div className = 'update-task-status'>
-                        <label>Status</label>
+                        <label>Priority</label>
                         <div>
-                            <Field name = 'status' component = { StatusSelectField } options = { 1 } />
+                            <Field name = 'priority' component = { StatusSelectField } />
                         </div>
                     </div>
                     <div className = 'update-task-button-block'>
@@ -75,9 +75,9 @@ const validate = ({ title, dueDate, status }) => {
     return errors;
 };
 
-function mapStateToProps(state, { task: { title, createDate, dueDate, status } }) {
+function mapStateToProps(state, { task: { title, createDate, dueDate, priority } }) {
     return {
-        initialValues: { title, createDate, dueDate, status }
+        initialValues: { title, createDate, dueDate, priority }
     };
 }
 

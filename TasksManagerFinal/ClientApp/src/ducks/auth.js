@@ -180,19 +180,6 @@ export const initializeAppSaga = function* () {
         const check = yield call(checkToken);
         if (check) yield call(refreshToken);
 
-        // const { accessToken } = yield call(getToken);
-        // const headers = new Headers();
-        // yield call([headers, headers.append], "Authorization", `Bearer ${accessToken}`);
-        //
-        // const res = yield call(fetchApi, `/api/Tasks?projectId=3&level=4`, {
-        //     method: 'GET',
-        //     headers: headers,
-        //     cache: 'no-cache'
-        // });
-        //
-        // const body = yield call([res, res.json]);
-        // debugger;
-
         const user = yield call(userInfoFetchSaga);
 
         yield put({
@@ -210,23 +197,23 @@ export const initializeAppSaga = function* () {
 };
 
 const userInfoFetchSaga = function* () {
-        const check = yield call(checkToken);
-        if (check) yield call(refreshToken);
+    const check = yield call(checkToken);
+    if (check) yield call(refreshToken);
 
-        const { accessToken, refreshToken: { userId } } = yield call(getToken);
-        const headers = new Headers();
-        yield call([headers, headers.append], "Authorization", `Bearer ${accessToken}`);
+    const { accessToken, refreshToken: { userId } } = yield call(getToken);
+    const headers = new Headers();
+    yield call([headers, headers.append], "Authorization", `Bearer ${accessToken}`);
 
-        const res = yield call(fetchApi, `/api/Users/${userId}`, {
-            method: 'GET',
-            headers: headers,
-            cache: 'no-cache'
-        });
+    const res = yield call(fetchApi, `/api/Users/${userId}`, {
+        method: 'GET',
+        headers: headers,
+        cache: 'no-cache'
+    });
 
-        if (!res.ok) {
-            const message = yield call([res, res.text]);
-            throw new Error(message);
-        }
+    if (!res.ok) {
+        const message = yield call([res, res.text]);
+        throw new Error(message);
+    }
 
     return yield call([res, res.json]);
 };

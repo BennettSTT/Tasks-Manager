@@ -1,24 +1,9 @@
-import { Map, Record }                                               from "immutable";
-import { appName }                                                   from "../config";
-import { all, select, take, call, put }                              from 'redux-saga/effects';
-import { fetchApi, refreshToken }                                    from "../api";
-import { checkToken, getToken }                                      from "../token";
-import { moduleName as authModule }                                  from "./auth";
-import { addChildrenInTask, deleteNode, getTask, loadAndUpdateTask } from "../service/tasksService";
-import { CREATE_PROJECT_SUCCESS }                                    from "./projects";
-
-const ProjectRecord = Record({
-    id: null,
-    title: null,
-    dueDate: null,
-    createDate: null,
-    completeDate: null,
-    parentId: null,
-    projectId: null,
-    status: null,
-    priority: null,
-    children: null
-});
+import { Map, Record }                                     from "immutable";
+import { appName }                                         from "../config";
+import { all, select, take, call, put }                    from 'redux-saga/effects';
+import { fetchApi, refreshToken }                          from "../api";
+import { checkToken, getToken }                            from "../token";
+import { addTask, deleteNode, getTask, loadAndUpdateTask } from "../service/tasksService";
 
 const ReducerState = Record({
     projectsUsers: new Map({})
@@ -33,6 +18,10 @@ export const LOAD_TASKS_PROJECT_START = `${prefix}/LOAD_TASKS_PROJECT_START`;
 export const LOAD_TASKS_PROJECT_SUCCESS = `${prefix}/LOAD_TASKS_PROJECT_SUCCESS`;
 export const LOAD_TASKS_PROJECT_NOT_FOUND = `${prefix}/LOAD_TASKS_PROJECT_SUCCESS`;
 export const LOAD_TASKS_PROJECT_ERROR = `${prefix}/LOAD_TASKS_PROJECT_ERROR`;
+
+export const CREATE_TASK_START = `${prefix}/CREATE_TASK_START`;
+export const CREATE_TASK_SUCCESS = `${prefix}/CREATE_TASK_SUCCESS`;
+export const CREATE_TASK_ERROR = `${prefix}/CREATE_TASK_ERROR`;
 
 export const UPDATE_TASK_START = `${prefix}/UPDATE_TASK_START`;
 export const UPDATE_TASK_SUCCESS = `${prefix}/UPDATE_TASK_SUCCESS`;
@@ -49,7 +38,6 @@ export const LOAD_CHILDREN_TASK_NOT_FOUND = `${prefix}/LOAD_TASK_NOT_FOUND`;
 export const LOAD_CHILDREN_TASK_ERROR = `${prefix}/LOAD_TASK_ERROR`;
 
 //#endregion
-//#region Selectors
 
 export default function reducer(state = new ReducerState(), action) {
     const { type, payload, response } = action;
@@ -69,7 +57,7 @@ export default function reducer(state = new ReducerState(), action) {
 
         case LOAD_CHILDREN_TASK_SUCCESS: {
             const tasks = state.getIn(['projectsUsers', payload.login, payload.title, "tasks"]);
-            addChildrenInTask(tasks, payload.task.id, response.children);
+            addTask(tasks, payload.task.id, response.children);
             return state.setIn(['projectsUsers', payload.login, payload.title, "tasks"], tasks);
         }
 
@@ -84,21 +72,25 @@ export default function reducer(state = new ReducerState(), action) {
             loadAndUpdateTask(tasks, response.task);
             return state.setIn(['projectsUsers', payload.login, payload.title, "tasks"], tasks);
         }
+
+        case CREATE_TASK_SUCCESS: {
+            const tasks = state.getIn(['projectsUsers', payload.login, payload.title, "tasks"]);
+            addTask(tasks, payload.parentId, response.task);
+            return state.setIn(['projectsUsers', payload.login, payload.title, "tasks"], tasks);
+        }
     }
 
     return state;
 }
-
-//#endregion
 
 
 //#region Actions Creators
 
 /**
  *
- * @param login
- * @param title
- * @param task
+ * @param login логин юзера
+ * @param title имя проекта
+ * @param task задача
  * @returns {{type: string, payload: {}}}
  */
 export function updateTask(login, title, task) {
@@ -134,6 +126,21 @@ export function checkAndLoadChildrenTask(login, title, task) {
     return {
         type: LOAD_CHILDREN_TASK_START,
         payload: { task, login, title }
+    };
+}
+
+/**
+ *
+ * @param login логин юзера
+ * @param title название проекта
+ * @param task новая задача
+ * @param parentId id родителя. Если не передать => будет корневым элементом
+ * @returns {{type: string, payload: {login: *, title: *, task: *}}}
+ */
+export function createTask(login, title, task, parentId) {
+    return {
+        type: CREATE_TASK_START,
+        payload: { login, title, task, parentId }
     };
 }
 
@@ -248,6 +255,47 @@ export function* checkAndLoadChildrenTaskSaga() {
                 payload: { login, title, task },
                 error
             });
+        }
+    }
+}
+
+export function* createTaskSaga() {
+    while (true) {
+        const { payload: { login, title, task, parentId } } = yield take(CREATE_TASK_START);
+        try {
+            const check = yield call(checkToken);
+            if (check) yield call(refreshToken);
+
+            const { accessToken } = yield call(getToken);
+            const headers = new Headers();
+
+            yield call([headers, headers.append], 'Content-Type', 'application/json');
+            yield call([headers, headers.append], 'Authorization', `Bearer ${accessToken}`);
+
+            const response = yield call(fetchApi, `/api/Tasks`, {
+                method: 'POST', headers: headers, body: JSON.stringify(task)
+            });
+
+            if (!response.ok) {
+                const message = yield call([response, response.text]);
+                throw new Error(message);
+            }
+
+            const body = yield call([response, response.json]);
+
+            yield put({
+                type: CREATE_TASK_SUCCESS,
+                payload: { login, title, task, parentId },
+                response: { task: body }
+            });
+
+        } catch (error) {
+            console.error(error);
+            yield put({
+                type: CREATE_TASK_ERROR,
+                payload: { login, title, task, parentId }
+            });
+            debugger;
         }
     }
 }
@@ -378,6 +426,7 @@ export const saga = function* () {
     yield all([
         checkAndLoadTasksProjectSaga(),
         checkAndLoadChildrenTaskSaga(),
+        createTaskSaga(),
         deleteTaskSaga(),
         updateTaskSaga()
     ]);

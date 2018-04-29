@@ -17,6 +17,7 @@ import { checkAndLoadTasksProject } from "../../../ducks/tasks";
 import { Route, Switch }            from "react-router";
 import { NavLink }                  from "react-router-dom";
 import NotFound                     from "../NotFound/NotFound";
+import { LinkContainer }            from "react-router-bootstrap";
 
 class ProjectPage extends Component {
     state = {
@@ -34,7 +35,8 @@ class ProjectPage extends Component {
         const {
             user: { login: userLogin },
             match: { params: { login: matchLogin } },
-            project: { inArchive }
+            project: { inArchive },
+            match: { params: { login, projectTitle } }
         } = this.props;
 
         if (userLogin !== matchLogin) return null;
@@ -50,7 +52,6 @@ class ProjectPage extends Component {
                         <Button onClick = { () => this.setState({ editProject: !this.state.editProject }) }
                         >{ statusEditProect }</Button>
                     </div>
-
                     <div className = 'projects-btn'>
                         <Button onClick = { () => this.setState({ showModal: true }) }
                                 bsStyle = 'primary'>{ statusArchive }</Button>
@@ -106,9 +107,9 @@ class ProjectPage extends Component {
     render() {
         const { project, match: { params: { login, projectTitle } } } = this.props;
 
-        if (this.props.loading || !this.props.loaded) {
-            return <Loader />;
-        }
+        // if (this.props.loading || !this.props.loaded) {
+        //     return <Loader />;
+        // }
 
         if (!project) return ( <Layout> <NotFound /> </Layout> );
 
@@ -118,15 +119,19 @@ class ProjectPage extends Component {
 
         return (
             <Layout>
-                <div className = 'container'>
+                <div className = 'container project-page-container'>
                     { this.projectMenu() }
 
                     { content }
 
                     { this.modalItem() }
-                </div>
-                <div className = 'auth-page-link'>
-                    <NavLink to = { `/${login}/${projectTitle}/tasks` }>View Tasks</NavLink>
+
+                    <hr/>
+
+                    <LinkContainer to = { `/${login}/${projectTitle}/tasks` }>
+                        <Button>View Tasks</Button>
+                    </LinkContainer>
+
                 </div>
             </Layout>
         );

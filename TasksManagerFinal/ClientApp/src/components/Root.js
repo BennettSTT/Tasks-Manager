@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.css';
+import 'react-quill/dist/quill.snow.css';
 import React, { Component } from 'react';
 import App                  from './App';
 import store                from '../redux';

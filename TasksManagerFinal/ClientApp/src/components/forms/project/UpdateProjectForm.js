@@ -1,9 +1,10 @@
+import "./UpdateProjectForm.css";
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { Button }           from "react-bootstrap";
 import { connect }          from "react-redux";
 import FormControlField     from "../field/FormControlField";
-import "./UpdateProjectForm.css";
+import QuillField           from "../field/QuillField";
 
 class UpdateProjectForm extends Component {
     static propTypes = {};
@@ -16,9 +17,12 @@ class UpdateProjectForm extends Component {
                     <label>Title</label> <Field name = 'title' component = { FormControlField } />
                 </div>
                 <br />
-                <div className='project-form-description'>
-                    <label>Description</label> <Field name = 'description' component = { FormControlField } />
+
+                <div className = 'form-group'>
+                    <label className = 'control-label'>Description</label>
+                    <Field name = 'description' component = { QuillField } />
                 </div>
+
                 <br />
 
                 <div>
@@ -45,9 +49,9 @@ const validate = ({ title, description }) => {
 
     if (description && description.length > 2000) {
         errors.description = "Long description";
-    } else if (/<[a-z][a-z0-9]*>/i.test(description)) {
+    } /*else if (/<[a-z][a-z0-9]*>/i.test(description)) {
         errors.title = "Incorrect characters";
-    }
+    }*/
 
     return errors;
 };

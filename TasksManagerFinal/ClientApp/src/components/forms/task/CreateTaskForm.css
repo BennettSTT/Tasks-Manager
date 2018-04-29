@@ -1,4 +1,4 @@
-.update-task-form-container {
+.create-task-form-container {
     position: relative;
 
     background: #fafafa;
@@ -10,22 +10,22 @@
     margin: 10px;
 }
 
-.update-task-due-date {
+.create-task-due-date{
     margin-left: 5px;
 }
 
-.update-task-status {
+.create-task-status{
     margin: 5px;
 }
 
-.update-task-button-block {
+.create-task-button-block {
     position: absolute;
     right: 0;
     bottom: 0;
     margin: 5px;
 }
 
-.update-task-button {
+.create-task-button {
     display: inline-block;
     margin-left: 10px;
 }

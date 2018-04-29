@@ -1,4 +1,4 @@
-import React           from 'react';
+import React from 'react';
 
 function StatusSelectField(props) {
     const { input, placeholder, defaultValue, meta: { touched, error } } = props;
@@ -7,10 +7,9 @@ function StatusSelectField(props) {
     return (
         <div>
             <select { ...input }>
-                <option value = { 1 }>Created</option>
-                <option value = { 2 }>InProgress</option>
-                <option value = { 3 }>Posponded</option>
-                <option value = { 4 }>Completed</option>
+                <option value = { 1 }>Low</option>
+                <option value = { 2 }>Medium</option>
+                <option value = { 3 }>High</option>
             </select>
             <div>
                 { errorText }

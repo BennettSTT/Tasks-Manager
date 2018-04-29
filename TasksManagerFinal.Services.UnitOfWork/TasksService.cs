@@ -28,7 +28,8 @@ namespace TasksManagerFinal.Services.UnitOfWork
                 Uow.TasksRepository.Query()
                     .Select(p => p)
                     .Where(g => g.ProjectId == projectId && g.Level <= level)
-            ).ToListAsync();
+            )
+                .ToListAsync();
             var roots = tasksObjects.Where(g => g.Parent == null).ToList();
             var dict = tasksObjects
                 .Where(g => g.Parent != null)
