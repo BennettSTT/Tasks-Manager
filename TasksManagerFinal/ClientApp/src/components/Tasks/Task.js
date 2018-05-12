@@ -18,9 +18,9 @@ class Task extends Component {
         const { task } = this.props;
         const child = this.state.subtask && task.children.length !== 0
             ? task.children.map(t => {
-                    return <li key = { t.id }>
+                    return <li key={ t.id }>
                         { /* Без понятия почему, но тут нужно передавать контекст */ } { /* Ибо он, почему-то, теряется */ }
-                        <Task  { ...this.props } task = { t } />
+                        <Task  { ...this.props } task={ t }/>
                     </li>;
                 }
             )
@@ -30,21 +30,20 @@ class Task extends Component {
             <div>
                 {
                     this.state.edit
-                        ? <UpdateTaskForm task = { task }
-                                          onSubmit = { this.handleUpdateTask }
-                                          editTask = { this.editTask }
-                                          key = { task.id }
-                                          form = { `updateTaskForm_${task.id}` } />
+                        ? <UpdateTaskForm task={ task }
+                                          onSubmit={ this.handleUpdateTask }
+                                          editTask={ this.editTask }
+                                          key={ task.id }
+                                          form={ `updateTaskForm_${task.id}` }/>
                         : this.getTask()
                 }
 
                 {
                     this.state.addTaskForm
-                        ? <CreateTaskForm key = { task.id }
-                                          form = { `createTaskForm_${task.id}` }
-                                          onSubmit = { this.handleCreateTask }
-                                          addTaskHandler = { this.addTaskHandler }
-                        />
+                        ? <CreateTaskForm key={ task.id }
+                                          form={ `createTaskForm_${task.id}` }
+                                          onSubmit={ this.handleCreateTask }
+                                          addTaskHandler={ this.addTaskHandler }/>
                         : null
                 }
 
@@ -74,38 +73,38 @@ class Task extends Component {
         const { task } = this.props;
         return (
             <div>
-                <div className = 'task-container'>
-                    <div className = 'task-title'>
+                <div className='task-container'>
+                    <div className='task-title'>
                         <h4> { task.title } </h4>
                     </div>
-                    <hr />
-                    <div className = 'task-status'>
+                    <hr/>
+                    <div className='task-status'>
                         <p>Status: <strong>{ this.getStatus(task.status) }</strong></p>
                         <p>Priority: <strong>{ this.getPriority(task.priority) }</strong></p>
                     </div>
 
-                    <div className = 'task-info'>
+                    <div className='task-info'>
                         <p>DueDate: { task.dueDate ? task.dueDate : "No information" } </p>
                         <p>CreateDate: { task.createDate ? task.createDate : "No information" } </p>
                         <p>CompleteDate: { task.completeDate ? task.completeDate : "No information" } </p>
                     </div>
-                    <hr />
-                    <div className = 'task-button'>
-                        <Button onClick = { this.handleHide } bsStyle = 'danger'>Delete</Button>
+                    <hr/>
+                    <div className='task-button'>
+                        <Button onClick={ this.handleHide } bsStyle='danger'>Delete</Button>
                     </div>
 
-                    <div className = 'task-button-block'>
-                        <div className = 'task-button'>
-                            <Button onClick = { this.completeTask }>Complete task</Button>
+                    <div className='task-button-block'>
+                        <div className='task-button'>
+                            <Button onClick={ this.completeTask }>Complete task</Button>
                         </div>
-                        <div className = 'task-button'>
-                            <Button onClick = { this.viewSubtask }>View subtask</Button>
+                        <div className='task-button'>
+                            <Button onClick={ this.viewSubtask }>View subtask</Button>
                         </div>
-                        <div className = 'task-button'>
-                            <Button onClick = { this.editTask }>Edit</Button>
+                        <div className='task-button'>
+                            <Button onClick={ this.editTask }>Edit</Button>
                         </div>
-                        <div className = 'task-button'>
-                            <Button onClick = { this.addTaskHandler } bsStyle = 'success'>Add cubtask</Button>
+                        <div className='task-button'>
+                            <Button onClick={ this.addTaskHandler } bsStyle='success'>Add cubtask</Button>
                         </div>
                     </div>
                 </div>
@@ -127,6 +126,7 @@ class Task extends Component {
             priority,
             dueDate,
             title,
+            parentId: task.id,
             projectId: project.id
         }), task.id);
 
@@ -168,19 +168,20 @@ class Task extends Component {
     modalItem() {
         return (
             <Modal
-                show = { this.state.showModal }
-                onHide = { this.handleHide }
-                container = { this }
-                aria-labelledby = 'contained-modal-title'
-            > <Modal.Header closeButton>
-                <Modal.Title id = 'contained-modal-title'>Delete task</Modal.Title>
-            </Modal.Header>
+                show={ this.state.showModal }
+                onHide={ this.handleHide }
+                container={ this }
+                aria-labelledby='contained-modal-title'
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title id='contained-modal-title'>Delete task</Modal.Title>
+                </Modal.Header>
 
                 <Modal.Body> Do you really want to do this?</Modal.Body>
 
                 <Modal.Footer>
-                    <Button bsStyle = 'danger' onClick = { this.deleteNode }>Delete</Button>
-                    <Button onClick = { this.handleHide }>Close</Button>
+                    <Button bsStyle='danger' onClick={ this.deleteNode }>Delete</Button>
+                    <Button onClick={ this.handleHide }>Close</Button>
                 </Modal.Footer>
             </Modal>
         );

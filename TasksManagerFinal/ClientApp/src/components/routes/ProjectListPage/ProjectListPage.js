@@ -1,5 +1,5 @@
 import React, { Component }                                                from 'react';
-import ProjectList                                                  from "../../Project/ProjectList";
+import ProjectList                                                         from "../../Project/ProjectList";
 import { showArchiveProjects, moduleName as userModule, showOpenProjects } from '../../../ducks/auth';
 import { connect }                                                         from 'react-redux';
 import { Layout }                                                          from "../../Layout";
@@ -13,8 +13,8 @@ class ProjectListPage extends Component {
 
         return (
             <Layout>
-                <div className = 'container'>
-                    { this.getMenu() } <ProjectList login = { match.params.login } inArchive = { inArchive } />
+                <div className='container'>
+                    { this.getMenu() } <ProjectList login={ match.params.login } inArchive={ inArchive }/>
                 </div>
             </Layout>
         );
@@ -28,14 +28,15 @@ class ProjectListPage extends Component {
 
         if (login === matchLogin) {
             return (
-                <div className = 'menu-projects-container'>
-                    <ButtonToolbar> <LinkContainer to = { `/new` }>
-                        <Button> New project </Button>
-                    </LinkContainer>
-                        <Button onClick = { showOpenProjects }>Show open projects</Button>
-                        <Button onClick = { showArchiveProjects }>Show archive of projects </Button>
+                <div className='menu-projects-container'>
+                    <ButtonToolbar>
+                        <LinkContainer to={ `/new` }>
+                            <Button> New project </Button>
+                        </LinkContainer>
+                        <Button onClick={ showOpenProjects }>Show open projects</Button>
+                        <Button onClick={ showArchiveProjects }>Show archive of projects </Button>
                     </ButtonToolbar>
-                    <hr />
+                    <hr/>
                 </div>
             );
         }
@@ -44,9 +45,9 @@ class ProjectListPage extends Component {
     }
 }
 
-export default connect(store => ( {
+export default connect(store => ({
     user: store[userModule].get('user'),
     inArchive: store[userModule].OpenInArchive
-} ), { showOpenProjects, showArchiveProjects })(ProjectListPage);
+}), { showOpenProjects, showArchiveProjects })(ProjectListPage);
 
 

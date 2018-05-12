@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -15,7 +16,6 @@ using TasksManagerFinal.DataAccess.UnitOfWork;
 using TasksManagerFinal.DataAccess.UnitOfWork.EFCore.Extensions;
 using TasksManagerFinal.Services.UnitOfWork.Extensions;
 using TasksManagerFinal.ViewModel;
-using AutoMapper;
 
 namespace TasksManagerFinal
 {
@@ -63,7 +63,6 @@ namespace TasksManagerFinal
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
-            // Настроить редирект на index.html И убрать роут projects/
             RegisterRouters(app);
 
             app.UseSpa(spa =>

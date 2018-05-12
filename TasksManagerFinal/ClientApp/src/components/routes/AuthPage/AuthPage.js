@@ -12,33 +12,33 @@ class AuthPage extends Component {
 
     render() {
         const { error } = this.props;
-
         const messageError = error ? error.message : null;
+
         return (
-            <div className = 'container'>
-                <div className = 'auth-page'>
+            <div className='container'>
+                <div className='auth-page'>
                     <h1>Auth page</h1>
-                    <br />
-                    <div className = 'auth-page-link'>
-                        <NavLink to = '/auth/register'>Register</NavLink>
+                    <br/>
+                    <div className='auth-page-link'>
+                        <NavLink to='/auth/register'>Register</NavLink>
                     </div>
 
-                    <div className = 'auth-page-link'>
-                        <NavLink to = '/auth/login'>Login</NavLink>
+                    <div className='auth-page-link'>
+                        <NavLink to='/auth/login'>Login</NavLink>
                     </div>
-                    <br />
+                    <br/>
 
                     <Switch>
-                        <Route path = '/auth/register' render = { () =>
-                            <SignInForm onSubmit = { this.handleSignIn } /> } />
+                        <Route path='/auth/register' render={ () =>
+                            <SignInForm onSubmit={ this.handleSignIn }/> }/>
 
-                        <Route path = '/auth/login' render = { () =>
-                            <SignUpForm onSubmit = { this.handleSignUp } /> } />
+                        <Route path='/auth/login' render={ () =>
+                            <SignUpForm onSubmit={ this.handleSignUp }/> }/>
                     </Switch>
 
-                    <br />
+                    <br/>
 
-                    <div style = { { color: "red" } }>
+                    <div style={ { color: "red" } }>
                         { messageError }
                     </div>
                 </div>
@@ -50,6 +50,6 @@ class AuthPage extends Component {
     handleSignUp = ({ login, password }) => this.props.login(login, password);
 }
 
-export default connect(state => ( {
+export default connect(state => ({
     error: state[moduleName].getIn(['error'])
-} ), { login, register }, null, { pure: false })(AuthPage);
+}), { login, register }, null, { pure: false })(AuthPage);

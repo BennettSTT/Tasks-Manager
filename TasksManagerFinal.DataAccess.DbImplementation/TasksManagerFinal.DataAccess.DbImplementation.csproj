@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <Reference Include="AutoMapper">
-      <HintPath>C:\Users\Benne\.nuget\packages\automapper\6.1.1\lib\netstandard1.3\AutoMapper.dll</HintPath>
+      <HintPath>..\TasksManagerFinal.Services.UnitOfWork\bin\Debug\netcoreapp2.0\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="System.IdentityModel.Tokens.Jwt">
       <HintPath>C:\Users\Benne\.nuget\packages\system.identitymodel.tokens.jwt\5.2.1\lib\netstandard1.4\System.IdentityModel.Tokens.Jwt.dll</HintPath>

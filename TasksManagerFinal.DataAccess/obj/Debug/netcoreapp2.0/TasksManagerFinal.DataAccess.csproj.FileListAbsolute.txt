@@ -12,3 +12,17 @@ D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess\obj\Debug\netcoreapp2.0\
 D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess\obj\Debug\netcoreapp2.0\TasksManagerFinal.DataAccess.pdb
 D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess\bin\Debug\netcoreapp2.0\TasksManagerFinal.Entities.dll
 D:\asp\tasks-manager-final\TasksManagerFinal.DataAccess\bin\Debug\netcoreapp2.0\TasksManagerFinal.Entities.pdb
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManagerFinal.DataAccess\bin\Debug\netcoreapp2.0\TasksManagerFinal.DataAccess.deps.json
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManagerFinal.DataAccess\bin\Debug\netcoreapp2.0\TasksManagerFinal.DataAccess.dll
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManagerFinal.DataAccess\bin\Debug\netcoreapp2.0\TasksManagerFinal.DataAccess.pdb
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManagerFinal.DataAccess\bin\Debug\netcoreapp2.0\TasksManagerFinal.Entities.dll
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManagerFinal.DataAccess\bin\Debug\netcoreapp2.0\TasksManagerFinal.ViewModel.dll
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManagerFinal.DataAccess\bin\Debug\netcoreapp2.0\TasksManagerFinal.ViewModel.pdb
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManagerFinal.DataAccess\bin\Debug\netcoreapp2.0\TasksManagerFinal.Entities.pdb
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManagerFinal.DataAccess\obj\Debug\netcoreapp2.0\TasksManagerFinal.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManagerFinal.DataAccess\obj\Debug\netcoreapp2.0\TasksManagerFinal.DataAccess.AssemblyInfoInputs.cache
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManagerFinal.DataAccess\obj\Debug\netcoreapp2.0\TasksManagerFinal.DataAccess.AssemblyInfo.cs
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManagerFinal.DataAccess\obj\Debug\netcoreapp2.0\TasksManagerFinal.DataAccess.csproj.CopyComplete
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManagerFinal.DataAccess\obj\Debug\netcoreapp2.0\TasksManagerFinal.DataAccess.dll
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManagerFinal.DataAccess\obj\Debug\netcoreapp2.0\TasksManagerFinal.DataAccess.pdb
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManagerFinal.DataAccess\obj\Debug\netcoreapp2.0\TasksManagerFinal.DataAccess.csprojAssemblyReference.cache

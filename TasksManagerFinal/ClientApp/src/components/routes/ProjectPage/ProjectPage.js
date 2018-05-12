@@ -43,18 +43,18 @@ class ProjectPage extends Component {
 
         const statusArchive = inArchive ? "Open" : "Archive";
         const statusEditProect = this.state.editProject
-            ? <Glyphicon glyph = 'glyphicon glyphicon-remove' />
-            : <Glyphicon glyph = 'glyphicon glyphicon-pencil' />;
+            ? <Glyphicon glyph='glyphicon glyphicon-remove'/>
+            : <Glyphicon glyph='glyphicon glyphicon-pencil'/>;
         return (
-            <div className = 'project-menu-container'>
-                <div className = 'projects-btn-group'>
-                    <div className = 'projects-btn'>
-                        <Button onClick = { () => this.setState({ editProject: !this.state.editProject }) }
+            <div className='project-menu-container'>
+                <div className='projects-btn-group'>
+                    <div className='projects-btn'>
+                        <Button onClick={ () => this.setState({ editProject: !this.state.editProject }) }
                         >{ statusEditProect }</Button>
                     </div>
-                    <div className = 'projects-btn'>
-                        <Button onClick = { () => this.setState({ showModal: true }) }
-                                bsStyle = 'primary'>{ statusArchive }</Button>
+                    <div className='projects-btn'>
+                        <Button onClick={ () => this.setState({ showModal: true }) }
+                                bsStyle='primary'>{ statusArchive }</Button>
                     </div>
                 </div>
             </div>
@@ -70,18 +70,24 @@ class ProjectPage extends Component {
         const statusArchive = inArchive ? "Open" : "Archive";
         return (
             <Modal
-                show = { this.state.showModal }
-                onHide = { this.handleHide }
-                container = { this }
-                aria-labelledby = 'contained-modal-title'
-            > <Modal.Header closeButton>
-                <Modal.Title id = 'contained-modal-title'>{ statusArchive } project</Modal.Title> </Modal.Header>
-
-                <Modal.Body> Do you really want to do this?</Modal.Body>
-
+                show={ this.state.showModal }
+                onHide={ this.handleHide }
+                container={ this }
+                aria-labelledby='contained-modal-title'
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title id='contained-modal-title'>
+                        { statusArchive } project
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Do you really want to do this?
+                </Modal.Body>
                 <Modal.Footer>
-                    <Button bsStyle = 'primary' onClick = { this.handlerArchiveButton }>{ statusArchive }</Button>
-                    <Button onClick = { this.handleHide }>Close</Button> </Modal.Footer> </Modal>
+                    <Button bsStyle='primary' onClick={ this.handlerArchiveButton }>{ statusArchive }</Button>
+                    <Button onClick={ this.handleHide }>Close</Button>
+                </Modal.Footer>
+            </Modal>
         );
     }
 
@@ -111,15 +117,15 @@ class ProjectPage extends Component {
         //     return <Loader />;
         // }
 
-        if (!project) return ( <Layout> <NotFound /> </Layout> );
+        if (!project) return (<Layout> <NotFound/> </Layout>);
 
         const content = this.state.editProject
-            ? <UpdateProjectForm onSubmit = { this.handleUpdateProject } project = { project } />
-            : <Project project = { project } />;
+            ? <UpdateProjectForm onSubmit={ this.handleUpdateProject } project={ project }/>
+            : <Project project={ project }/>;
 
         return (
             <Layout>
-                <div className = 'container project-page-container'>
+                <div className='container project-page-container'>
                     { this.projectMenu() }
 
                     { content }
@@ -128,7 +134,7 @@ class ProjectPage extends Component {
 
                     <hr/>
 
-                    <LinkContainer to = { `/${login}/${projectTitle}/tasks` }>
+                    <LinkContainer to={ `/${login}/${projectTitle}/tasks` }>
                         <Button>View Tasks</Button>
                     </LinkContainer>
 

@@ -22,3 +22,15 @@ D:\asp\tasks-manager-final\TasksManager.Db\obj\Debug\netcoreapp2.0\TasksManagerF
 D:\asp\tasks-manager-final\TasksManager.Db\obj\Debug\netcoreapp2.0\TasksManagerFinal.Db.csproj.CopyComplete
 D:\asp\tasks-manager-final\TasksManager.Db\obj\Debug\netcoreapp2.0\TasksManagerFinal.Db.dll
 D:\asp\tasks-manager-final\TasksManager.Db\obj\Debug\netcoreapp2.0\TasksManagerFinal.Db.pdb
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManager.Db\bin\Debug\netcoreapp2.0\TasksManagerFinal.Db.deps.json
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManager.Db\bin\Debug\netcoreapp2.0\TasksManagerFinal.Db.dll
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManager.Db\bin\Debug\netcoreapp2.0\TasksManagerFinal.Db.pdb
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManager.Db\bin\Debug\netcoreapp2.0\TasksManagerFinal.Entities.dll
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManager.Db\bin\Debug\netcoreapp2.0\TasksManagerFinal.Entities.pdb
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManager.Db\obj\Debug\netcoreapp2.0\TasksManagerFinal.Db.csproj.CoreCompileInputs.cache
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManager.Db\obj\Debug\netcoreapp2.0\TasksManagerFinal.Db.AssemblyInfoInputs.cache
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManager.Db\obj\Debug\netcoreapp2.0\TasksManagerFinal.Db.AssemblyInfo.cs
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManager.Db\obj\Debug\netcoreapp2.0\TasksManagerFinal.Db.csproj.CopyComplete
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManager.Db\obj\Debug\netcoreapp2.0\TasksManagerFinal.Db.dll
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManager.Db\obj\Debug\netcoreapp2.0\TasksManagerFinal.Db.pdb
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManager.Db\obj\Debug\netcoreapp2.0\TasksManagerFinal.Db.csprojAssemblyReference.cache

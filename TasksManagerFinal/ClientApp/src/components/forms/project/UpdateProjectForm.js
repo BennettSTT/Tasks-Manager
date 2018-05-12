@@ -49,7 +49,8 @@ const validate = ({ title, description }) => {
 
     if (description && description.length > 2000) {
         errors.description = "Long description";
-    } /*else if (/<[a-z][a-z0-9]*>/i.test(description)) {
+    } /*else if (/<script.*?>.*?<\/script>/igm.test(description)) {
+        debugger;
         errors.title = "Incorrect characters";
     }*/
 

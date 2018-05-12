@@ -1,3 +1,8 @@
 .projects-page {
     text-align: center;
 }
+
+.menu-project-container {
+    margin-right: 0;
+    margin-left: 0;
+}

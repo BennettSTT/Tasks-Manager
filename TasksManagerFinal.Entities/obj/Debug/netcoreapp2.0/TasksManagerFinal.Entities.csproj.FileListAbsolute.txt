@@ -19,3 +19,15 @@ D:\asp\tasks-manager-final\TasksManagerFinal.Entities\obj\Debug\netcoreapp2.0\Ta
 D:\asp\tasks-manager-final\TasksManagerFinal.Entities\bin\Debug\netcoreapp2.0\Microsoft.Extensions.Identity.Stores.dll
 D:\asp\tasks-manager-final\TasksManagerFinal.Entities\bin\Debug\netcoreapp2.0\Microsoft.Extensions.Identity.Stores.xml
 D:\asp\tasks-manager-final\TasksManagerFinal.Entities\obj\Debug\netcoreapp2.0\TasksManagerFinal.Entities.csproj.CopyComplete
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManagerFinal.Entities\bin\Debug\netcoreapp2.0\TasksManagerFinal.Entities.deps.json
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManagerFinal.Entities\bin\Debug\netcoreapp2.0\TasksManagerFinal.Entities.dll
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManagerFinal.Entities\bin\Debug\netcoreapp2.0\TasksManagerFinal.Entities.pdb
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManagerFinal.Entities\bin\Debug\netcoreapp2.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManagerFinal.Entities\bin\Debug\netcoreapp2.0\Microsoft.Extensions.Identity.Stores.xml
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManagerFinal.Entities\obj\Debug\netcoreapp2.0\TasksManagerFinal.Entities.csproj.CoreCompileInputs.cache
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManagerFinal.Entities\obj\Debug\netcoreapp2.0\TasksManagerFinal.Entities.AssemblyInfoInputs.cache
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManagerFinal.Entities\obj\Debug\netcoreapp2.0\TasksManagerFinal.Entities.AssemblyInfo.cs
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManagerFinal.Entities\obj\Debug\netcoreapp2.0\TasksManagerFinal.Entities.csproj.CopyComplete
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManagerFinal.Entities\obj\Debug\netcoreapp2.0\TasksManagerFinal.Entities.dll
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManagerFinal.Entities\obj\Debug\netcoreapp2.0\TasksManagerFinal.Entities.pdb
+C:\Users\Benne\source\repos\tasks-manager-final\TasksManagerFinal.Entities\obj\Debug\netcoreapp2.0\TasksManagerFinal.Entities.csprojAssemblyReference.cache

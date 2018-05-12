@@ -332,29 +332,6 @@ export function* checkAndLoadTasksProjectSaga() {
 
             const body = yield call([response, response.json]);
 
-            // let test = function (obj, id) {
-            //     if (obj.id === id) {
-            //         obj.children.push({
-            //             "id": 1488,
-            //             "title": "TestParent2",
-            //             "level": 1,
-            //             "dueDate": "2018-04-23T00:00:00",
-            //             "createDate": "2018-04-23T00:00:00",
-            //             "completeDate": "2018-04-23T00:00:00",
-            //             "status": 1,
-            //             "children": []
-            //         });
-            //     }
-            //
-            //
-            //     for (let object of obj.children) {
-            //         test(object, id);
-            //     }
-            // };
-            // for (let task of body) {
-            //     test(task, 6);
-            // }
-
             yield put({
                 type: LOAD_TASKS_PROJECT_SUCCESS,
                 payload: { login, title },
