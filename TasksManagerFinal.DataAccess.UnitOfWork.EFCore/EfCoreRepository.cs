@@ -16,7 +16,22 @@ namespace TasksManagerFinal.DataAccess.UnitOfWork.EFCore
 
         protected DbSet<TEntity> DbSet { get; }
 
-        public IQueryable<TEntity> Query(params Expression<Func<TEntity, object>>[] includes)
+        public void Add(TEntity entity)
+        {
+	        DbSet.Add(entity);
+        }
+
+        public void Remove(TEntity entity)
+        {
+	        DbSet.Remove(entity);
+        }
+
+        public void Update(TEntity entity)
+        {
+	        DbSet.Update(entity);
+        }
+
+		public IQueryable<TEntity> Query(params Expression<Func<TEntity, object>>[] includes)
         {
             return ApplyIncludes(includes, DbSet);
         }
@@ -28,21 +43,6 @@ namespace TasksManagerFinal.DataAccess.UnitOfWork.EFCore
                 query = query.Include(include);
             }
             return query;
-        }
-
-        public void Add(TEntity entity)
-        {
-            DbSet.Add(entity);
-        }
-
-        public void Remove(TEntity entity)
-        {
-            DbSet.Remove(entity);
-        }
-
-        public void Update(TEntity entity)
-        {
-            DbSet.Update(entity);
         }
 
         public void CountAsync(TEntity entity)

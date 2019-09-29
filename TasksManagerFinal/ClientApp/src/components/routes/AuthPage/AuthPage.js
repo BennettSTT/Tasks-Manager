@@ -15,9 +15,8 @@ class AuthPage extends Component {
         const messageError = error ? error.message : null;
 
         return (
-            <div className='container'>
+            <div className='container' style={{width: "450px"}}>
                 <div className='auth-page'>
-                    <h1>Auth page</h1>
                     <br/>
                     <div className='auth-page-link'>
                         <NavLink to='/auth/register'>Register</NavLink>
@@ -27,6 +26,7 @@ class AuthPage extends Component {
                         <NavLink to='/auth/login'>Login</NavLink>
                     </div>
                     <br/>
+                    <hr/>
 
                     <Switch>
                         <Route path='/auth/register' render={ () =>

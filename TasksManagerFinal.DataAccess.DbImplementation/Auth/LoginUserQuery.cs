@@ -30,23 +30,27 @@ namespace TasksManagerFinal.DataAccess.DbImplementation.Auth
 
         public async Task<LoginUserResponse> ExecuteAsync(LoginUserRequest loginUserRequest)
         {
-            var user = await Factory.CreateAsyncQueryble(Uow.UsersRepository.Query())
-                .FirstOrDefaultAsync(u =>
-                    u.Email == loginUserRequest.Login || u.Login == loginUserRequest.Login
-                );
+	        var user = await Factory
+		        .CreateAsyncQueryble(Uow.UsersRepository.Query())
+		        .FirstOrDefaultAsync(currentUser => currentUser.Email == loginUserRequest.Login ||
+		                                            currentUser.Login == loginUserRequest.Login);
 
-            if (user == null) throw new Exception("Login or password is incorrect");
+	        if (user == null) throw new Exception("Login or password is incorrect");
 
-            if (new PasswordHasher<User>()
-                    .VerifyHashedPassword(user, user.Password, loginUserRequest.Password) == PasswordVerificationResult.Failed)
-                throw new AuthenticationException("Login or password is incorrect");
+	        var verificationPasswordUser = new PasswordHasher<User>()
+		                 .VerifyHashedPassword(user, user.Password, loginUserRequest.Password) == PasswordVerificationResult.Failed;
 
-            Token token = TokenServices.GetJWTToken(user);
+	        if (verificationPasswordUser)
+	        {
+		        throw new AuthenticationException("Login or password is incorrect");
+			}
 
-            Uow.UsersRepository.Update(user);
-            await Uow.CommitAsync();
+			var token = TokenServices.GetJWTToken(user);
 
-            return Mapper.Map<Token, LoginUserResponse>(token);
+	        Uow.UsersRepository.Update(user);
+	        await Uow.CommitAsync();
+
+	        return Mapper.Map<Token, LoginUserResponse>(token);
         }
     }
 }

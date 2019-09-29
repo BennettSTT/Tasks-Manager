@@ -222,19 +222,13 @@ const userInfoFetchSaga = function* () {
 export const loginSaga = function* () {
     while (true) {
         const action = yield take(SIGN_UP_REQUEST);
-
         const headers = new Headers();
-        yield call([headers, headers.append], "Content-Type", "application/json");
 
+        yield call([headers, headers.append], "Content-Type", "application/json");
         const body = yield call([JSON, JSON.stringify], action.payload);
 
         try {
-            const res = yield call(fetchApi, '/api/Auth/login', {
-                method: 'POST',
-                headers: headers,
-                body: body,
-                cache: 'no-cache'
-            });
+            const res = yield call(fetchApi, '/api/Auth/login', { method: 'POST', headers: headers, body: body });
 
             if (!res.ok) {
                 const message = yield call([res, res.text]);
@@ -248,18 +242,10 @@ export const loginSaga = function* () {
 
             const user = yield call(userInfoFetchSaga);
 
-            yield put({
-                type: SIGN_UP_SUCCESS,
-                payload: { user }
-            });
-
+            yield put({ type: SIGN_UP_SUCCESS, payload: { user } });
             yield put(push(`/${user.login}`));
         } catch (error) {
-            debugger;
-            yield put({
-                type: SIGN_UP_ERROR,
-                error
-            });
+            yield put({ type: SIGN_UP_ERROR, error });
         }
     }
 };

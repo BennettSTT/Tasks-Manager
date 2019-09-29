@@ -149,22 +149,17 @@ export function createProject(title, description) {
 //#region Sagas
 export function* checkAndLoadProjectsForPageSaga() {
     while (true) {
-
-        const { payload: { login, /*page,*/ inArchive } } = yield take(CHECK_AND_LOAD_PROJECTS_FOR_PAGE);
+        const { payload: { login, inArchive } } = yield take(CHECK_AND_LOAD_PROJECTS_FOR_PAGE);
         const { [moduleName]: { projectsUsers } } = yield select();
 
         const pageLoading = yield call([projectsUsers, projectsUsers.getIn], [login, 'loading']);
         const pageLoaded = yield call([projectsUsers, projectsUsers.getIn], [login, 'loaded']);
-        // const pageIds = yield call([projectsUsers, projectsUsers.getIn], [login, 'pagination', inArchive, page, 'ids']);
 
-        if (pageLoading /*|| pageIds */ || pageLoaded) {
+        if (pageLoading || pageLoaded) {
             continue;
         }
 
-        yield put({
-            type: LOAD_PROJECTS_FOR_PAGE_START,
-            payload: { /*page*/ login, inArchive }
-        });
+        yield put({ type: LOAD_PROJECTS_FOR_PAGE_START, payload: { login, inArchive } });
 
         try {
             const check = yield call(checkToken);
@@ -176,15 +171,10 @@ export function* checkAndLoadProjectsForPageSaga() {
             yield call([headers, headers.append], 'Content-Type', 'application/json');
             yield call([headers, headers.append], 'Authorization', `Bearer ${accessToken}`);
 
-            const res = yield call(fetchApi, `/api/Projects/${login}/`, {
-                method: 'GET', headers: headers
-            });
+            const res = yield call(fetchApi, `/api/Projects/${login}/`, { method: 'GET', headers: headers });
 
             if (res.status === 404) {
-                yield put({
-                    type: LOAD_PROJECTS_FOR_PAGE_NOT_FOUND,
-                    payload: { login, /*page,*/ inArchive }
-                });
+                yield put({ type: LOAD_PROJECTS_FOR_PAGE_NOT_FOUND, payload: { login, inArchive } });
                 continue;
             }
 

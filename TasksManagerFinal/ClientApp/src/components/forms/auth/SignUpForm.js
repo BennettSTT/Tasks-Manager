@@ -25,7 +25,7 @@ class SignUpForm extends Component {
                     </div>
                     <br/>
                     <div>
-                        <Button type = 'submit'>Submit</Button>
+                        <button type='submit' className="btn btn-primary">Submit</button>
                     </div>
                 </form>
             </div>

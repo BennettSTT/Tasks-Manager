@@ -6,7 +6,7 @@ function AuthField(props) {
 
     return (
         <div>
-            <input { ...input } type = { type } /> { errorText }
+            <input className="form-control" { ...input } type = { type } /> { errorText }
         </div>
     );
 }

@@ -1,21 +1,18 @@
-import React, { Component }         from 'react';
+import React, { Component }         from "react";
 import {
     checkAndLoadProject,
     moduleName as projectModule,
     projectSelectorFactory,
     updateProject
-}                                   from '../../../ducks/projects';
-import { connect }                  from 'react-redux';
+}                                   from "../../../ducks/projects";
+import { connect }                  from "react-redux";
 import { Layout }                   from "../../Layout";
 import Project                      from "../../Project/Project";
-import './ProjectPage.css';
-import Loader                       from "../../common/Loader";
+import "./ProjectPage.css";
 import { Button, Glyphicon, Modal } from "react-bootstrap";
 import { moduleName as authModule } from "../../../ducks/auth";
 import UpdateProjectForm            from "../../forms/project/UpdateProjectForm";
 import { checkAndLoadTasksProject } from "../../../ducks/tasks";
-import { Route, Switch }            from "react-router";
-import { NavLink }                  from "react-router-dom";
 import NotFound                     from "../NotFound/NotFound";
 import { LinkContainer }            from "react-router-bootstrap";
 
@@ -134,7 +131,7 @@ class ProjectPage extends Component {
 
                     <hr/>
 
-                    <LinkContainer to={ `/${login}/${projectTitle}/tasks` }>
+                    <LinkContainer to={ `/${ login }/${ projectTitle }/tasks` }>
                         <Button>View Tasks</Button>
                     </LinkContainer>
 
@@ -166,9 +163,9 @@ function mapStateToProps() {
         const { match: { params: { login } } } = ownProps;
 
         return {
-            loading: projectsUsers.getIn([login, 'loading']),
-            loaded: projectsUsers.getIn([login, 'loaded']),
-            user: state[authModule].get('user'),
+            loading: projectsUsers.getIn([login, "loading"]),
+            loaded: projectsUsers.getIn([login, "loaded"]),
+            user: state[authModule].get("user"),
             project: projectSelector(state, ownProps)
         };
     };
